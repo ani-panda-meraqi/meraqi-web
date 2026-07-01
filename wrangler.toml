@@ -1,0 +1,9 @@
+name = "meraqi-web"
+compatibility_date = "2026-06-29"
+pages_build_output_dir = "."
+
+# Binds the D1 database to env.DB inside functions/api/waitlist.js
+[[d1_databases]]
+binding = "DB"
+database_name = "meraqi-waitlist"
+database_id = "PASTE_DATABASE_ID_FROM_CREATE_STEP"
