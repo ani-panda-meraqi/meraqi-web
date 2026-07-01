@@ -6,4 +6,4 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "meraqi-waitlist"
-database_id = "PASTE_DATABASE_ID_FROM_CREATE_STEP"
+database_id = "f60f2428-8b8d-4640-acf0-eb1fcebffa28"
