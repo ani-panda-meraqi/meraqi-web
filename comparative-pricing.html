@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meraqi - Pricing comparison</title>
+<meta name="description" content="How Meraqi's outcome-based pricing compares to the AI creative market: every vendor's verified tiers, credit math decoded, and a workload calculator that finds the cheapest covering plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    /* dark theme mapped onto this sheet's semantic tokens; palette shared with meraqi.ai */
+    --ink: #eef1ec;                        /* primary text (cream) */
+    --cream-pure: #f7f8f4;
+    --muted: #95a9bf;                      /* slate */
+    --muted-dim: #5e768f;
+    --line: rgba(238,241,236,0.10);
+    --line-strong: rgba(238,241,236,0.22);
+    --bg: #001533;                         /* deep-blue ink, anchored on the logo */
+    --bg-soft: #04223f;                    /* lifted surface; solid so sticky cells stay opaque */
+    --accent: #ee5a34;                     /* coral */
+    --accent-soft: #20293e;                /* solid coral-over-ink blend for highlighted rows */
+    --accent-ink: #f6a085;                 /* coral tint for text accents */
+    --warn-soft: #2b2413;
+    --warn-ink: #e5b84b;
+    --info-soft: #10263f;
+    --info-ink: #6ea8e8;
+    --fdisplay: "Bodoni Moda","Didot",Georgia,serif;
+    --fbody: "Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --fmono: "JetBrains Mono",ui-monospace,monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--fbody);
+    color: var(--ink);
+    background: var(--bg);
+    padding: 28px 32px 64px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  b, strong { color: var(--cream-pure); }
+  ::selection { background: var(--accent); color: var(--cream-pure); }
+  .page { max-width: 1240px; margin: 0 auto; }
+  header h1 { font-family: var(--fdisplay); font-optical-sizing: auto; font-size: 30px; font-weight: 600; letter-spacing: -0.015em; color: var(--cream-pure); }
+  header .sub { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  header .sub strong { color: var(--ink); font-weight: 600; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 22px; font-size: 12px; }
+  .badge {
+    display: inline-block; padding: 2px 10px; border-radius: 999px; font-family: var(--fmono);
+    font-size: 10.5px; font-weight: 500; letter-spacing: 0.03em; white-space: nowrap; vertical-align: middle;
+  }
+  .b-shot  { background: var(--accent-soft); color: var(--accent-ink); }
+  .b-live  { background: var(--accent-soft); color: var(--accent-ink); }
+  .b-fetch { background: var(--info-soft);  color: var(--info-ink); }
+  .b-search{ background: var(--warn-soft);  color: var(--warn-ink); }
+  .b-na    { background: rgba(238,241,236,0.08); color: var(--muted); }
+
+  .scroller { overflow-x: auto; border: 1px solid var(--line-strong); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; min-width: 1180px; font-size: 12.5px; }
+  th, td { padding: 10px 12px; vertical-align: top; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
+  th:last-child, td:last-child { border-right: none; }
+  thead th {
+    background: var(--bg-soft); font-family: var(--fmono); font-size: 10.5px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted); text-align: left; position: sticky; top: 0;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.company, th.company {
+    position: sticky; left: 0; background: var(--bg-soft);
+    min-width: 170px; max-width: 190px; border-right: 1px solid var(--line-strong);
+  }
+  td.company .name { font-weight: 600; font-size: 13px; }
+  td.company .note { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  td.company a { color: inherit; text-decoration: none; }
+  td.company a:hover { text-decoration: underline; }
+  .plan { min-width: 185px; }
+  .plan .pname { font-weight: 600; }
+  .plan .price { margin-top: 2px; }
+  .plan .price b { font-weight: 600; }
+  .plan .cred { color: var(--muted); margin-top: 2px; }
+  .plan .extra { color: var(--muted); font-size: 11.5px; margin-top: 4px; }
+  .dim { color: var(--muted); }
+
+  tr.meraqi td { background: var(--accent-soft); border-bottom: 2px solid var(--accent); }
+  tr.meraqi td.company { background: var(--accent-soft); }
+  tr.meraqi .pname, tr.meraqi .price b { color: var(--accent-ink); }
+
+  h2 { font-family: var(--fdisplay); font-optical-sizing: auto; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--cream-pure); margin: 36px 0 12px; }
+  .meraqi-detail { border: 1px solid var(--accent); border-radius: 10px; overflow: hidden; }
+  .meraqi-detail table { min-width: 900px; }
+  .meraqi-detail thead th { background: var(--accent-soft); color: var(--accent-ink); position: static; }
+  .meraqi-detail td.rowlabel { font-weight: 600; background: var(--bg-soft); min-width: 140px; }
+  .beta {
+    margin-top: 14px; padding: 12px 16px; border-left: 3px solid var(--accent);
+    background: var(--bg-soft); font-size: 13px; color: var(--ink);
+  }
+  .beta b { color: var(--accent-ink); }
+  .fn { color: var(--accent-ink); text-decoration: none; font-weight: 600; }
+  #fn-regulated, #fn-fairuse { margin: 16px 0 0; padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); font-size: 12.5px; color: var(--ink); }
+
+  ul.takeaways { margin: 8px 0 0 18px; font-size: 14px; }
+  ul.takeaways li { margin-bottom: 8px; }
+  .foot { margin-top: 28px; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+  .foot p { margin-bottom: 4px; }
+
+  .calc input, .calc select { background: var(--bg-soft); color: var(--ink); }
+  .calc input:focus, .calc select:focus { outline: 0; box-shadow: 0 0 0 4px rgba(238,90,52,0.14); }
+
+  /* site chrome */
+  .sitenav { max-width: 1240px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .sitenav .brand { height: 52px; width: auto; display: block; }
+  .sitenav .nl { display: flex; align-items: center; gap: 22px; }
+  .sitenav .nl a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .15s; }
+  .sitenav .nl a:hover { color: var(--ink); }
+  .sitenav .nl a.cta { background: var(--accent); color: var(--cream-pure); padding: 9px 16px; border-radius: 9px; font-weight: 600; font-size: 13.5px; }
+  .sitenav .nl a.cta:hover { background: #d8421f; }
+  .sitefoot { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; font-size: 13px; color: var(--muted-dim); }
+  .sitefoot a { color: var(--muted); text-decoration: none; }
+  .sitefoot a:hover { color: var(--ink); }
+
+  @media print {
+    body { padding: 0; font-size: 10px; }
+    .scroller { overflow: visible; border: none; }
+    table { min-width: 0; }
+    @page { size: A3 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav class="sitenav">
+  <a href="/" aria-label="Meraqi home"><img class="brand" src="assets/brand.png" alt="Meraqi"/></a>
+  <div class="nl">
+    <a href="/">Home</a>
+    <a href="/#video">Video</a>
+    <a href="pricing.html">Pricing</a>
+    <a class="cta" href="/#beta">Join the beta</a>
+  </div>
+</nav>
+
+<header>
+  <h1>Pricing comparison</h1>
+  <div class="sub">Every vendor's published tiers, verified, plus a workload calculator &middot; prices verified July 5, 2026 &middot; all prices USD, per month unless noted</div>
+  <p style="margin-top: 10px; font-size: 13.5px;"><a class="fn" href="pricing.html">&larr; Meraqi plans &amp; pricing</a></p>
+</header>
+
+<h2>How the market compares</h2>
+
+<div class="legend">
+  <span class="badge b-shot">verified: screenshot / live page</span>
+  <span class="badge b-fetch">verified: page fetch</span>
+</div>
+
+<div class="scroller">
+<table>
+  <thead>
+    <tr>
+      <th class="company">Company</th>
+      <th>Entry / Free</th>
+      <th>Tier 2</th>
+      <th>Tier 3</th>
+      <th>Tier 4 / Teams</th>
+      <th>Enterprise / Custom</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td class="company">
+        <div class="name"><a href="https://higgsfield.ai/pricing">Higgsfield</a> <span class="badge b-shot">screenshot</span></div>
+        <div class="note">$200M raised &middot; credits/month</div>
+      </td>
+      <td class="plan"><div class="pname">Starter</div><div class="price"><b>$19</b> (annual = monthly)</div><div class="cred">270 credits</div><div class="extra">~135 NB Pro images or ~31 Kling 3.0 videos; selected models only</div></td>
+      <td class="plan"><div class="pname">Plus</div><div class="price"><b>$47</b> annual ($59 monthly)</div><div class="cred">1,200 credits</div><div class="extra">all models; 7-day unlimited windows per model</div></td>
+      <td class="plan"><div class="pname">Ultra</div><div class="price"><b>$99</b> annual ($129 monthly)</div><div class="cred">3,000 credits (slider to 9,000)</div><div class="extra">lowest cost per credit</div></td>
+      <td class="plan"><div class="pname">Team / Scale</div><div class="price"><b>$65</b>/seat annual ($79 monthly); Scale <b>$150</b>/seat ($215)</div><div class="cred">1,000 / 2,500 credits per seat</div><div class="extra">SSO and spend controls only from Scale</div></td>
+      <td class="plan"><div class="pname">Enterprise</div><div class="price">contact sales</div><div class="extra">SOC 2, SLA, indemnification behind sales</div></td>
+    </tr>
+
+    <tr>
+      <td class="company">
+        <div class="name"><a href="https://artlist.io/page/pricing/max?tab=ai-suite">Artlist AI Suite</a> <span class="badge b-shot">screenshot</span></div>
+        <div class="note">$300M scale &middot; credits/month, slider-scaled</div>
+      </td>
+      <td class="plan"><div class="pname">AI Starter</div><div class="price"><b>$11.99</b> annual ($19.99 monthly)</div><div class="cred">16,500 credits (scales)</div><div class="extra">~1,650 images, ~103 videos, 3 h voiceover, ~110 songs</div></td>
+      <td class="plan"><div class="pname">AI Creator</div><div class="price"><b>$41.67</b> annual ($69.99 monthly)</div><div class="cred">80,000 credits (scales)</div></td>
+      <td class="plan"><div class="pname">AI Professional</div><div class="price"><b>$239.99</b> annual ($399.99 monthly)</div><div class="cred">500,000 credits (scales)</div><div class="extra">includes up to 3 members</div></td>
+      <td class="plan dim">-</td>
+      <td class="plan"><div class="pname">Custom Business</div><div class="price">contact sales</div><div class="extra">unlimited generations on all models, SSO, indemnification, compliance</div></td>
+    </tr>
+
+    <tr>
+      <td class="company">
+        <div class="name"><a href="https://openart.ai/suite/pricing">OpenArt</a> <span class="badge b-fetch">fetched</span></div>
+        <div class="note">$70M scale &middot; credits/month</div>
+      </td>
+      <td class="plan"><div class="pname">Essential</div><div class="price"><b>$12.60</b> annual ($14 monthly)</div><div class="cred">4,000 credits</div><div class="extra">~4,000 images or ~50 videos</div></td>
+      <td class="plan"><div class="pname">Advanced</div><div class="price"><b>$23.20</b> annual ($29 monthly)</div><div class="cred">12,000 credits</div></td>
+      <td class="plan"><div class="pname">Infinite</div><div class="price"><b>$43.70</b> annual ($56 monthly)</div><div class="cred">24,000 credits</div></td>
+      <td class="plan"><div class="pname">Wonder</div><div class="price"><b>$175.20</b> annual ($240 monthly)</div><div class="cred">106,000 credits</div><div class="extra">~1,300 videos</div></td>
+      <td class="plan dim">-</td>
+    </tr>
+
+    <tr>
+      <td class="company">
+        <div class="name"><a href="https://www.magnific.com/pricing">Magnific (Freepik)</a> <span class="badge b-fetch">fetched</span></div>
+        <div class="note">$230M scale &middot; credits per YEAR</div>
+      </td>
+      <td class="plan"><div class="pname">Premium</div><div class="price"><b>$14.50</b> annual ($20 monthly)</div><div class="cred">240K credits/year</div><div class="extra">~3,200 images or ~307 videos per year</div></td>
+      <td class="plan"><div class="pname">Premium+</div><div class="price"><b>$33.75</b> annual ($45 monthly)</div><div class="cred">600K credits/year</div><div class="extra">30+ models unlimited all year</div></td>
+      <td class="plan"><div class="pname">Pro</div><div class="price"><b>$210</b> annual ($280 monthly)</div><div class="cred">4M credits/year</div></td>
+      <td class="plan"><div class="pname">Business</div><div class="price"><b>$55</b>/seat annual ($69 monthly), min 2 seats</div><div class="cred">1.08M credits/year pooled</div><div class="extra">SSO, usage reporting</div></td>
+      <td class="plan"><div class="pname">Enterprise</div><div class="price">contact sales</div><div class="extra">indemnification, 3-year rollover</div></td>
+    </tr>
+
+    <tr>
+      <td class="company">
+        <div class="name"><a href="https://leonardo.ai/pricing">Leonardo (Canva)</a> <span class="badge b-live">live page</span></div>
+        <div class="note">16M users &middot; tokens/month + rollover bank</div>
+      </td>
+      <td class="plan"><div class="pname">Free</div><div class="price"><b>$0</b></div><div class="cred">150 fast tokens/day</div></td>
+      <td class="plan"><div class="pname">Essential</div><div class="price"><b>$12</b> ex tax (~20% off yearly)</div><div class="cred">8,500 tokens + 25,500 bank</div><div class="extra">bundled with Canva Business</div></td>
+      <td class="plan"><div class="pname">Premium</div><div class="price"><b>$30</b></div><div class="cred">25,000 tokens + 75,000 bank</div><div class="extra">unlimited relaxed image gen (first-party models)</div></td>
+      <td class="plan"><div class="pname">Ultimate</div><div class="price"><b>$60</b></div><div class="cred">60,000 tokens + 180,000 bank</div><div class="extra">unlimited relaxed image + video gen (first-party models)</div></td>
+      <td class="plan"><div class="pname">Teams / API</div><div class="price">Starter <b>$24</b>/seat, Growth <b>$48</b>/seat</div><div class="cred">75K / 180K shared tokens</div><div class="extra">API pay-as-you-go from $5</div></td>
+    </tr>
+
+    <tr>
+      <td class="company">
+        <div class="name"><a href="https://invideo.io/pricing/">InVideo</a> <span class="badge b-shot">screenshot</span></div>
+        <div class="note">$70M &middot; credits/month</div>
+      </td>
+      <td class="plan"><div class="pname">Plus</div><div class="price"><b>$17</b> with annual billing ($200/yr; 15% off vs monthly)</div><div class="cred">75 credits (~300 NB Pro images)</div><div class="extra">all models (Seedance 2.0, Veo 3.1, Kling 3), 4 avatars and voice clones, 20 GB, 100 iStock, no watermark</div></td>
+      <td class="plan"><div class="pname">Max</div><div class="price"><b>$85</b> with annual billing ($1,000/yr)</div><div class="cred">390 credits (~1,560 NB Pro images)</div><div class="extra">16 avatars, 2x concurrency, 100 GB, 200 iStock</div></td>
+      <td class="plan"><div class="pname">Generative</div><div class="price"><b>$170</b> with annual billing ($2,000/yr)</div><div class="cred">800 credits, slider to 1,600</div><div class="extra">40 avatars, 10x concurrency, 2 TB, 1,000 iStock</div></td>
+      <td class="plan"><div class="pname">Elite</div><div class="price"><b>$900</b> with annual billing ($10,800/yr; 10% off)</div><div class="cred">4,250 credits, slider to 8,500</div><div class="extra">200 avatars, 20x concurrency, 10 TB, 5,000 iStock</div></td>
+      <td class="plan"><div class="pname">Team / Enterprise</div><div class="price">Standard seat <b>$40</b> annual ($50 monthly); Premium seat <b>$400</b> ($500 monthly)</div><div class="cred">160 / 1,600 credits per seat; 2-30 seats, mix and match</div><div class="extra">Enterprise custom, min 10 seats: SOC 2, GDPR, SSO and SCIM, audit logs, DPA</div></td>
+    </tr>
+
+    <tr class="meraqi">
+      <td class="company">
+        <div class="name"><a href="https://www.meraqi.ai/pricing">Meraqi</a></div>
+        <div class="note">priced in outcomes per day, not credits</div>
+      </td>
+      <td class="plan"><div class="pname">Trial</div><div class="price"><b>1 month free</b></div><div class="cred">200 images/day &middot; 10 videos/day up to 15 s</div><div class="extra">everything in Starter, with watermarked export and Eco (off-peak) processing; 1080p, 10 GB</div></td>
+      <td class="plan"><div class="pname">Starter</div><div class="price"><b>$12</b>/seat/mo ($120/seat/year)</div><div class="cred">200 images/day &middot; 10 videos/day up to 15 s</div><div class="extra">1080p, Standard processing, 10 GB, SSO</div></td>
+      <td class="plan"><div class="pname">Pro</div><div class="price"><b>$25</b>/seat/mo ($250/seat/year)</div><div class="cred">500 images/day &middot; 20 videos/day up to 30 s</div><div class="extra">1080p, Express processing, 50 GB, SSO</div></td>
+      <td class="plan"><div class="pname">Business</div><div class="price"><b>$50</b>/seat/mo ($500/seat/year)</div><div class="cred">1,500 images/day &middot; 30 videos/day up to 60 s (rolling out)</div><div class="extra">1080p, Priority processing, 200 GB, SSO</div></td>
+      <td class="plan" title="Runs entirely on customer-owned hardware inside the customer's own network; see footnote."><div class="pname">Regulated Industries <a class="fn" href="pricing.html#fn-regulated">&dagger;</a></div><div class="price">intranet only</div><div class="cred">unlimited</div><div class="extra">on-prem, private or gov cloud, air-gapped hosting</div></td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+<h2>What the matrix shows</h2>
+<ul class="takeaways">
+  <li><b>Meraqi is the only vendor pricing in outcomes.</b> Every competitor sells an abstract pool (credits or tokens) whose real-world yield depends on which model you pick; the buyer does the arithmetic. Meraqi states deliverables per day, tracked as a monthly pool (daily figure &times; 30) from each user's own billing date, so within the month nothing is use-it-or-lose-it.</li>
+  <li><b>Units are not comparable across vendors.</b> Higgsfield, Artlist, OpenArt and InVideo meter credits per month, each with different model costs per credit; Magnific meters credits per year; Leonardo meters tokens with a rollover bank. A "credits" column that looks bigger is not necessarily more output.</li>
+  <li><b>Video-first pricing is moving upward.</b> InVideo's current credit plans run $17 to $900 per month, far above the legacy minute-based plans ($25 to $120) still cited by third-party trackers; a price umbrella forming above Meraqi's video tiers.</li>
+  <li><b>Annual-vs-monthly billing splits obscure headline prices.</b> Higgsfield Ultra is $99 or $129, Artlist Professional is $239.99 or $399.99 depending on the toggle. Meraqi leads with the monthly price everywhere and states annual billing plainly as two months free.</li>
+  <li><b>Compliance is gated up-tier everywhere.</b> SSO, indemnification, no-training guarantees and SOC 2 live in team or contact-sales tiers across the matrix; the cheapest SSO in the set is Magnific's $55/seat Business (minimum 2 seats), and Higgsfield charges $150/seat for it at Scale. A published Regulated Industries tier (on-prem, gov cloud, air-gapped) has no counterpart anywhere in this set, and Meraqi ships passwordless sign-in with inherited two-step verification on every plan from day one, including single-seat Starter (no passwords stored; Google and Microsoft today, company logins through the Meraqi Identity Broker rolling out), while competitors sell identity features as upsells.</li>
+  <li><b>Seat economics favor Meraqi.</b> Business at $50/seat undercuts Higgsfield Team ($65-79/seat, no SSO until $150/seat Scale) and Magnific Business ($55-69/seat), matches InVideo's Standard seat ($40-50, which carries only 160 credits/seat), and sits between Leonardo's $24 and $48 team seats.</li>
+  <li><b>"Unlimited" claims carry fine print.</b> Higgsfield sells 7-day unlimited windows per model; Leonardo's unlimited is relaxed-queue and first-party models only; Artlist reserves unlimited-on-all-models for Custom Business. Meraqi's free month avoids the word entirely: it is simply Starter with a watermark and a relaxed queue, 200 images and 10 videos a day, plainly stated.</li>
+</ul>
+
+<h2>Workload cost calculator</h2>
+<p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">Enter a monthly workload. The calculator picks the Meraqi tier that covers it and, for each competitor, the cheapest listed plan whose credit pool covers the same workload, using the vendors' own "enough for" conversion claims (video base rates reflect ~5-second clips, scaled linearly to your chosen length). Leonardo and InVideo video rates are estimates. Competitor prices are annual-billing rates; Meraqi is shown at its monthly headline price (annual billing would be ~17% lower). Competitor costs assume a single account and credit pool.</p>
+
+<div class="calc" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 14px;">
+  <label style="font-size: 12px; color: var(--muted);">Images / month
+    <input id="c-img" type="number" min="0" value="500" style="margin-top: 4px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box;">
+  </label>
+  <label style="font-size: 12px; color: var(--muted);">Videos / month
+    <input id="c-vid" type="number" min="0" value="30" style="margin-top: 4px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box;">
+  </label>
+  <label style="font-size: 12px; color: var(--muted);">Typical video length
+    <select id="c-len" style="margin-top: 4px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box;">
+      <option value="10">~10 seconds</option>
+      <option value="15" selected>~15 seconds (social bumper)</option>
+      <option value="30">~30 seconds (standard spot)</option>
+      <option value="60">~60 seconds (anthem spot)</option>
+      <option value="90">~90 seconds</option>
+    </select>
+  </label>
+  <label style="font-size: 12px; color: var(--muted);">Team seats
+    <input id="c-seat" type="number" min="1" value="1" style="margin-top: 4px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box;">
+  </label>
+</div>
+
+<div class="scroller">
+<table style="min-width: 760px;">
+  <thead><tr><th>Vendor</th><th>Cheapest covering plan</th><th>Est. cost / month</th><th>Notes</th></tr></thead>
+  <tbody id="calcbody"></tbody>
+</table>
+</div>
+<p style="margin-top: 8px; font-size: 11.5px; color: var(--muted);">Conversion assumptions (credits per unit, from vendors' own claims): Higgsfield 2/image, ~8.7 per 5s video &middot; Artlist 10/image, ~160 per 5s video &middot; OpenArt 1/image, ~80 per 5s video &middot; Magnific 75/image, ~780 per 5s video (annual pool shown /12) &middot; Leonardo ~25 tokens/image, ~300 per 5s video (estimate) &middot; InVideo 0.25/image, ~2 per 5s video (estimate).</p>
+
+<script>
+(function(){
+  var el = function(id){ return document.getElementById(id); };
+  var fmt = function(n){ return '$' + (n % 1 ? n.toFixed(2) : n.toLocaleString()); };
+  var V = [
+    {n:'Higgsfield', img:2, v5:8.7, plans:[['Starter',19,270],['Plus',47,1200],['Ultra',99,3000]], note:'Ultra slider extends to 9,000 credits'},
+    {n:'Artlist', img:10, v5:160, plans:[['AI Starter',11.99,16500],['AI Creator',41.67,80000],['AI Professional',239.99,500000]], note:''},
+    {n:'OpenArt', img:1, v5:80, plans:[['Essential',12.60,4000],['Advanced',23.20,12000],['Infinite',43.70,24000],['Wonder',175.20,106000]], note:''},
+    {n:'Magnific', img:75, v5:780, plans:[['Premium',14.50,20000],['Premium+',33.75,50000],['Pro',210,333333]], note:'annual credit pool divided by 12'},
+    {n:'Leonardo', img:25, v5:300, plans:[['Essential',12,8500],['Premium',30,25000],['Ultimate',60,60000]], note:'token rates estimated; Ultimate adds unlimited relaxed first-party video'},
+    {n:'InVideo', img:0.25, v5:2, plans:[['Plus',17,75],['Max',85,390],['Generative',170,800],['Elite',900,4250]], note:'video credit rate estimated'}
+  ];
+  var M = [['Starter',12,200,10,15],['Pro',25,500,20,30],['Business',50,1500,30,60]];
+  function calc(){
+    var imgs = +el('c-img').value || 0, vids = +el('c-vid').value || 0;
+    var len = +el('c-len').value, seats = Math.max(1, +el('c-seat').value || 1);
+    var rows = '', mfit = null, mnote = seats > 1 ? seats + ' seats' : '';
+    for (var i = 0; i < M.length; i++) {
+      var t = M[i];
+      if (imgs <= t[2]*30*seats && vids <= t[3]*30*seats && len <= t[4]) { mfit = [t[0], t[1]*seats]; break; }
+    }
+    if (!mfit) {
+      if (len > 60) { mfit = ['Regulated Industries', null]; mnote = 'video length beyond SaaS tiers'; }
+      else {
+        var s = Math.max(Math.ceil(imgs/45000), Math.ceil(vids/900), seats);
+        mfit = ['Business', 50*s]; mnote = 'needs ' + s + ' seats';
+      }
+    }
+    rows += '<tr style="background: var(--accent-soft); font-weight: 600;"><td>Meraqi</td><td>' + mfit[0] + '</td><td>' + (mfit[1] == null ? 'contact' : fmt(mfit[1])) + '</td><td>' + mnote + '</td></tr>';
+    for (var j = 0; j < V.length; j++) {
+      var v = V[j];
+      var need = Math.ceil(imgs*v.img + vids*v.v5*len/5);
+      var p = null;
+      for (var k = 0; k < v.plans.length; k++) { if (v.plans[k][2] >= need) { p = v.plans[k]; break; } }
+      var top = v.plans[v.plans.length-1];
+      rows += '<tr><td>' + v.n + '</td><td>' + (p ? p[0] : 'exceeds listed plans') + '</td><td>' + (p ? fmt(p[1]) : fmt(top[1]) + ' + top-ups') + '</td><td>' + (need ? need.toLocaleString() + ' credits needed' : '') + (v.note ? (need ? '; ' : '') + v.note : '') + '</td></tr>';
+    }
+    el('calcbody').innerHTML = rows;
+  }
+  ['c-img','c-vid','c-len','c-seat'].forEach(function(id){ el(id).addEventListener('input', calc); });
+  calc();
+})();
+</script>
+
+<div class="foot">
+  <p>Verified July 5, 2026. Higgsfield, Artlist and InVideo from vendor screenshots; Leonardo from the live pricing page; Magnific and OpenArt from direct page fetches. Excluded as category mismatches: DaVinci (mobile app, no stable public pricing) and HeyGen (avatar/talking-head platform; its per-minute credit economics and stitched-segment duration limits are not comparable to generative scene video).</p>
+  <p>Figures under company names (raised/scale/users) carried over from the working sheet. All prices USD, exclusive of tax. Sources: vendor pricing pages linked in the first column.</p>
+</div>
+
+<div class="sitefoot">
+  <span>&copy; 2026 AiOne LLC. Meraqi is a product of AiOne LLC.</span>
+  <span><a href="https://aionellc.com/terms.html">Terms</a> &middot; <a href="https://aionellc.com/privacy.html">Privacy</a> &middot; <a href="https://aionellc.com/cookies.html">Cookies</a> &middot; <a href="mailto:hello@meraqi.ai">hello@meraqi.ai</a></span>
+</div>
+
+</div>
+</body>
+</html>

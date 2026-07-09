@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meraqi - Pricing</title>
+<meta name="description" content="Meraqi plans priced in plain daily outcomes: images and videos per day, not credit math. Annual billing is simply two months free, and we publish the whole market comparison alongside.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    /* dark theme mapped onto this sheet's semantic tokens; palette shared with meraqi.ai */
+    --ink: #eef1ec;                        /* primary text (cream) */
+    --cream-pure: #f7f8f4;
+    --muted: #95a9bf;                      /* slate */
+    --muted-dim: #5e768f;
+    --line: rgba(238,241,236,0.10);
+    --line-strong: rgba(238,241,236,0.22);
+    --bg: #001533;                         /* deep-blue ink, anchored on the logo */
+    --bg-soft: #04223f;                    /* lifted surface; solid so sticky cells stay opaque */
+    --accent: #ee5a34;                     /* coral */
+    --accent-soft: #20293e;                /* solid coral-over-ink blend for highlighted rows */
+    --accent-ink: #f6a085;                 /* coral tint for text accents */
+    --warn-soft: #2b2413;
+    --warn-ink: #e5b84b;
+    --info-soft: #10263f;
+    --info-ink: #6ea8e8;
+    --fdisplay: "Bodoni Moda","Didot",Georgia,serif;
+    --fbody: "Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --fmono: "JetBrains Mono",ui-monospace,monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--fbody);
+    color: var(--ink);
+    background: var(--bg);
+    padding: 28px 32px 64px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  b, strong { color: var(--cream-pure); }
+  ::selection { background: var(--accent); color: var(--cream-pure); }
+  .page { max-width: 1240px; margin: 0 auto; }
+  header h1 { font-family: var(--fdisplay); font-optical-sizing: auto; font-size: 30px; font-weight: 600; letter-spacing: -0.015em; color: var(--cream-pure); }
+  header .sub { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  header .sub strong { color: var(--ink); font-weight: 600; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 22px; font-size: 12px; }
+  .badge {
+    display: inline-block; padding: 2px 10px; border-radius: 999px; font-family: var(--fmono);
+    font-size: 10.5px; font-weight: 500; letter-spacing: 0.03em; white-space: nowrap; vertical-align: middle;
+  }
+  .b-shot  { background: var(--accent-soft); color: var(--accent-ink); }
+  .b-live  { background: var(--accent-soft); color: var(--accent-ink); }
+  .b-fetch { background: var(--info-soft);  color: var(--info-ink); }
+  .b-search{ background: var(--warn-soft);  color: var(--warn-ink); }
+  .b-na    { background: rgba(238,241,236,0.08); color: var(--muted); }
+
+  .scroller { overflow-x: auto; border: 1px solid var(--line-strong); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; min-width: 1180px; font-size: 12.5px; }
+  th, td { padding: 10px 12px; vertical-align: top; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
+  th:last-child, td:last-child { border-right: none; }
+  thead th {
+    background: var(--bg-soft); font-family: var(--fmono); font-size: 10.5px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted); text-align: left; position: sticky; top: 0;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.company, th.company {
+    position: sticky; left: 0; background: var(--bg-soft);
+    min-width: 170px; max-width: 190px; border-right: 1px solid var(--line-strong);
+  }
+  td.company .name { font-weight: 600; font-size: 13px; }
+  td.company .note { color: var(--muted); font-size: 11px; margin-top: 2px; }
+  td.company a { color: inherit; text-decoration: none; }
+  td.company a:hover { text-decoration: underline; }
+  .plan { min-width: 185px; }
+  .plan .pname { font-weight: 600; }
+  .plan .price { margin-top: 2px; }
+  .plan .price b { font-weight: 600; }
+  .plan .cred { color: var(--muted); margin-top: 2px; }
+  .plan .extra { color: var(--muted); font-size: 11.5px; margin-top: 4px; }
+  .dim { color: var(--muted); }
+
+  tr.meraqi td { background: var(--accent-soft); border-bottom: 2px solid var(--accent); }
+  tr.meraqi td.company { background: var(--accent-soft); }
+  tr.meraqi .pname, tr.meraqi .price b { color: var(--accent-ink); }
+
+  h2 { font-family: var(--fdisplay); font-optical-sizing: auto; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; color: var(--cream-pure); margin: 36px 0 12px; }
+  .meraqi-detail { border: 1px solid var(--accent); border-radius: 10px; overflow: hidden; }
+  .meraqi-detail table { min-width: 900px; }
+  .meraqi-detail thead th { background: var(--accent-soft); color: var(--accent-ink); position: static; }
+  .meraqi-detail td.rowlabel { font-weight: 600; background: var(--bg-soft); min-width: 140px; }
+  .beta {
+    margin-top: 14px; padding: 12px 16px; border-left: 3px solid var(--accent);
+    background: var(--bg-soft); font-size: 13px; color: var(--ink);
+  }
+  .beta b { color: var(--accent-ink); }
+  .fn { color: var(--accent-ink); text-decoration: none; font-weight: 600; }
+  #fn-regulated, #fn-fairuse { margin: 16px 0 0; padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); font-size: 12.5px; color: var(--ink); }
+
+  ul.takeaways { margin: 8px 0 0 18px; font-size: 14px; }
+  ul.takeaways li { margin-bottom: 8px; }
+  .foot { margin-top: 28px; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+  .foot p { margin-bottom: 4px; }
+
+  .calc input, .calc select { background: var(--bg-soft); color: var(--ink); }
+  .calc input:focus, .calc select:focus { outline: 0; box-shadow: 0 0 0 4px rgba(238,90,52,0.14); }
+
+  /* site chrome */
+  .sitenav { max-width: 1240px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .sitenav .brand { height: 52px; width: auto; display: block; }
+  .sitenav .nl { display: flex; align-items: center; gap: 22px; }
+  .sitenav .nl a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .15s; }
+  .sitenav .nl a:hover { color: var(--ink); }
+  .sitenav .nl a.cta { background: var(--accent); color: var(--cream-pure); padding: 9px 16px; border-radius: 9px; font-weight: 600; font-size: 13.5px; }
+  .sitenav .nl a.cta:hover { background: #d8421f; }
+  .sitefoot { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; font-size: 13px; color: var(--muted-dim); }
+  .sitefoot a { color: var(--muted); text-decoration: none; }
+  .sitefoot a:hover { color: var(--ink); }
+
+  @media print {
+    body { padding: 0; font-size: 10px; }
+    .scroller { overflow: visible; border: none; }
+    table { min-width: 0; }
+    @page { size: A3 landscape; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav class="sitenav">
+  <a href="/" aria-label="Meraqi home"><img class="brand" src="assets/brand.png" alt="Meraqi"/></a>
+  <div class="nl">
+    <a href="/">Home</a>
+    <a href="/#video">Video</a>
+    <a href="comparative-pricing.html">Compare</a>
+    <a class="cta" href="/#beta">Join the beta</a>
+  </div>
+</nav>
+
+<header>
+  <h1>Plans &amp; pricing</h1>
+  <div class="sub">Allowances in plain units, and how the whole market compares &middot; prices verified July 5, 2026 &middot; all prices USD, per month unless noted</div>
+</header>
+
+<h2>Meraqi plans</h2>
+<div class="scroller meraqi-detail">
+<table>
+  <thead>
+    <tr><th class="rowlabel"></th><th>Trial (1 month free)</th><th>Starter $12/seat/mo</th><th>Pro $25/seat/mo</th><th>Business $50/seat/mo</th><th>Regulated Industries</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="rowlabel">Images</td><td>200 / day</td><td>200 / day</td><td>500 / day</td><td>1,500 / day</td><td>Unlimited</td></tr>
+    <tr><td class="rowlabel">Videos</td><td>10 / day, up to 15 s (watermarked export)</td><td>10 / day, up to 15 s</td><td>20 / day, up to 30 s</td><td>30 / day, up to 60 s (rolling out)</td><td>Unlimited</td></tr>
+    <tr><td class="rowlabel">Resolution</td><td>1080p</td><td>1080p</td><td>1080p</td><td>1080p</td><td>1080p</td></tr>
+    <tr><td class="rowlabel">Processing</td><td>Eco: off-peak queue; images in minutes, most videos ready within an hour (longer during peak demand)</td><td>Standard: regular queue; images typically under a minute, most videos ready within ~15 minutes</td><td>Express: ahead of the regular queue; images in seconds, most videos ready within ~10 minutes</td><td>Priority: first in line; images in seconds, videos start on the next free GPU (~1-5 minutes by length)</td><td>Runs on customer hardware; no shared queue</td></tr>
+    <tr><td class="rowlabel">Storage</td><td>10 GB</td><td>10 GB</td><td>50 GB</td><td>200 GB</td><td>Unlimited</td></tr>
+    <tr><td class="rowlabel">Extra storage</td><td colspan="4">$3.99 per 10 GB / month</td><td>-</td></tr>
+    <tr><td class="rowlabel">Passwordless sign-in / SSO / 2FA</td><td colspan="4">No passwords, ever. Sign in with an account you already have (Google or Microsoft today, more coming); nothing to remember, nothing for us to store. Your provider's two-step verification carries over. Company login systems (Okta, Microsoft Entra, Google Workspace) connect through the Meraqi Identity Broker as it rolls out.</td><td>Connects to the organization's own login system through the Meraqi Identity Broker (SAML 2.0 / OIDC); smart-card (CAC/PIV) sign-in available as a paid add-on</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p style="margin-top: 10px; font-size: 12px; color: var(--muted);">Processing tiers set queue position, not render speed: video generation is compute-bound at roughly 3-4 minutes per 45 seconds of finished footage on production hardware. "Seconds" delivery applies to images only.</p>
+
+<p style="margin-top: 10px; font-size: 12.5px;"><b>Daily figures, monthly enforcement:</b> allowances are stated per day for easy comparison, but tracked and enforced monthly. Each plan's monthly pool is the daily figure &times; 30 (Starter: 6,000 images and 300 videos), and it resets on your personal billing date, the day you signed up or upgraded, not the calendar month. Skip a quiet week and that capacity is still yours to use before the reset. <a class="fn" href="#fn-fairuse">&Dagger;</a></p>
+
+<p style="margin-top: 10px; font-size: 12.5px;"><b>Annual billing, all paid tiers:</b> "Sign up for the whole year, get two months free." Starter $120, Pro $250, Business $500 per seat per year; exactly two months free on every tier. Monthly price is always the headline price.</p>
+
+<div class="beta">
+  <b>Limited-time private beta, ends 09/30/2026:</b> available to the first 300 guests, first come first serve, with a public waitlist beyond 300 (second wave admitted once production capacity is live); unlimited export without watermark, in exchange for patronage and feedback; beta members keep a lifetime Annual Pro rate of <b>$199/year</b>.
+</div>
+
+<p id="fn-regulated"><b>&dagger; Regulated Industries, what self-hosting means:</b> the platform is deployed inside the customer's own network rather than as shared SaaS: on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as signed offline packages. Quotas are unlimited because generation runs on customer-owned GPUs: capacity is the deployment's hardware, not shared infrastructure. Priced per deployment.</p>
+
+<p id="fn-fairuse"><b>&Dagger; Pacing and fair use:</b> your monthly pool is yours to spend on any schedule, including all at once. To keep delivery fast for everyone, each account runs a limited number of generations at the same time; a very large batch simply queues behind itself and finishes over hours rather than jumping ahead of other customers. Turnaround estimates describe individual jobs as they start, not an entire batch.</p>
+
+<h2>How the market compares</h2>
+<p style="margin-top: 6px; font-size: 13px; color: var(--muted); max-width: 720px;">We publish the entire market's prices next to ours: every competitor's tiers, what a credit actually buys, and a workload calculator that finds each vendor's cheapest covering plan for your volume.</p>
+<p style="margin-top: 12px; font-size: 14px;"><a class="fn" href="comparative-pricing.html">See the full pricing comparison &rarr;</a></p>
+
+<div class="sitefoot">
+  <span>&copy; 2026 AiOne LLC. Meraqi is a product of AiOne LLC.</span>
+  <span><a href="https://aionellc.com/terms.html">Terms</a> &middot; <a href="https://aionellc.com/privacy.html">Privacy</a> &middot; <a href="https://aionellc.com/cookies.html">Cookies</a> &middot; <a href="mailto:hello@meraqi.ai">hello@meraqi.ai</a></span>
+</div>
+
+</div>
+</body>
+</html>
