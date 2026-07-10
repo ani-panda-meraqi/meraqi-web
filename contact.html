@@ -59,7 +59,7 @@
 
   .wrap{ max-width:var(--wrap); margin:0 auto; padding-inline:32px; }
   .eyebrow{ font-family:var(--fmono); font-size:12px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--coral); }
-  .brand{ height:52px; width:auto; display:block; }
+  .brand{ height:52px; width:auto; display:block; } .brand-lock{ display:inline-flex; flex-direction:column; gap:5px; } .brand-strap{ font-family:var(--fmono); font-size:10px; letter-spacing:0.14em; color:var(--slate-dim); white-space:nowrap; }
 
   /* nav */
   header.nav{ position:sticky; top:0; z-index:60; background:var(--ink); border-bottom:1px solid transparent; transition:border-color .25s; }
@@ -135,7 +135,7 @@
   @media (max-width:1000px){
     .contact-grid{ grid-template-columns:1fr; gap:44px; }
     .contact-intro .lead{ max-width:none; }
-    .nav-links{ display:none; }
+    .nav-links{ display:none; } .brand-strap{ display:none; }
     .foot-grid{ grid-template-columns:1fr 1fr; }
     .foot-brand{ grid-column:1 / -1; }
   }
@@ -157,7 +157,7 @@
 <!-- nav -->
 <header class="nav" id="nav">
   <div class="nav-row">
-    <a href="index.html#top" aria-label="Meraqi home"><img class="brand" src="assets/brand.png" alt="Meraqi"/></a>
+    <a href="index.html#top" class="brand-lock" aria-label="Meraqi home"><img class="brand" src="assets/brand.png" alt="Meraqi"/><span class="brand-strap">elegant &middot; simple &middot; sovereign &middot; secure</span></a>
     <nav class="nav-links">
       <a href="index.html#who">Who it's for</a>
       <a href="index.html#how">How it works</a>
@@ -255,9 +255,9 @@
       </div>
       <div class="foot-col">
         <h6>Legal</h6>
-        <a href="https://aionellc.com/terms.html">Terms &amp; Conditions</a>
-        <a href="https://aionellc.com/privacy.html">Privacy Policy</a>
-        <a href="https://aionellc.com/cookies.html">Cookie Policy</a>
+        <a href="/terms">Terms &amp; Conditions</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/cookies">Cookie Policy</a>
       </div>
     </div>
     <div class="foot-bottom">

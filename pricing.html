@@ -125,7 +125,7 @@
 
   /* site chrome */
   .sitenav { max-width: 1240px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .sitenav .brand { height: 52px; width: auto; display: block; }
+  .sitenav .brand { height: 52px; width: auto; display: block; } .sitenav .brand-lock{display:inline-flex;flex-direction:column;gap:5px} .sitenav .brand-strap{font-family:var(--fmono);font-size:10px;letter-spacing:0.14em;color:var(--muted-dim);white-space:nowrap} @media(max-width:640px){.sitenav .brand-strap{display:none}}
   .sitenav .nl { display: flex; align-items: center; gap: 22px; }
   .sitenav .nl a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .15s; }
   .sitenav .nl a:hover { color: var(--ink); }
@@ -147,7 +147,7 @@
 <div class="page">
 
 <nav class="sitenav">
-  <a href="/" aria-label="Meraqi home"><img class="brand" src="assets/brand.png" alt="Meraqi"/></a>
+  <a href="/" class="brand-lock" aria-label="Meraqi home"><img class="brand" src="assets/brand.png" alt="Meraqi"/><span class="brand-strap">elegant &middot; simple &middot; sovereign &middot; secure</span></a>
   <div class="nl">
     <a href="/">Home</a>
     <a href="/#video">Video</a>
@@ -200,7 +200,7 @@
 
 <div class="sitefoot">
   <span>&copy; 2026 AiOne LLC. Meraqi is a product of AiOne LLC.</span>
-  <span><a href="https://aionellc.com/terms.html">Terms</a> &middot; <a href="https://aionellc.com/privacy.html">Privacy</a> &middot; <a href="https://aionellc.com/cookies.html">Cookies</a> &middot; <a href="mailto:hello@meraqi.ai">hello@meraqi.ai</a></span>
+  <span><a href="/terms">Terms</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/cookies">Cookies</a> &middot; <a href="mailto:hello@meraqi.ai">hello@meraqi.ai</a></span>
 </div>
 
 </div>
