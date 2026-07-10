@@ -130,14 +130,24 @@
   .spec-note{ margin-top:14px; font-family:var(--fmono); font-size:11px; color:var(--slate-dim); }
   .spec-note code{ color:var(--coral); }
 
-  /* ways-to-create flows (hero stage) */
-  .flows{ display:flex; flex-direction:column; gap:10px; }
-  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
-  .flow .fi,.flow .fo{ font-family:var(--fmono); font-size:11.5px; letter-spacing:0.03em; padding:5px 10px; border-radius:7px; }
+  /* ways-to-create lanes (hero stage) */
+  .flows{ display:flex; flex-direction:column; gap:16px; }
+  .flow-group{ display:flex; flex-direction:column; gap:7px; }
+  .flow-glabel{ display:flex; align-items:center; gap:9px; font-family:var(--fmono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--slate-dim); }
+  .flow-glabel::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--slate-dim); flex:none; }
+  .flow-glabel::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .flow-glabel.live::before{ background:var(--coral); box-shadow:0 0 0 3px rgba(238,90,52,0.15); }
+  .flow-glabel.rolling::before{ background:transparent; border:1.5px solid var(--coral-tint); }
+  .flow-glabel.soon::before{ background:var(--slate-dim); }
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:7px; background:var(--card); border:1px solid var(--line); border-radius:9px; padding:10px 12px; }
+  .flow.live{ border-color:rgba(238,90,52,0.28); }
+  .flow.soon-row{ opacity:0.6; }
+  .flow .fi,.flow .fo,.flow .fa{ font-family:var(--fmono); font-size:11.5px; letter-spacing:0.03em; padding:5px 9px; border-radius:7px; white-space:nowrap; }
   .flow .fi{ color:var(--slate); border:1px solid var(--line-2); background:rgba(238,241,236,0.04); }
+  .flow .fa{ color:var(--slate-dim); border:1px dashed var(--line-2); background:transparent; }
   .flow .fo{ color:var(--cream-pure); background:rgba(238,90,52,0.16); border:1px solid rgba(238,90,52,0.4); }
   .flow .arr{ color:var(--coral); font-size:13px; }
-  .flow .soon{ margin-left:auto; font-family:var(--fmono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--coral-tint); }
+  .flow .plus{ color:var(--coral); font-family:var(--fmono); font-size:13px; font-weight:600; }
 
   /* generic section */
   .sec{ padding-block:clamp(80px,11vw,128px); }
@@ -353,16 +363,29 @@
         </div>
         <div class="stage-body">
           <div class="flows">
-            <div class="flow"><span class="fi">Text</span><span class="arr">→</span><span class="fi">Refined prompt</span><span class="arr">→</span><span class="fo">Image</span></div>
-            <div class="flow"><span class="fi">Image</span><span class="arr">→</span><span class="fi">Style, by text or reference image</span><span class="arr">→</span><span class="fo">Modified image</span></div>
-            <div class="flow"><span class="fi">Speech</span><span class="arr">→</span><span class="fi">Text</span><span class="arr">→</span><span class="fi">Refined prompt</span><span class="arr">→</span><span class="fo">Image</span><span class="soon">coming soon</span></div>
-            <div class="flow"><span class="fi">Text</span><span class="arr">→</span><span class="fi">Refined prompt</span><span class="arr">→</span><span class="fo">Video</span><span class="soon">rolling out</span></div>
-            <div class="flow"><span class="fi">Image</span><span class="arr">+</span><span class="fi">Prompt</span><span class="arr">→</span><span class="fo">Video</span><span class="soon">rolling out</span></div>
-            <div class="flow"><span class="fi">URL</span><span class="arr">→</span><span class="fo">Video</span><span class="soon">rolling out</span></div>
+            <div class="flow-group">
+              <div class="flow-glabel live">Available now</div>
+              <div class="flow live"><span class="fi">Text</span><span class="arr">→</span><span class="fo">Image</span></div>
+              <div class="flow live"><span class="fi">Text</span><span class="arr">→</span><span class="fo">Video</span></div>
+              <div class="flow live"><span class="fi">URL</span><span class="arr">→</span><span class="fo">Video</span></div>
+              <div class="flow live"><span class="fi">Image</span><span class="plus">+</span><span class="fi">Text</span><span class="arr">→</span><span class="fo">Video</span></div>
+            </div>
+            <div class="flow-group">
+              <div class="flow-glabel rolling">Rolling out</div>
+              <div class="flow rolling"><span class="fi">Image</span><span class="arr">→</span><span class="fi">Restyle by text/image</span><span class="arr">→</span><span class="fo">Image</span></div>
+            </div>
+            <div class="flow-group">
+              <div class="flow-glabel soon">Coming soon</div>
+              <div class="flow soon-row"><span class="fi">Speech</span><span class="arr">→</span><span class="fa" title="Automatic, handled by Meraqi">AI text</span><span class="arr">→</span><span class="fo">Image</span></div>
+              <div class="flow soon-row"><span class="fi">Image(s)</span><span class="plus">+</span><span class="fi">Text</span><span class="arr">→</span><span class="fo">3D</span></div>
+              <div class="flow soon-row"><span class="fi">Image</span><span class="plus">+</span><span class="fi">Speech</span><span class="arr">→</span><span class="fa" title="Automatic, handled by Meraqi">AI text</span><span class="arr">→</span><span class="fo">Video</span></div>
+            </div>
           </div>
         </div>
-        <div class="spec-note">The <code>Refined prompt</code> step is automatic: Meraqi rewrites your plain words behind the scenes, following expert system prompts tuned for quality output. No prompt engineering required.</div>
-        <div class="spec-note">Image results land as a <code>DesignSpec</code> on a real canvas: every element stays editable. Video works differently: you refine it by re-creating with a better prompt or reference image, not by editing layers.</div>
+        <div class="spec-note">Your text prompt is automatically re-written by AI for better results, and you can edit the re-written prompt before generating. No prompt engineering required.</div>
+        <div class="spec-note">Image lands as an editable <code>DesignSpec</code> on a real canvas. Video refines by re-creating with a better prompt or reference, not by editing layers.</div>
+        <div class="spec-note">All refinements of the original design are saved as a new version.</div>
+        <div class="spec-note">More fine-grained adjustments to each design are coming soon.</div>
       </div>
     </div>
   </div>
@@ -499,12 +522,12 @@
     <div class="mfoot-top">
       <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
       <div class="mfoot-col"><h6>Product</h6><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
-      <div class="mfoot-col"><h6>Company</h6><a href="/contact">Contact</a><a href="https://aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/in/anipanda" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="mfoot-col"><h6>Company</h6><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/in/anipanda" target="_blank" rel="noopener">LinkedIn</a></div>
       <div class="mfoot-col"><h6>Legal</h6><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
     </div>
   </div>
   <div class="mfoot-bottom">
-    <span>&copy; 2026 AiOne LLC. Meraqi is a product of AiOne LLC. Made in Seattle.</span>
+    <span>&copy; 2026 Meraqi. A product of <a href="https://www.aionellc.com">AiOne LLC</a>. Made in Seattle.</span>
     <span><a href="https://www.linkedin.com/in/anipanda" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
