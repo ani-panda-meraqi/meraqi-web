@@ -171,19 +171,20 @@
     a { color: var(--ink); text-decoration: none; }
     table.printdoc thead { display: table-header-group; }
     table.printdoc tfoot { display: table-footer-group; }
+    table.printdoc td { padding: 0 16mm; }
     .runhead {
       display: flex; justify-content: space-between; gap: 16px;
       font-family: var(--fmono); font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--muted-dim); border-bottom: 1px solid #3d4f66; padding: 2px 0 8px; margin-bottom: 22px;
+      color: var(--muted-dim); border-bottom: 1px solid #3d4f66; padding: 12mm 0 8px; margin-bottom: 22px;
     }
     .runhead .wm { color: var(--accent); font-weight: 700; }
     .runfoot {
       display: flex; justify-content: space-between; gap: 16px;
       font-family: var(--fmono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--muted-dim); border-top: 1px solid #3d4f66; padding: 8px 0 2px; margin-top: 22px;
+      color: var(--muted-dim); border-top: 1px solid #3d4f66; padding: 8px 0 12mm; margin-top: 22px;
     }
   }
-  @page { size: Letter; margin: 12mm 16mm; }
+  @page { size: Letter; margin: 0; }
 </style>
 </head>
 <body>
