@@ -127,7 +127,7 @@
   svg.flow { display: block; width: 100%; height: auto; }
   svg.flow .box  { fill: var(--card); stroke: var(--line-strong); stroke-width: 1.5; }
   svg.flow .box.key   { fill: rgba(238,90,52,0.10); stroke: rgba(238,90,52,0.55); }
-  svg.flow .box.store { fill: var(--bg-soft); stroke: var(--line-strong); stroke-dasharray: 4 3; }
+  svg.flow .box.store { fill: var(--card); stroke: rgba(238,241,236,0.38); stroke-dasharray: 4 3; }
   svg.flow .t  { font-family: var(--fbody); font-size: 13px; font-weight: 600; fill: var(--cream-pure); }
   svg.flow .st { font-family: var(--fbody); font-size: 11px; fill: var(--muted); }
   svg.flow .el { font-family: var(--fmono); font-size: 9px; letter-spacing: .05em; fill: var(--muted-dim); text-transform: uppercase; }
@@ -155,6 +155,11 @@
     color: var(--muted-dim); display: flex; flex-wrap: wrap; gap: 6px 22px;
   }
 
+  /* print running header/footer (thead/tfoot repeat per page in Chromium) */
+  .runhead, .runfoot { display: none; }
+  table.printdoc { width: 100%; border-collapse: collapse; }
+  table.printdoc td { padding: 0; }
+
   @media print {
     body { font-size: 13px; }
     .shell { max-width: none; padding: 0; }
@@ -164,11 +169,30 @@
     .formula, .note, figure, ul.tasks li { break-inside: avoid-page; }
     section { margin-bottom: 26px; }
     a { color: var(--ink); text-decoration: none; }
+    table.printdoc thead { display: table-header-group; }
+    table.printdoc tfoot { display: table-footer-group; }
+    .runhead {
+      display: flex; justify-content: space-between; gap: 16px;
+      font-family: var(--fmono); font-size: 8.5px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted-dim); border-bottom: 1px solid #3d4f66; padding: 2px 0 8px; margin-bottom: 22px;
+    }
+    .runhead .wm { color: var(--accent); font-weight: 700; }
+    .runfoot {
+      display: flex; justify-content: space-between; gap: 16px;
+      font-family: var(--fmono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted-dim); border-top: 1px solid #3d4f66; padding: 8px 0 2px; margin-top: 22px;
+    }
   }
-  @page { size: Letter; margin: 17mm 16mm; }
+  @page { size: Letter; margin: 12mm 16mm; }
 </style>
 </head>
 <body>
+
+<table class="printdoc"><thead><tr><td>
+  <div class="runhead"><span><span class="wm">Meraqi</span> &middot; NSF SBIR Phase I &middot; Project Pitch</span><span>Version 2 &middot; 2026-08-28</span></div>
+</td></tr></thead><tfoot><tr><td>
+  <div class="runfoot"><span>Supporting record: ADR-0021 revision 4 (internal)</span><span>Anirudha Panda &middot; Meraqi</span></div>
+</td></tr></tfoot><tbody><tr><td>
 
 <div class="shell">
 
@@ -500,5 +524,7 @@ alert and re-calibrate when p99 observed transient
   </footer>
 
 </div>
+
+</td></tr></tbody></table>
 </body>
 </html>
