@@ -1,0 +1,359 @@
+<meta charset="utf-8">
+<title>Meraqi NSF Project Pitch V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root {
+    --ground:       #FFFFFF;
+    --surface:      #FFFFFF;
+    --surface-sunk: #EEF2F6;
+    --ink:          #131E29;
+    --ink-soft:     #3E4E5C;
+    --ink-mute:     #66788A;
+    --rule:         #D2DAE2;
+    --rule-soft:    #E3E9EF;
+    --accent:       #10456B;
+    --accent-soft:  #E9F0F6;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.58;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell { max-width: 830px; margin: 0 auto; padding: 0 30px 70px; }
+
+  /* masthead */
+  .masthead { border-bottom: 2px solid var(--ink); padding: 46px 0 22px; margin-bottom: 34px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    font-size: 10.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-mute); margin: 0 0 12px;
+  }
+  .wordmark { color: var(--accent); font-weight: 700; }
+  h1 {
+    font-family: "Libre Franklin", "Segoe UI", Arial, sans-serif;
+    font-weight: 700; font-size: 31px; line-height: 1.12; letter-spacing: -.018em;
+    margin: 0 0 10px; max-width: 26ch; text-wrap: balance;
+  }
+  .subtitle { font-size: 16.5px; color: var(--ink-soft); margin: 0 0 20px; max-width: 62ch; }
+  .status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .pill {
+    font-family: "JetBrains Mono", monospace; font-size: 10px; font-weight: 500;
+    letter-spacing: .09em; text-transform: uppercase; padding: 4px 10px;
+    border-radius: 2px; border: 1px solid currentColor;
+  }
+  .pill.v { color: var(--accent); background: var(--accent-soft); }
+  .pill.g { color: var(--ink-mute); }
+  .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px 32px; }
+  .meta dt {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--ink-mute); margin-bottom: 3px;
+  }
+  .meta dd { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; }
+
+  /* article */
+  section { margin-bottom: 40px; }
+  h2 {
+    font-family: "Libre Franklin", "Segoe UI", Arial, sans-serif;
+    font-weight: 700; font-size: 21px; letter-spacing: -.01em; line-height: 1.2;
+    margin: 0 0 14px; padding-bottom: 9px; border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-family: "Libre Franklin", "Segoe UI", Arial, sans-serif;
+    font-weight: 600; font-size: 15.5px; margin: 24px 0 8px;
+  }
+  p { margin: 0 0 13px; }
+  strong { font-weight: 600; color: var(--ink); }
+  code {
+    font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    font-size: .82em; background: var(--surface-sunk); padding: .1em .35em;
+    border-radius: 2px; color: var(--ink);
+  }
+  ul, ol { margin: 0 0 13px; padding-left: 1.3em; }
+  li { margin-bottom: 7px; }
+  li::marker { color: var(--ink-mute); }
+  ol.facts li { margin-bottom: 10px; }
+
+  .formula {
+    background: #F7FAFC;
+    border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    border-radius: 0 3px 3px 0; padding: 13px 17px; margin: 0 0 15px; overflow-x: auto;
+  }
+  .formula pre {
+    margin: 0; font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    font-size: 12px; line-height: 1.7; color: var(--ink);
+  }
+
+  .note {
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 13px 17px; margin: 0 0 15px; border-radius: 0 3px 3px 0;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* tasks */
+  ul.tasks { list-style: none; padding: 0; }
+  ul.tasks li {
+    display: grid; grid-template-columns: 96px 1fr; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--rule-soft); margin: 0;
+  }
+  ul.tasks li b {
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent); padding-top: 3px; font-weight: 500;
+  }
+
+  /* figure */
+  figure { margin: 20px 0 22px; }
+  .diagram-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 16px; }
+  svg.flow { display: block; width: 100%; height: auto; }
+  svg.flow .box  { fill: #FFFFFF; stroke: var(--rule); stroke-width: 1.5; }
+  svg.flow .box.key   { fill: var(--accent-soft); stroke: var(--accent); }
+  svg.flow .box.store { fill: var(--surface-sunk); stroke: var(--rule); stroke-dasharray: 4 3; }
+  svg.flow .t  { font-family: "Libre Franklin", Arial, sans-serif; font-size: 13px; font-weight: 600; fill: var(--ink); }
+  svg.flow .st { font-family: "Source Serif 4", serif; font-size: 11px; fill: var(--ink-soft); }
+  svg.flow .el { font-family: "JetBrains Mono", monospace; font-size: 9px; letter-spacing: .05em; fill: var(--ink-mute); text-transform: uppercase; }
+  svg.flow .ln { fill: none; stroke: var(--ink-mute); stroke-width: 1.4; }
+  svg.flow .ln.loop { stroke-dasharray: 5 4; }
+  svg.flow .ah { fill: var(--ink-mute); }
+  figcaption { font-size: 12.5px; color: var(--ink-mute); margin-top: 10px; line-height: 1.5; }
+
+  footer.doc-foot {
+    border-top: 1px solid var(--rule); padding-top: 14px; font-size: 12px;
+    color: var(--ink-mute); display: flex; flex-wrap: wrap; gap: 6px 22px;
+  }
+
+  @media print {
+    body { font-size: 13px; background: #FFFFFF; }
+    .shell { max-width: none; padding: 0; }
+    .masthead { padding-top: 0; }
+    h1 { font-size: 26px; }
+    h2 { break-after: avoid-page; }
+    h3 { break-after: avoid-page; }
+    .formula, .note, figure, ul.tasks li { break-inside: avoid-page; }
+    section { margin-bottom: 26px; }
+    a { color: var(--ink); text-decoration: none; }
+  }
+  @page { size: Letter; margin: 17mm 16mm; }
+</style>
+
+<div class="shell">
+
+  <header class="masthead">
+    <p class="eyebrow"><span class="wordmark">Meraqi</span> &middot; NSF SBIR Phase I &middot; Project Pitch</p>
+    <h1>Deterministic Resource Allocation for Heterogeneous Multi-Modal AI&nbsp;Pipelines</h1>
+    <p class="subtitle">A closed-loop deterministic admission-control protocol for multi-modal generative AI on resource-constrained hardware.</p>
+    <div class="status-row">
+      <span class="pill v">Version 2</span>
+      <span class="pill g">2026-08-28</span>
+      <span class="pill g">Topic: Artificial Intelligence</span>
+    </div>
+    <dl class="meta">
+      <div><dt>Principal Investigator</dt><dd>Anirudha Panda, Meraqi</dd></div>
+      <div><dt>Research platform</dt><dd>Dual-GPU (2x 32 GB) workstation-class node, air-gapped; feasibility results on a single 24 GB GPU</dd></div>
+      <div><dt>Supporting record</dt><dd>ADR-0021, GPU Memory Reservation and Admission Control (revision 4, internal): formal model and verification suite</dd></div>
+      <div><dt>Version note</dt><dd>V1 framed compositional consistency as the contribution; V2 frames the admission-control protocol as the contribution</dd></div>
+    </dl>
+  </header>
+
+  <article>
+
+    <section>
+      <h2>Project Summary</h2>
+      <p><strong>Overview.</strong> This project introduces a software-defined hardware isolation layer that achieves deterministic, zero-uncontained-fault execution of multi-modal generative AI on resource-constrained computing nodes. By establishing a rigid mathematical mapping between inference request parameters and measured hardware envelopes, the platform transforms volatile, stochastic generative AI execution into a predictable, admission-controlled queuing model: memory exhaustion becomes an admission outcome (queue, degrade, or reject), never a runtime failure.</p>
+      <p><strong>Intellectual Merit.</strong> The intellectual merit lies in a closed-loop drift-detection architecture that continuously reconciles observed peak VRAM and host RAM, decomposed per memory term, against multi-layered constraints: a reservation ledger, container control groups, and CUDA per-process limits. The research pioneers a streaming, first-in-first-out bounded-working-set execution model that treats tensor generation as a continuous bounded working set, structurally resolving memory fragmentation and cascading failures in chained model workflows spanning text, speech, image, video, and 3D. The protocol carries a formal admission model with a provable containment property whose single empirical assumption is explicitly isolated, continuously measured, and automatically re-calibrated. The method is model-agnostic by construction: admitting a new model family is a calibration-data change, never a scheduler change, so the contribution generalizes across current and future architectures and, beyond generative AI, to any accelerator-bound workload with stochastic memory demand.</p>
+      <p><strong>Broader Impacts.</strong> Successful development of this technology democratizes high-tier multi-modal AI for small and medium enterprises, academic institutions, and privacy-critical sectors by removing the requirement for elastic cloud data centers. Absolute runtime stability on ubiquitous, consumer-grade hardware lowers economic barriers to advanced generative capability, reduces data-center energy waste caused by redundant error-and-retry cycles, and secures data sovereignty for organizations whose data cannot leave their premises.</p>
+    </section>
+
+    <section>
+      <h2>1. The Core Scientific Problem</h2>
+      <p>Multi-modal generative AI pipelines exhibit extreme runtime stochasticity. Request shape (resolution, frame count, duration, token count, mesh complexity) dynamically alters the tensor allocation graph, causing unpredictable memory fragmentation and catastrophic CUDA out-of-memory (OOM) failures. On a shared accelerator the failure is systemic rather than local: an OOM inside one worker can take down a shared process, a host OOM can kill the database or queue that holds job state, and either produces silent job loss and unaccounted compute time.</p>
+      <p>Current practice offers two responses, and both fail on the class of hardware this project targets. Cloud elasticity absorbs stochastic demand by adding machines, which is unavailable on edge and sovereign compute nodes where data cannot leave the building. Static concurrency caps absorb it by pessimism, and are wrong the first time a heavier request shape arrives.</p>
+      <p>The failure mode is empirically established in our own laboratory record: an identical 45-second video generation workload failed with OOM at roughly six seconds before a streaming redesign, and afterward sustained 45 seconds of continuous, coherent video with synchronized audio on a single 24 GB consumer GPU. That result proves the failure mode is structural and the bounded-working-set cure is feasible. It does not yet prove determinism under sustained heterogeneous load, which is the research subject of this proposal.</p>
+      <p>Three structural facts about the workload make naive admission schemes unsound, and any candidate protocol must survive all three:</p>
+      <ol class="facts">
+        <li><strong>Heavy profiles nearly fill the device.</strong> A production video-diffusion model occupies roughly 22 GB of weights on a 32 GB device. Any safety margin that scales with total footprint rather than with the variable portion of the footprint calibrates such models as unschedulable on the hardware that exists.</li>
+        <li><strong>Long jobs hold state across steps.</strong> Streaming video conditions chunk N+1 on chunk N's latent tail and holds it for the life of the run. This state is neither model weights nor per-step scratch, and a two-term memory model cannot express it.</li>
+        <li><strong>Model families are replaceable but not drop-in.</strong> Families differ in which memory term dominates, and that difference is precisely what decides schedulability on a fixed-memory device. The admission layer must treat a model family as swappable calibration data, never as a hardcoded assumption.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>2. Proposed Innovation: A Closed-Loop Deterministic Admission-Control Protocol</h2>
+
+      <h3>2.1 Profiles: binding free parameters to mathematical keys</h3>
+      <p>The protocol admits no free-form request. Every schedulable job resolves to a <strong>profile</strong>, a rigid multidimensional key: (model hash, task, maximum geometry, precision, tiling configuration, framework and driver versions, GPU model, placement slot). Free-form inference parameters never reach an executing worker. Binding requests to keys eliminates runtime execution variance at the interface, which converts an unbounded scheduling problem into a finite calibrated one.</p>
+
+      <h3>2.2 The three-term memory envelope</h3>
+      <p>Each profile phase carries a measured envelope of three terms with distinct lifetimes and distinct uncertainty: <code>r</code> (resident bytes: weights, charged once per loaded model, near-zero uncertainty), <code>h</code> (held bytes: cross-step job state, low uncertainty, computable from geometry), and <code>t</code> (transient bytes: within-step scratch, the only high-uncertainty term). Only the uncertain term receives a safety factor <code>k_p</code> and a fragmentation reserve <code>f_p</code>:</p>
+      <div class="formula"><pre>t*_{p,i} = ceil(k_p * t_{p,i}) + f_p                                (1)
+
+E_{p,i} = r_{p,i} + h_{p,i} + t*_{p,i}
+E_p     = max over phases i of E_{p,i}                              (2)</pre></div>
+
+      <h3>2.3 Ledger admission</h3>
+      <p>Each device partition (slot) <code>s</code> with byte budget <code>B_s</code> maintains a reservation ledger charging residents once per loaded model and held-plus-transient per active job:</p>
+      <div class="formula"><pre>L_s = SUM(r_m over loaded models m)
+    + SUM(h_j + t*_j over active jobs j)                            (3)
+
+ADMIT(j, s)  iff  L_s + D_j &lt;= B_s
+D_j = max over phases i of ( [model of phase i not loaded] * r_{p,i}
+                             + h_{p,i} + t*_{p,i} )                 (4)</pre></div>
+      <p>Two static gates make the arithmetic closed: partition budgets plus a measured process reserve <code>R_g</code> (CUDA context and library overhead) never exceed device capacity <code>C_g</code>, and no active profile may exceed its own slot:</p>
+      <div class="formula"><pre>SUM(B_s over slots of g) + R_g &lt;= C_g        E_p &lt;= B_slot(p)       (5)</pre></div>
+      <p>Reservations are leases renewed by worker heartbeat, so a failed worker returns its capacity within one lease interval. Concurrency is derived from the ledger, never configured by hand.</p>
+
+      <h3>2.4 The safety property, stated honestly</h3>
+      <p>Four named assumptions carry all of the empiricism: <strong>A1</strong> envelope soundness (realized usage stays inside the calibrated envelope; statistical, purchased by calibration and policed by the feedback loop below), <strong>A2</strong> single dispatcher (no allocation outside a reservation), <strong>A3</strong> phase discipline (residents of distinct phases never coexist; handover is evict, verify, load), and <strong>A4</strong> a bounded process count. Under A1 through A4 with the gates of (5), device memory exhaustion is unreachable: actual usage never exceeds capacity, by induction over scheduler events. Because A1 is statistical rather than certain, residual risk factors explicitly:</p>
+      <div class="formula"><pre>P(uncontained failure)
+  &lt;= P(not A1) * P(containment fails | not A1)                      (6)</pre></div>
+      <p>The feedback loop drives the first factor down; a containment hierarchy (per-worker control groups, allocator limits, out-of-memory score isolation of the control plane, crash-only workers) drives the second. The design never relies on either factor being zero, which is what distinguishes an engineering guarantee from an aspiration: memory exhaustion is structurally impossible for the control plane and strictly contained to one worker for the data plane.</p>
+
+      <h3>2.5 Why three terms: a separation result</h3>
+      <p>The decomposition is not bookkeeping; it is what makes heavy models schedulable at all. For <code>q</code> concurrent jobs sharing one loaded model, the three-term ledger and the conventional peak-times-margin ledger charge:</p>
+      <div class="formula"><pre>Charge3(q) = r + q * (h + k*t)
+Charge1(q) = q * k * (r + h + t)
+
+Charge1(q) - Charge3(q) = (q*k - 1)*r + q*(k - 1)*h &gt; 0             (7)</pre></div>
+      <p>Every workload feasible under peak-times-margin is feasible under the three-term ledger and not conversely, with a gap that grows linearly in concurrency with slope <code>k*r</code>. Instantiated: with <code>k = 1.25</code>, a 22 GB-resident video model on a 32 GB device is unschedulable under peak-times-margin already at one concurrent job, because <code>k*(r + h + t)</code> crosses usable capacity for any realistic <code>h + t</code>, while the three-term ledger admits it with headroom. The conventional scheme multiplies the one term that has near-zero uncertainty; the proposed scheme multiplies only the term that is actually uncertain.</p>
+
+      <h3>2.6 The closed loop: measurement as a first-class protocol element</h3>
+      <p>The research core is the self-correcting feedback loop: <strong>metering ledger, then drift detection, then automated re-calibration.</strong></p>
+      <p>A deploy-time calibration engine measures each profile at maximum declared geometry with a strict probe sequence (warm-up, cache release, then measurement, each term on one declared measurement basis), yielding an exact decomposition of the observed peak rather than three independent estimates:</p>
+      <div class="formula"><pre>resident + held + transient = max_reserved(job)                     (8)</pre></div>
+      <p>The sequence is provably conservative: any error in splitting the peak between the held and transient terms lands in the transient term, the only term the safety factor multiplies, so decomposition error can oversize a reservation but never undersize it.</p>
+      <p>At runtime, every job writes its observed peak per term to a metering ledger. Drift detection compares the observed transient distribution against the reserved envelope and re-derives the safety factor from data:</p>
+      <div class="formula"><pre>k_p = Q99(T_p) / Q50(T_p)  once enough jobs observed, else 1.25
+alert and re-calibrate when p99 observed transient
+  exceeds 0.9 * reserved transient envelope                         (9)</pre></div>
+      <p>A circuit breaker demotes a profile whose windowed OOM rate crosses a threshold, and any toolchain change (framework, CUDA, driver) statically invalidates affected calibrations and blocks dispatch until re-calibration, so the calibration table can never silently go stale. The scientific question is whether this loop converges and holds: whether measured envelopes plus a data-derived safety factor can maintain assumption A1 across model families and request mixes without human tuning.</p>
+
+      <h3>2.7 Degraded-mode execution without corrupted output</h3>
+      <p>When a request cannot be admitted within its latency budget, a fallback ladder degrades it at admission time only, stepping down resolution, duration, then precision, each rung itself a calibrated profile. After a job emits its first output artifact the ladder is closed to it: a failed job resumes at the same rung from persisted state or fails cleanly, because changing resolution partway through a streamed deliverable is a corrupt output, not a degraded one. Degradation is thus a controlled, metered admission decision, never an uncontrolled runtime scramble.</p>
+
+      <figure>
+        <div class="diagram-wrap">
+          <svg class="flow" viewBox="0 0 960 340" role="img" aria-label="Closed-loop architecture: API edge feeds the reservation scheduler, which dispatches to isolated workers; workers write observed peaks to the metering ledger; drift detection re-derives the safety factor and re-calibrates the calibration table, which feeds the scheduler. A dashed path degrades unfittable jobs through the fallback ladder at admission only.">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path class="ah" d="M 0 0 L 10 5 L 0 10 z"/>
+              </marker>
+            </defs>
+
+            <rect class="box" x="20" y="60" width="170" height="64" rx="3"/>
+            <text class="t"  x="105" y="88"  text-anchor="middle">API edge</text>
+            <text class="st" x="105" y="106" text-anchor="middle">named profiles only</text>
+
+            <rect class="box key" x="240" y="52" width="230" height="80" rx="3"/>
+            <text class="t"  x="355" y="82"  text-anchor="middle">Reservation scheduler</text>
+            <text class="st" x="355" y="100" text-anchor="middle">ledger admission</text>
+            <text class="st" x="355" y="116" text-anchor="middle">eq. (3)-(5)</text>
+
+            <rect class="box" x="520" y="52" width="190" height="80" rx="3"/>
+            <text class="t"  x="615" y="82"  text-anchor="middle">Isolated workers</text>
+            <text class="st" x="615" y="100" text-anchor="middle">cgroup + CUDA caps</text>
+            <text class="st" x="615" y="116" text-anchor="middle">crash-only</text>
+
+            <rect class="box store" x="760" y="52" width="180" height="80" rx="3"/>
+            <text class="t"  x="850" y="82"  text-anchor="middle">Metering ledger</text>
+            <text class="st" x="850" y="100" text-anchor="middle">observed peak</text>
+            <text class="st" x="850" y="116" text-anchor="middle">per term</text>
+
+            <rect class="box" x="520" y="230" width="190" height="72" rx="3"/>
+            <text class="t"  x="615" y="258" text-anchor="middle">Drift detection</text>
+            <text class="st" x="615" y="276" text-anchor="middle">alert &middot; circuit breaker</text>
+
+            <rect class="box store" x="240" y="230" width="230" height="72" rx="3"/>
+            <text class="t"  x="355" y="258" text-anchor="middle">Calibration table</text>
+            <text class="st" x="355" y="276" text-anchor="middle">r / h / t per phase</text>
+
+            <rect class="box" x="20" y="230" width="170" height="72" rx="3"/>
+            <text class="t"  x="105" y="258" text-anchor="middle">Fallback ladder</text>
+            <text class="st" x="105" y="276" text-anchor="middle">admission only</text>
+
+            <path class="ln" d="M190,92 L240,92" marker-end="url(#ah)"/>
+            <path class="ln" d="M470,92 L520,92" marker-end="url(#ah)"/>
+            <path class="ln" d="M710,92 L760,92" marker-end="url(#ah)"/>
+            <path class="ln" d="M850,132 L850,266 L710,266" marker-end="url(#ah)"/>
+            <path class="ln" d="M520,266 L470,266" marker-end="url(#ah)"/>
+            <path class="ln" d="M355,230 L355,132" marker-end="url(#ah)"/>
+
+            <path class="ln loop" d="M280,132 L280,180 L105,180 L105,230" marker-end="url(#ah)"/>
+            <path class="ln loop" d="M190,284 L215,284 L215,110 L240,110" marker-end="url(#ah)"/>
+
+            <text class="el" x="782" y="200">Q99 / Q50</text>
+            <text class="el" x="495" y="254" text-anchor="middle">recalibrate</text>
+            <text class="el" x="347" y="185" transform="rotate(-90 347 185)" text-anchor="middle">active envelopes</text>
+            <text class="el" x="105" y="172">no fit: degrade at admission</text>
+          </svg>
+        </div>
+        <figcaption>Figure 1. The closed loop. The calibration table admits work; the metering ledger observes it; drift detection re-derives the safety factor and re-calibrates or demotes profiles. Dashed path: degraded-mode admission through the fallback ladder.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>3. Research Question and Hypotheses</h2>
+      <div class="note">
+        <p><strong>Research question.</strong> Can a self-correcting feedback loop (metering ledger, drift detection, automated re-calibration) dynamically maintain a non-fragmenting memory state with zero uncontained OOM failures across distinct model families (autoregressive LLM serving, latent diffusion for image and video, 3D mesh generation, speech synthesis) on consumer-grade hardware, without destroying pipeline latency?</p>
+      </div>
+      <ul>
+        <li><strong>H1, schedulability.</strong> The three-term envelope admits real heavy-model workloads that are provably infeasible under peak-times-margin admission on the same hardware, per the separation result (7).</li>
+        <li><strong>H2, closed-loop stability.</strong> The feedback loop holds envelope-soundness violations below the containment threshold across sustained heterogeneous load: zero uncontained failures over 100+ end-to-end multi-modal runs, with the data-derived safety factor converging per profile.</li>
+        <li><strong>H3, bounded cost of determinism.</strong> The protocol's overhead (admission latency, reserved headroom, padding) leaves end-to-end wall-clock within already-demonstrated bounds for the 45-second reference workload, preserving product-viable latency while adding the determinism guarantee.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Phase I Research Plan</h2>
+      <p>Research platform: a dual-GPU (2x 32 GB) workstation-class node, deliberately consumer-grade; feasibility results to date were produced on a single 24 GB GPU. All experiments run fully air-gapped.</p>
+      <ul class="tasks">
+        <li><b>Task 1 &middot; M1-2</b><span><strong>Calibration engine.</strong> Implement the profile schema and the three-term probe sequence, per phase, per model family, including measured CUDA context cost and library overhead. Success: calibrated envelopes for all four families with the decomposition identity (8) holding exactly and every profile passing the static gates (5).</span></li>
+        <li><b>Task 2 &middot; M2-3</b><span><strong>Reservation scheduler and ledger.</strong> Implement ledger admission (3)-(4) with leases, device partitions, and derived concurrency. Success: the partition non-interference test passes (saturating the batch partition cannot change admission feasibility on the interactive partition), and concurrency provably tracks the ledger rather than a configuration constant.</span></li>
+        <li><b>Task 3 &middot; M3-5</b><span><strong>The closed loop.</strong> Implement per-term metering, drift detection, the data-derived safety factor (9), the circuit breaker, and re-calibration as a gate on any toolchain change. Success: injected drift (altered request mixes, synthetic allocator pressure) triggers alert and re-calibration before any uncontained failure; <code>k_p</code> converges per profile and its converged values are reported against the 1.25 bootstrap.</span></li>
+        <li><b>Task 4 &middot; M5-6</b><span><strong>Adversarial validation.</strong> Chaos testing injects synthetic CUDA OOM inside workers and asserts single-worker blast radius, lease release, correct resume-or-degrade behavior, and 100% control-plane uptime. A reconciliation test kills the scheduler mid-flight and asserts the rebuilt ledger matches live reservations with no ghost capacity in either direction. A sustained soak executes 100+ end-to-end multi-modal runs (text, speech, image, video, 3D) under mixed load. Success criteria, reported quantitatively: zero uncontained OOM events; 100% control-plane availability under fault injection; wall-clock distribution against H3.</span></li>
+      </ul>
+      <p>Phase I closes with a public-methodology technical report: the formal model, the calibration protocol, measured envelopes per family, closed-loop convergence data, and the full adversarial test matrix, so the result is reproducible science rather than a configuration anecdote.</p>
+    </section>
+
+    <section>
+      <h2>5. Deliberate Trade-offs</h2>
+      <p>This protocol purchases certainty with capacity, and states the price explicitly:</p>
+      <ul>
+        <li>A 25% bootstrap safety factor on the transient term, plus a measured process reserve, is reserved headroom that reduces peak throughput in exchange for zero uncontained failures. The factor is data-derived after convergence, so the price falls as evidence accumulates.</li>
+        <li>Inputs are padded to fixed shape buckets so the allocator reuses rather than grows; padding wastes some compute in exchange for a stable fragmentation signal.</li>
+        <li>Calibration is a real deploy-time cost, repeated on any toolchain change, and re-calibration is never performed against live traffic.</li>
+        <li>Static partitions idle capacity when demand is skewed; both partitions are calibrated slots rather than a free pool.</li>
+      </ul>
+      <p>Trading nominal efficiency for structural predictability is the point of the research: the hypothesis is that a modest, measured, and continuously re-derived overhead converts stochastic infrastructure into deterministic infrastructure.</p>
+    </section>
+
+    <section>
+      <h2>6. Broader Impacts</h2>
+      <p><strong>Access.</strong> Organizations that cannot use cloud generative AI (healthcare, legal, finance, defense, and any enterprise whose data cannot leave the premises) currently face a choice between compliance and capability. Deterministic execution on consumer-grade hardware removes that choice, and lowers the economic barrier for small and medium enterprises and academic laboratories that cannot fund elastic GPU fleets.</p>
+      <p><strong>Energy.</strong> OOM-and-retry cycles burn accelerator time that produces nothing; retries under contention amplify the pressure that caused the failure. Admission control eliminates the retry storm class entirely, and predictable capacity lets operators size hardware to workload instead of over-provisioning against worst-case stochastic failure.</p>
+      <p><strong>Sovereignty.</strong> The protocol requires no telemetry, no external dependency, and no connectivity; it is designed for environments where data physically cannot leave the building. Figure 2 shows the sovereignty boundary as built: every stage of the pipeline, from ingestion through generation, governance, and output, executes inside one air-gapped workstation, and the reservation scheduler governs dispatch entirely inside that boundary.</p>
+      <figure>
+        <div class="diagram-wrap">
+          <img src="sovereignty_diagram.svg" alt="Sovereign execution boundary: all pipeline stages, from ingestion through queueing, generation workers, governance, and outputs, execute inside one air-gapped workstation with zero network and zero telemetry; the reservation scheduler admits work against the memory ledger inside the boundary." style="width:100%; display:block;">
+        </div>
+        <figcaption>Figure 2. The sovereign execution boundary. Ingestion, queueing, generation workers, governance (including the working provenance ledger), and outputs all execute inside one air-gapped workstation with zero network and zero telemetry; the reservation scheduler admits work against the memory ledger inside the boundary. Green: demonstrated. Amber: in development.</figcaption>
+      </figure>
+      <p><strong>Generality.</strong> Because the protocol treats model families as calibration data, its results transfer to future model architectures without redesign, and the admission mathematics applies to any accelerator-bound workload with stochastic memory demand beyond generative AI.</p>
+    </section>
+
+  </article>
+
+  <footer class="doc-foot">
+    <span>Meraqi &middot; NSF SBIR Phase I Project Pitch &middot; Version 2 &middot; 2026-08-28</span>
+    <span>Supporting record: ADR-0021 revision 4 (internal)</span>
+  </footer>
+
+</div>

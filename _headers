@@ -1,0 +1,5 @@
+/pitch-deck
+  X-Robots-Tag: noindex
+
+/pitch-deck/*
+  X-Robots-Tag: noindex
