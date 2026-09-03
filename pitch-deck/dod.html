@@ -139,11 +139,40 @@
   @media print{
     @page{ size:13.333in 7.5in; margin:0; }
     *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    /* headless print lays out at a small fixed viewport, so pin every
+       viewport-relative size to its intended value at 1280x720 */
+    html,body{ width:1280px; }
     body{ background:var(--bg); }
     .navdots,.hint,.dnav{ display:none; }
     .deck.snap{ height:auto; overflow:visible; scroll-snap-type:none; }
-    .slide{ page-break-after:always; height:100vh; }
+    .slide{ page-break-after:always; width:1280px; height:720px; min-height:720px; padding:43px 90px; }
     .slide:last-child{ page-break-after:auto; }
+    .glow{ width:563px; height:563px; top:-179px; right:-128px; }
+    .glow.bl{ top:auto; right:auto; bottom:-205px; left:-154px; width:486px; height:486px; }
+    .eyebrow{ font-size:11px; }
+    .kicker{ font-size:10.5px; }
+    .h-xl{ font-size:84px; }
+    .h-lg{ font-size:54px; }
+    .h-md{ font-size:37px; }
+    .lead{ font-size:19px; }
+    .slide-head{ margin-bottom:23px; }
+    .slide-head .eyebrow{ margin-bottom:15px; }
+    .chrome{ left:64px; right:64px; bottom:17px; }
+    .pill{ font-size:10.5px; }
+    .cols{ gap:19px; }
+    .split{ grid-template-columns:1.02fr 0.98fr; gap:51px; }
+    .c2{ grid-template-columns:1fr 1fr; }
+    .c3{ grid-template-columns:repeat(3,1fr); }
+    .card{ padding:17px; }
+    .card h4{ font-size:19px; }
+    .card p{ font-size:12.8px; }
+    ul.ticks{ gap:9px; }
+    ul.ticks li{ font-size:14.3px; }
+    .title-meta{ font-size:12.8px; }
+    .vcap{ font-size:10.2px; }
+    .marker{ font-size:10.9px; }
+    .vfull.center svg{ max-width:980px; max-height:300px; }
+    .vwrap svg{ max-height:400px; }
   }
 </style>
 </head>
@@ -398,7 +427,7 @@
             <line x1="16" y1="316" x2="464" y2="316" stroke="#eef1ec" stroke-width="2.5"/>
             <text class="el crit" x="240" y="342" text-anchor="middle" font-size="13" font-weight="700">SYSTEM BLACKOUT</text>
             <path d="M148,346 L332,330 M148,330 L332,346" stroke="#d8421f" stroke-width="2"/>
-            <text class="el" x="464" y="308" text-anchor="end">floor never reached</text>
+            <text class="el" x="464" y="342" text-anchor="end">floor never reached</text>
           </svg>
         </div>
       </div>
