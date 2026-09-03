@@ -134,6 +134,19 @@
   svg.flow .ln { fill: none; stroke: var(--muted-dim); stroke-width: 1.4; }
   svg.flow .ln.loop { stroke-dasharray: 5 4; }
   svg.flow .ah { fill: var(--muted-dim); }
+  svg.flow .box.good { fill: rgba(95,191,143,0.12); stroke: var(--good); }
+  svg.flow .box.warn { fill: rgba(217,164,65,0.12); stroke: var(--warn); }
+  svg.flow .box.wrap { fill: none; stroke: var(--line-strong); }
+  svg.flow .el.good { fill: var(--good); }
+  svg.flow .el.warn { fill: var(--warn); }
+  svg.flow .el.cond { fill: var(--accent-ink); }
+  svg.flow .st.key { fill: var(--accent-ink); }
+  svg.flow .t tspan.good { fill: var(--good); }
+  svg.flow .st tspan.warn { fill: var(--warn); }
+  svg.flow .ln.cond { stroke: var(--accent-ink); stroke-dasharray: 5 4; }
+  svg.flow .gap { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-dasharray: 10 7; }
+  svg.flow .bnd { font-family: var(--fmono); font-size: 9px; letter-spacing: .06em; fill: var(--accent); text-transform: uppercase; }
+  svg.flow .ahc { fill: var(--accent-ink); }
   figcaption { font-size: 12.5px; color: var(--muted-dim); margin-top: 10px; line-height: 1.5; }
 
   footer.doc-foot {
@@ -355,7 +368,124 @@ alert and re-calibrate when p99 observed transient
       <p><strong>Sovereignty.</strong> The protocol requires no telemetry, no external dependency, and no connectivity; it is designed for environments where data physically cannot leave the building. Figure 2 shows the sovereignty boundary as built: every stage of the pipeline, from ingestion through generation, governance, and output, executes inside one air-gapped workstation, and the reservation scheduler governs dispatch entirely inside that boundary.</p>
       <figure>
         <div class="diagram-wrap">
-          <img src="sovereignty_diagram.svg" alt="Sovereign execution boundary: all pipeline stages, from ingestion through queueing, generation workers, governance, and outputs, execute inside one air-gapped workstation with zero network and zero telemetry; the reservation scheduler admits work against the memory ledger inside the boundary." style="width:100%; display:block;">
+          <svg class="flow" viewBox="0 0 960 900" role="img" aria-label="Sovereign execution boundary: all pipeline stages, from ingestion through queueing, generation workers, governance, and outputs, execute inside one air-gapped workstation with zero network and zero telemetry; the reservation scheduler admits work against the memory ledger inside the boundary.">
+            <defs>
+              <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path class="ah" d="M 0 0 L 10 5 L 0 10 z"/>
+              </marker>
+              <marker id="ahc2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path class="ahc" d="M 0 0 L 10 5 L 0 10 z"/>
+              </marker>
+            </defs>
+
+            <rect class="gap" x="6" y="6" width="948" height="874" rx="12"/>
+            <text class="bnd" x="480" y="30" text-anchor="middle">air-gapped &middot; zero network &middot; zero telemetry</text>
+            <text class="el" x="480" y="46" text-anchor="middle">production: 2&times; rtx 6000 pro + tr pro 7975wx + 128-256 gb ecc (50-100 sessions) &middot; proven on 1&times; 24 gb gpu</text>
+
+            <!-- inputs -->
+            <rect class="box" x="40" y="66" width="205" height="48" rx="3"/>
+            <text class="t" x="142" y="95" text-anchor="middle">Text prompt</text>
+            <rect class="box" x="265" y="66" width="205" height="48" rx="3"/>
+            <text class="t" x="367" y="88" text-anchor="middle">URL snapshot (ad brief)</text>
+            <text class="st" x="367" y="105" text-anchor="middle">captured at ingestion</text>
+            <rect class="box" x="490" y="66" width="205" height="48" rx="3"/>
+            <text class="t" x="592" y="88" text-anchor="middle">Speech</text>
+            <text class="st" x="592" y="105" text-anchor="middle">&#8594; local speech-to-text</text>
+            <rect class="box" x="715" y="66" width="205" height="48" rx="3"/>
+            <text class="t" x="817" y="88" text-anchor="middle">Documents</text>
+            <text class="st" x="817" y="105" text-anchor="middle">+ brand assets &#8594; local RAG</text>
+            <path class="ln" d="M142,114 L142,130 M367,114 L367,130 M592,114 L592,130 M817,114 L817,130"/>
+            <path class="ln" d="M142,130 L817,130"/>
+            <path class="ln" d="M480,130 L480,146" marker-end="url(#ah2)"/>
+
+            <!-- queue -->
+            <rect class="box store" x="140" y="148" width="680" height="54" rx="3"/>
+            <text class="t" x="480" y="171" text-anchor="middle">Redis in-memory FIFO queue</text>
+            <text class="st" x="480" y="189" text-anchor="middle">absorbs 50-100 concurrent sessions &middot; dispatch gated by ledger admission</text>
+            <path class="ln" d="M480,202 L480,218" marker-end="url(#ah2)"/>
+
+            <!-- anchor -->
+            <rect class="box key" x="140" y="220" width="680" height="60" rx="3"/>
+            <text class="t" x="480" y="245" text-anchor="middle">Cross-Modal Latent Anchor &middot; consistency layer</text>
+            <text class="st" x="480" y="264" text-anchor="middle">model-independent identity / structure / spatial prior - corrects drift at every hand-off</text>
+            <path class="ln" d="M480,280 L480,296" marker-end="url(#ah2)"/>
+
+            <!-- worker 1 -->
+            <rect class="box wrap" x="76" y="298" width="644" height="140" rx="3"/>
+            <text class="t" x="92" y="322">GPU Worker 1 &middot; Cognitive &amp; Canvas</text>
+            <rect class="box" x="92" y="336" width="300" height="84" rx="3"/>
+            <text class="t" x="242" y="368" text-anchor="middle">Orchestrator LLM</text>
+            <text class="st" x="242" y="387" text-anchor="middle">prompt refinement &#8594; structured JSON plan</text>
+            <rect class="box good" x="416" y="336" width="288" height="84" rx="3"/>
+            <text class="t" x="560" y="364" text-anchor="middle">Fast image model</text>
+            <text class="st" x="560" y="382" text-anchor="middle">storyboard &middot; branded assets</text>
+            <text class="el good" x="560" y="404" text-anchor="middle">&#10003; prompt&#8594;image proven</text>
+            <path class="ln" d="M392,378 L412,378" marker-end="url(#ah2)"/>
+            <path class="ln" d="M480,438 L480,452" marker-end="url(#ah2)"/>
+
+            <!-- worker 2 -->
+            <rect class="box wrap" x="76" y="456" width="644" height="196" rx="3"/>
+            <text class="t" x="92" y="480">GPU Worker 2 &middot; Heavy Synthesis &amp; Lifting</text>
+            <rect class="box good" x="92" y="494" width="612" height="42" rx="3"/>
+            <text class="t" x="108" y="520">Video-Audio DiT &#8594; 45&#8201;s streamed video + audio (anchored tail re-injection)</text>
+            <text class="el good" x="688" y="520" text-anchor="end">&#10003; proven</text>
+            <rect class="box warn" x="92" y="544" width="612" height="42" rx="3"/>
+            <text class="t" x="108" y="570">Image &#8594; 3D lifter &#8594; mesh (GLB / OBJ, PBR textures)</text>
+            <text class="el warn" x="688" y="570" text-anchor="end">&#8635; in dev</text>
+            <rect class="box warn" x="92" y="594" width="612" height="42" rx="3"/>
+            <text class="t" x="108" y="620">3D &#8594; rigged video animation</text>
+            <text class="el warn" x="688" y="620" text-anchor="end">&#8635; in dev</text>
+            <path class="ln" d="M480,652 L480,668" marker-end="url(#ah2)"/>
+
+            <!-- reservation scheduler rail -->
+            <rect class="box key" x="760" y="298" width="180" height="354" rx="3"/>
+            <text class="t" x="850" y="326" text-anchor="middle">Reservation</text>
+            <text class="t" x="850" y="344" text-anchor="middle">scheduler</text>
+            <text class="st" x="850" y="374" text-anchor="middle">admits only jobs whose</text>
+            <text class="st" x="850" y="391" text-anchor="middle">full memory envelope</text>
+            <text class="st" x="850" y="408" text-anchor="middle">fits the ledger</text>
+            <text class="st key" x="850" y="438" text-anchor="middle">&#8594; OOM is an admission</text>
+            <text class="st key" x="850" y="455" text-anchor="middle">outcome, never a crash</text>
+            <path class="ln" d="M760,368 L726,368" marker-end="url(#ah2)"/>
+            <path class="ln" d="M760,554 L726,554" marker-end="url(#ah2)"/>
+
+            <!-- consistency conditioning thread -->
+            <path class="ln cond" d="M140,250 L58,250 L58,615"/>
+            <path class="ln cond" d="M58,378 L86,378" marker-end="url(#ahc2)"/>
+            <path class="ln cond" d="M58,515 L86,515" marker-end="url(#ahc2)"/>
+            <path class="ln cond" d="M58,565 L86,565" marker-end="url(#ahc2)"/>
+            <path class="ln cond" d="M58,615 L86,615" marker-end="url(#ahc2)"/>
+            <text class="el cond" x="48" y="480" text-anchor="middle" transform="rotate(-90 48 480)">consistency conditioning</text>
+
+            <!-- governance -->
+            <rect class="box store" x="140" y="670" width="680" height="58" rx="3"/>
+            <text class="t" x="480" y="693" text-anchor="middle">Local governance &middot; provenance ledger: who / what / when / where / every version <tspan class="good">&#10003;</tspan></text>
+            <text class="st" x="480" y="712" text-anchor="middle">prohibited-content screening &amp; grading <tspan class="warn">&#8635; in dev</tspan> &middot; hard-purge &amp; incident log on fail</text>
+            <path class="ln" d="M480,728 L480,744"/>
+
+            <!-- outputs -->
+            <path class="ln" d="M142,744 L817,744"/>
+            <path class="ln" d="M142,744 L142,756 M367,744 L367,756 M592,744 L592,756 M817,744 L817,756"/>
+            <path class="ln" d="M142,756 L142,758 M367,756 L367,758 M592,756 L592,758 M817,756 L817,758" marker-end="url(#ah2)"/>
+            <rect class="box good" x="40" y="760" width="205" height="56" rx="3"/>
+            <text class="t" x="142" y="783" text-anchor="middle">Video + Audio (&#8804;45&#8201;s)</text>
+            <text class="el good" x="142" y="803" text-anchor="middle">&#10003; proven</text>
+            <rect class="box good" x="265" y="760" width="205" height="56" rx="3"/>
+            <text class="t" x="367" y="783" text-anchor="middle">Advertisement (&#8804;45&#8201;s)</text>
+            <text class="el good" x="367" y="803" text-anchor="middle">&#10003; proven</text>
+            <rect class="box warn" x="490" y="760" width="205" height="56" rx="3"/>
+            <text class="t" x="592" y="783" text-anchor="middle">3D mesh + animation</text>
+            <text class="el warn" x="592" y="803" text-anchor="middle">&#8635; in dev</text>
+            <rect class="box warn" x="715" y="760" width="205" height="56" rx="3"/>
+            <text class="t" x="817" y="783" text-anchor="middle">Branded deck (.pptx)</text>
+            <text class="el warn" x="817" y="803" text-anchor="middle">&#8635; in dev</text>
+
+            <!-- legend -->
+            <rect class="box good" x="300" y="842" width="16" height="16" rx="3"/>
+            <text class="st" x="326" y="855">&#10003; Proven - feasibility demonstrated</text>
+            <rect class="box warn" x="560" y="842" width="16" height="16" rx="3"/>
+            <text class="st" x="586" y="855">&#8635; In development - roadmap</text>
+          </svg>
         </div>
         <figcaption>Figure 2. The sovereign execution boundary. Ingestion, queueing, generation workers, governance (including the working provenance ledger), and outputs all execute inside one air-gapped workstation with zero network and zero telemetry; the reservation scheduler admits work against the memory ledger inside the boundary. Green: demonstrated. Amber: in development.</figcaption>
       </figure>
