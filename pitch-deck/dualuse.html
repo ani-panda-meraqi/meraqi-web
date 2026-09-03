@@ -219,11 +219,65 @@
   @media print{
     @page{ size:13.333in 7.5in; margin:0; }
     *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    /* headless print lays out at a small fixed viewport, so pin every
+       viewport-relative size to its intended value at 1280x720 */
+    html,body{ width:1280px; }
     body{ background:var(--bg); }
     .navdots,.hint,.dnav{ display:none; }
     .deck.snap{ height:auto; overflow:visible; scroll-snap-type:none; }
-    .slide{ page-break-after:always; height:100vh; }
+    .slide{ page-break-after:always; width:1280px; height:720px; min-height:720px; padding:43px 90px; }
     .slide:last-child{ page-break-after:auto; }
+    .glow{ width:563px; height:563px; top:-179px; right:-128px; }
+    .glow.bl{ top:auto; right:auto; bottom:-205px; left:-154px; width:486px; height:486px; }
+    .eyebrow{ font-size:11px; }
+    .kicker{ font-size:10.5px; }
+    .h-xl{ font-size:84px; }
+    .h-lg{ font-size:54px; }
+    .h-md{ font-size:37px; }
+    .lead{ font-size:19px; }
+    p.body{ font-size:14.3px; }
+    .slide-head{ margin-bottom:23px; }
+    .slide-head .eyebrow{ margin-bottom:15px; }
+    .chrome{ left:64px; right:64px; bottom:17px; }
+    .pill{ font-size:10px; }
+    .cols{ gap:19px; }
+    .split{ grid-template-columns:1.02fr 0.98fr; gap:51px; }
+    .c2{ grid-template-columns:1fr 1fr; }
+    .c3{ grid-template-columns:repeat(3,1fr); }
+    .c4{ grid-template-columns:repeat(4,1fr); }
+    .card{ padding:19px; }
+    .card h4{ font-size:19px; }
+    .card p{ font-size:12.8px; }
+    ul.ticks{ gap:9px; }
+    ul.ticks li{ font-size:14.3px; }
+    .chips span{ font-size:12.2px; }
+    .stat .big{ font-size:44px; }
+    .stat .lab{ font-size:12.8px; }
+    .title-meta{ font-size:12.8px; }
+    .sgrid{ grid-template-columns:repeat(4,1fr); }
+    .scard h4{ font-size:17px; }
+    .scard p{ font-size:12.2px; }
+    .ring .val{ font-size:31px; }
+    .ring .meta b{ font-size:14px; }
+    .ring .meta span{ font-size:12.2px; }
+    .quoteline{ font-size:31px; }
+    .matrix .row{ grid-template-columns:1.5fr 1fr 1fr; }
+    .matrix .cell{ font-size:13.5px; }
+    .price-grid{ grid-template-columns:repeat(4,1fr); }
+    .price .amt{ font-size:27px; }
+    .alloc{ grid-template-columns:repeat(6,1fr); }
+    .abucket .amt{ font-size:29px; }
+    .ladder{ grid-template-columns:repeat(5,1fr); }
+    .tier .pr{ font-size:26px; }
+    .rev-grid{ grid-template-columns:repeat(5,1fr); }
+    .rev-grid.g3{ grid-template-columns:repeat(3,1fr); }
+    .rev .fig{ font-size:26px; }
+    .title-slide .wordmark{ font-size:128px; }
+    .title-slide .gk{ font-size:13px; }
+    .title-slide .tag{ font-size:33px; }
+    .title-slide .subh{ font-size:17px; }
+    .founder-quote{ font-size:22px; }
+    .ask-cta{ font-size:15px; }
   }
 </style>
 </head>
