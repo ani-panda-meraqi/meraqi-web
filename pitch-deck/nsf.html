@@ -185,12 +185,17 @@
       font-family: var(--fmono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
       color: var(--muted-dim); border-top: 1px solid #3d4f66; padding: 8px 0 12mm; margin-top: 22px;
     }
+    /* tfoot reserves the space; the visible footer is print-fixed so it sits at the
+       page bottom on every page, including a short last page */
+    table.printdoc tfoot .runfoot { visibility: hidden; }
+    .runfoot.fix { position: fixed; bottom: 0; left: 16mm; right: 16mm; margin-top: 0; }
   }
   @page { size: Letter; margin: 0; }
 </style>
 </head>
 <body>
 
+<div class="runfoot fix"><span>Supporting record: ADR-0021 revision 4 (internal)</span><span>Anirudha Panda &middot; Meraqi</span></div>
 <table class="printdoc"><thead><tr><td>
   <div class="runhead"><span><span class="wm">Meraqi</span> &middot; NSF SBIR Phase I &middot; Project Pitch</span><span>Version 2 &middot; 2026-08-28</span></div>
 </td></tr></thead><tfoot><tr><td>
