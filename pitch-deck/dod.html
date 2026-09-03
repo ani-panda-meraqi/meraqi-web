@@ -1,0 +1,412 @@
+<meta charset="utf-8">
+<title>Meraqi DoD Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  :root {
+    --ink:          #131E29;
+    --ink-soft:     #3E4E5C;
+    --ink-mute:     #66788A;
+    --rule:         #D2DAE2;
+    --rule-soft:    #E3E9EF;
+    --accent:       #10456B;
+    --accent-soft:  #E9F0F6;
+    --sunk:         #EEF2F6;
+    --pass:         #2C6E52;
+    --pass-bg:      #E3F0E9;
+    --warn:         #8A5A00;
+    --warn-bg:      #F6EDDC;
+    --crit:         #B03A26;
+    --crit-bg:      #F7E5E1;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    margin: 0; background: #DDE3E9; color: var(--ink);
+    font-family: "Source Serif 4", Georgia, serif;
+  }
+
+  .slide {
+    width: 1280px; height: 720px; background: #FFFFFF;
+    margin: 28px auto; padding: 46px 62px 40px;
+    box-shadow: 0 2px 6px rgba(19,30,41,.18), 0 18px 48px -24px rgba(19,30,41,.4);
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+  }
+
+  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
+  .eb {
+    font-family: "JetBrains Mono", Consolas, monospace; font-size: 11px; font-weight: 500;
+    letter-spacing: .15em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .eb .wm { color: var(--accent); font-weight: 700; }
+  .num { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-mute); }
+
+  .bot {
+    margin-top: auto; padding-top: 12px; border-top: 1px solid var(--rule-soft);
+    display: flex; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink-mute);
+  }
+
+  h1 {
+    font-family: "Libre Franklin", "Segoe UI", Arial, sans-serif;
+    font-weight: 700; letter-spacing: -.018em; line-height: 1.12;
+    font-size: 33px; margin: 0 0 12px; text-wrap: balance;
+  }
+  .sub { font-size: 18.5px; color: var(--ink-soft); line-height: 1.45; margin: 0 0 18px; }
+
+  /* title slide */
+  .title-slide { text-align: center; }
+  .title-slide h1 { font-size: 42px; max-width: 30ch; margin: 26px auto 14px; }
+  .title-slide .sub { max-width: 66ch; margin: 0 auto 26px; font-size: 19.5px; }
+  .title-slide .who {
+    font-family: "Libre Franklin", Arial, sans-serif; font-size: 14px; color: var(--ink-mute);
+    margin-top: 16px;
+  }
+
+  .cols { display: grid; grid-template-columns: 1.08fr .92fr; gap: 44px; align-items: center; flex: 1; min-height: 0; }
+
+  ul.bl { list-style: none; margin: 0; padding: 0; }
+  ul.bl li {
+    font-size: 17px; line-height: 1.5; color: var(--ink-soft);
+    padding: 13px 0 13px 20px; border-bottom: 1px solid var(--rule-soft);
+    position: relative;
+  }
+  ul.bl li:last-child { border-bottom: none; }
+  ul.bl li::before {
+    content: ""; position: absolute; left: 0; top: 22px;
+    width: 8px; height: 8px; background: var(--accent);
+  }
+  ul.bl b { font-family: "Libre Franklin", Arial, sans-serif; font-weight: 700; color: var(--ink); }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 4px 0 18px; }
+  .card { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 13px 16px; font-size: 14.5px; line-height: 1.45; color: var(--ink-soft); }
+  .card b { font-family: "Libre Franklin", Arial, sans-serif; font-weight: 700; color: var(--ink); display: block; margin-bottom: 4px; font-size: 15px; }
+
+  .marker {
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-mute); background: var(--sunk);
+    padding: 8px 12px; margin-top: 12px; border-left: 3px solid var(--ink-mute);
+  }
+
+  .vwrap { min-width: 0; }
+  .vwrap svg, .vfull svg { display: block; width: 100%; height: auto; }
+  .vfull { margin-top: 4px; }
+  .vfull.center svg { max-width: 980px; margin: 0 auto; }
+  .vcap {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-mute); text-align: center; margin-top: 8px;
+  }
+
+  /* svg shared */
+  svg .box  { fill: #FFFFFF; stroke: var(--rule); stroke-width: 1.5; }
+  svg .box.key   { fill: var(--accent-soft); stroke: var(--accent); }
+  svg .box.store { fill: var(--sunk); stroke: var(--rule); stroke-dasharray: 4 3; }
+  svg .box.good  { fill: var(--pass-bg); stroke: var(--pass); }
+  svg .box.warn  { fill: var(--warn-bg); stroke: var(--warn); }
+  svg .box.bad   { fill: var(--crit-bg); stroke: var(--crit); }
+  svg .box.dead  { fill: var(--crit); stroke: var(--crit); }
+  svg .t  { font-family: "Libre Franklin", Arial, sans-serif; font-size: 13.5px; font-weight: 600; fill: var(--ink); }
+  svg .t.inv { fill: #FFFFFF; }
+  svg .st { font-family: "Source Serif 4", serif; font-size: 11.5px; fill: var(--ink-soft); }
+  svg .el { font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .06em; fill: var(--ink-mute); text-transform: uppercase; }
+  svg .el.crit { fill: var(--crit); }
+  svg .ln { fill: none; stroke: var(--ink-mute); stroke-width: 1.5; }
+  svg .ln.loop { stroke-dasharray: 5 4; }
+  svg .ln.bad { stroke: var(--crit); stroke-width: 1.8; }
+  svg .ln.gap { stroke-dasharray: 8 6; stroke-width: 2; stroke: var(--accent); }
+  svg .ah { fill: var(--ink-mute); }
+  svg .ahb { fill: var(--crit); }
+
+  @media print {
+    body { background: #FFFFFF; }
+    .slide { margin: 0; box-shadow: none; page-break-after: always; }
+    .slide:last-child { page-break-after: auto; }
+  }
+  @page { size: 13.333in 7.5in; margin: 0; }
+</style>
+
+<!-- ============ SLIDE 1 ============ -->
+<div class="slide title-slide">
+  <div class="top">
+    <span class="eb"><span class="wm">Meraqi</span> &middot; DoD SBIR / AFWERX Open Topic &middot; Capability Pitch</span>
+    <span class="num">1 / 6</span>
+  </div>
+  <h1>Sovereign Multi-Modal Generative AI for Resource-Constrained Tactical Edge Environments</h1>
+  <p class="sub">A zero-uncontained-failure architecture engineered for 100% control-plane availability on cost-effective, commercial off-the-shelf (COTS) edge compute.</p>
+  <div class="vfull center">
+    <svg viewBox="0 0 1060 300" role="img" aria-label="A remote cloud with a severed, denied data link is crossed out; an air-gapped ruggedized dual-GPU COTS edge node serves operational briefs, tactical video, and 3D terrain to tactical consumers.">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+      </defs>
+      <rect x="20" y="90" width="180" height="80" rx="24" fill="#EEF2F6" stroke="#66788A" stroke-width="1.5"/>
+      <text class="t" x="110" y="135" text-anchor="middle">REMOTE CLOUD</text>
+      <path d="M30,95 L190,165 M190,95 L30,165" stroke="#B03A26" stroke-width="4" opacity=".85"/>
+      <text class="el crit" x="110" y="196" text-anchor="middle">denied / contested link</text>
+      <path class="ln" d="M200,130 L242,130" stroke-dasharray="6 5"/>
+      <path class="ln" d="M268,130 L308,130" stroke-dasharray="6 5"/>
+      <path d="M246,118 L258,142 M258,118 L246,142" stroke="#B03A26" stroke-width="2.5"/>
+      <rect x="316" y="24" width="420" height="252" rx="14" fill="none" stroke="#10456B" stroke-width="2" stroke-dasharray="10 7"/>
+      <text class="el" x="526" y="48" text-anchor="middle" fill="#10456B">air-gapped &middot; zero network &middot; zero telemetry</text>
+      <rect x="366" y="66" width="320" height="164" rx="6" fill="#FFFFFF" stroke="#131E29" stroke-width="2"/>
+      <text class="t" x="526" y="94" text-anchor="middle">RUGGEDIZED COTS EDGE NODE</text>
+      <rect x="391" y="108" width="270" height="30" rx="4" fill="#E9F0F6" stroke="#10456B" stroke-width="1.5"/>
+      <text class="el" x="526" y="127" text-anchor="middle" fill="#10456B">gpu 0 &middot; 32 GB</text>
+      <rect x="391" y="144" width="270" height="30" rx="4" fill="#E9F0F6" stroke="#10456B" stroke-width="1.5"/>
+      <text class="el" x="526" y="163" text-anchor="middle" fill="#10456B">gpu 1 &middot; 32 GB</text>
+      <text class="el" x="526" y="205" text-anchor="middle">ledger-governed execution &middot; adr-0021</text>
+      <path class="ln" d="M736,92 L790,92" marker-end="url(#a1)"/>
+      <path class="ln" d="M736,150 L790,150" marker-end="url(#a1)"/>
+      <path class="ln" d="M736,208 L790,208" marker-end="url(#a1)"/>
+      <rect class="box good" x="794" y="66" width="240" height="52" rx="6"/>
+      <text class="t" x="914" y="97" text-anchor="middle">Operational briefs</text>
+      <rect class="box good" x="794" y="124" width="240" height="52" rx="6"/>
+      <text class="t" x="914" y="155" text-anchor="middle">Tactical video + audio</text>
+      <rect class="box warn" x="794" y="182" width="240" height="52" rx="6"/>
+      <text class="t" x="914" y="213" text-anchor="middle">3D terrain</text>
+    </svg>
+  </div>
+  <p class="who">Anirudha Panda &middot; Founder and Principal Investigator</p>
+  <div class="bot"><span>Meraqi &middot; Sovereign Multi-Modal Generative AI</span><span>2026-08-28 &middot; Version 1</span></div>
+</div>
+
+<!-- ============ SLIDE 2 ============ -->
+<div class="slide">
+  <div class="top">
+    <span class="eb"><span class="wm">Meraqi</span> &middot; The Operational Vulnerability</span>
+    <span class="num">2 / 6</span>
+  </div>
+  <h1>The Crisis of Unpredictable AI Infrastructure</h1>
+  <div class="cols">
+    <ul class="bl">
+      <li><b>Cloud dependence.</b> Modern multi-modal AI requires massive, vulnerable data links back to remote cloud infrastructure, a fatal single point of failure in electronic-warfare environments.</li>
+      <li><b>The edge crash problem.</b> Standard open-source AI pipelines suffer extreme runtime volatility: a single unexpected query shape triggers cascading out-of-memory (OOM) failure.</li>
+      <li><b>Systemic blackout.</b> When an AI worker crashes on a standard platform it takes down host databases, APIs, and adjacent communication layers, blinding the tactical operator in active operations.</li>
+    </ul>
+    <div class="vwrap">
+      <svg viewBox="0 0 380 336" role="img" aria-label="Failure cascade on a standard stack: an unexpected query shape causes cascading CUDA out-of-memory, which takes databases, APIs, and communications down, leaving the operator blind mid-operation.">
+        <defs>
+          <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ahb" d="M0,0 L10,5 L0,10 z"/></marker>
+        </defs>
+        <text class="el" x="190" y="18" text-anchor="middle">today's standard stack</text>
+        <rect class="box" x="40" y="32" width="300" height="54" rx="6"/>
+        <text class="t" x="190" y="64" text-anchor="middle">Unexpected query shape</text>
+        <path class="ln bad" d="M190,86 L190,108" marker-end="url(#a2)"/>
+        <rect class="box warn" x="40" y="112" width="300" height="54" rx="6"/>
+        <text class="t" x="190" y="144" text-anchor="middle">Cascading CUDA OOM</text>
+        <path class="ln bad" d="M190,166 L190,188" marker-end="url(#a2)"/>
+        <rect class="box bad" x="40" y="192" width="300" height="54" rx="6"/>
+        <text class="t" x="190" y="224" text-anchor="middle">Databases &middot; APIs &middot; comms down</text>
+        <path class="ln bad" d="M190,246 L190,268" marker-end="url(#a2)"/>
+        <rect class="box dead" x="40" y="272" width="300" height="54" rx="6"/>
+        <text class="t inv" x="190" y="304" text-anchor="middle">OPERATOR BLIND MID-OPERATION</text>
+      </svg>
+      <p class="vcap">one query away from mission blackout</p>
+    </div>
+  </div>
+  <div class="bot"><span>Meraqi &middot; Sovereign Multi-Modal Generative AI</span><span>2026-08-28 &middot; Version 1</span></div>
+</div>
+
+<!-- ============ SLIDE 3 ============ -->
+<div class="slide">
+  <div class="top">
+    <span class="eb"><span class="wm">Meraqi</span> &middot; The Technical Innovation &middot; ADR-0021 Architecture</span>
+    <span class="num">3 / 6</span>
+  </div>
+  <h1>Deterministic Admission Control and Isolated Execution</h1>
+  <div class="cards">
+    <div class="card"><b>Mathematical certainty</b>Every mission request is validated against a pre-calibrated hardware memory ledger before dispatch. If a job does not fit, it cannot execute.</div>
+    <div class="card"><b>Hard container isolation</b>Core control planes (Postgres, Redis, API) are firewalled from the AI data layer with strict kernel priority constraints (oom_score_adj).</div>
+    <div class="card"><b>Zero host impact</b>A failure in a heavy generation pipeline is confined to a single worker container. The broader platform remains fully operational.</div>
+  </div>
+  <div class="vfull center">
+    <svg viewBox="0 0 960 340" role="img" aria-label="ADR-0021 closed loop: API edge feeds the reservation scheduler, which dispatches to isolated workers; workers write observed peaks to the metering ledger; drift detection re-derives the safety factor and re-calibrates the calibration table; unfittable jobs degrade through the fallback ladder at admission only.">
+      <defs>
+        <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+      </defs>
+      <rect class="box" x="20" y="60" width="170" height="64" rx="3"/>
+      <text class="t"  x="105" y="88"  text-anchor="middle">API edge</text>
+      <text class="st" x="105" y="106" text-anchor="middle">named profiles only</text>
+      <rect class="box key" x="240" y="52" width="230" height="80" rx="3"/>
+      <text class="t"  x="355" y="82"  text-anchor="middle">Reservation scheduler</text>
+      <text class="st" x="355" y="100" text-anchor="middle">ledger admission</text>
+      <text class="st" x="355" y="116" text-anchor="middle">priority partitions</text>
+      <rect class="box" x="520" y="52" width="190" height="80" rx="3"/>
+      <text class="t"  x="615" y="82"  text-anchor="middle">Isolated workers</text>
+      <text class="st" x="615" y="100" text-anchor="middle">cgroup + CUDA caps</text>
+      <text class="st" x="615" y="116" text-anchor="middle">crash-only</text>
+      <rect class="box store" x="760" y="52" width="180" height="80" rx="3"/>
+      <text class="t"  x="850" y="82"  text-anchor="middle">Metering ledger</text>
+      <text class="st" x="850" y="100" text-anchor="middle">observed peak</text>
+      <text class="st" x="850" y="116" text-anchor="middle">per term</text>
+      <rect class="box" x="520" y="230" width="190" height="72" rx="3"/>
+      <text class="t"  x="615" y="258" text-anchor="middle">Drift detection</text>
+      <text class="st" x="615" y="276" text-anchor="middle">alert &middot; circuit breaker</text>
+      <rect class="box store" x="240" y="230" width="230" height="72" rx="3"/>
+      <text class="t"  x="355" y="258" text-anchor="middle">Calibration table</text>
+      <text class="st" x="355" y="276" text-anchor="middle">measured envelopes</text>
+      <rect class="box" x="20" y="230" width="170" height="72" rx="3"/>
+      <text class="t"  x="105" y="258" text-anchor="middle">Fallback ladder</text>
+      <text class="st" x="105" y="276" text-anchor="middle">admission only</text>
+      <path class="ln" d="M190,92 L240,92" marker-end="url(#a3)"/>
+      <path class="ln" d="M470,92 L520,92" marker-end="url(#a3)"/>
+      <path class="ln" d="M710,92 L760,92" marker-end="url(#a3)"/>
+      <path class="ln" d="M850,132 L850,266 L710,266" marker-end="url(#a3)"/>
+      <path class="ln" d="M520,266 L470,266" marker-end="url(#a3)"/>
+      <path class="ln" d="M355,230 L355,132" marker-end="url(#a3)"/>
+      <path class="ln loop" d="M280,132 L280,180 L105,180 L105,230" marker-end="url(#a3)"/>
+      <path class="ln loop" d="M190,284 L215,284 L215,110 L240,110" marker-end="url(#a3)"/>
+      <text class="el" x="782" y="200">observed vs reserved</text>
+      <text class="el" x="495" y="254" text-anchor="middle">recalibrate</text>
+      <text class="el" x="347" y="185" transform="rotate(-90 347 185)" text-anchor="middle">active envelopes</text>
+      <text class="el" x="105" y="172">no fit: degrade at admission</text>
+    </svg>
+    <p class="vcap">self-supervising loop &middot; no cloud &middot; no telemetry &middot; no manual tuning</p>
+  </div>
+  <div class="bot"><span>Meraqi &middot; Sovereign Multi-Modal Generative AI</span><span>2026-08-28 &middot; Version 1</span></div>
+</div>
+
+<!-- ============ SLIDE 4 ============ -->
+<div class="slide">
+  <div class="top">
+    <span class="eb"><span class="wm">Meraqi</span> &middot; Military Use Cases and Edge Applications</span>
+    <span class="num">4 / 6</span>
+  </div>
+  <h1>Multi-Echelon Intelligence and Automated Tactical Readiness</h1>
+  <div class="cols">
+    <div>
+      <ul class="bl">
+        <li><b>Secure rapid briefing generation.</b> Local LLM serving (Gemma-4) synthesizes multi-source raw intelligence logs into operational briefs inside fully air-gapped facilities.</li>
+        <li><b>3D terrain reconstruction.</b> On-the-fly 3D spatial environments (Hunyuan3D) and tactical operational video (LTX-2.3) generated from field reconnaissance speech feeds.</li>
+        <li><b>Sovereign supply-chain modeling.</b> Local generation of replacement-part geometry and visual work instructions at remote maintenance hubs, with zero blueprint-exfiltration risk.</li>
+      </ul>
+      <p class="marker">Representative concepts of employment &middot; briefing + video demonstrated, 3D in development &middot; model families are swappable data, never code</p>
+    </div>
+    <div class="vwrap">
+      <svg viewBox="0 0 420 404" role="img" aria-label="Integrated multi-modal pipeline inside the air gap: a reconnaissance speech feed passes through local speech-to-text into the orchestrator LLM, which fans out to an operational brief, tactical video with audio, and a 3D terrain mesh.">
+        <defs>
+          <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+        </defs>
+        <rect x="6" y="6" width="408" height="368" rx="12" fill="none" stroke="#10456B" stroke-width="1.8" stroke-dasharray="9 6"/>
+        <rect class="box" x="40" y="26" width="340" height="42" rx="6"/>
+        <text class="t" x="210" y="52" text-anchor="middle">Recon speech feed</text>
+        <path class="ln" d="M210,68 L210,88" marker-end="url(#a4)"/>
+        <rect class="box" x="40" y="92" width="340" height="42" rx="6"/>
+        <text class="t" x="210" y="118" text-anchor="middle">Local speech-to-text</text>
+        <path class="ln" d="M210,134 L210,154" marker-end="url(#a4)"/>
+        <rect class="box key" x="40" y="158" width="340" height="46" rx="6"/>
+        <text class="t" x="210" y="186" text-anchor="middle">Orchestrator LLM &middot; Gemma-4</text>
+        <path class="ln" d="M210,204 L210,222 M80,222 L340,222" />
+        <path class="ln" d="M80,222 L80,240" marker-end="url(#a4)"/>
+        <path class="ln" d="M210,222 L210,240" marker-end="url(#a4)"/>
+        <path class="ln" d="M340,222 L340,240" marker-end="url(#a4)"/>
+        <rect class="box good" x="30" y="244" width="110" height="72" rx="6"/>
+        <text class="t" x="85" y="274" text-anchor="middle">Operational</text>
+        <text class="t" x="85" y="292" text-anchor="middle">brief</text>
+        <rect class="box good" x="152" y="244" width="116" height="72" rx="6"/>
+        <text class="t" x="210" y="268" text-anchor="middle">Tactical video</text>
+        <text class="t" x="210" y="286" text-anchor="middle">+ audio</text>
+        <text class="st" x="210" y="304" text-anchor="middle">LTX-2.3</text>
+        <rect class="box warn" x="280" y="244" width="116" height="72" rx="6"/>
+        <text class="t" x="338" y="268" text-anchor="middle">3D terrain</text>
+        <text class="t" x="338" y="286" text-anchor="middle">mesh</text>
+        <text class="st" x="338" y="304" text-anchor="middle">Hunyuan3D</text>
+        <text class="el" x="210" y="352" text-anchor="middle" fill="#10456B">inside the air gap &middot; nothing exits</text>
+        <text class="el" x="210" y="396" text-anchor="middle">text &#8594; audio &#8594; 3d visual &middot; one engine</text>
+      </svg>
+    </div>
+  </div>
+  <div class="bot"><span>Meraqi &middot; Sovereign Multi-Modal Generative AI</span><span>2026-08-28 &middot; Version 1</span></div>
+</div>
+
+<!-- ============ SLIDE 5 ============ -->
+<div class="slide">
+  <div class="top">
+    <span class="eb"><span class="wm">Meraqi</span> &middot; Degraded-Mode Operations &middot; The Fallback Ladder</span>
+    <span class="num">5 / 6</span>
+  </div>
+  <h1>Mission Continuity Under High-Contention Load</h1>
+  <div class="cols">
+    <ul class="bl">
+      <li><b>Tactical graceful degradation.</b> When compute demand exceeds capacity or hardware experiences combat degradation, the system engages a calibrated fallback ladder.</li>
+      <li><b>Automated step-downs.</b> Rather than crashing, the platform dials down generation resolution, reduces duration, and switches model precision. Every rung is a pre-measured profile, engaged at admission and never mid-deliverable, so outputs are never corrupted.</li>
+      <li><b>Constant awareness.</b> Tactical users retain access to critical operational insight and voice synthesis. Total system blackout is designed out of the architecture.</li>
+    </ul>
+    <div class="vwrap">
+      <svg viewBox="0 0 480 356" role="img" aria-label="Step-down diagram: a full mission profile degrades in calibrated rungs, stepping down resolution, then duration, then precision; the floor labeled system blackout is crossed out and never reached.">
+        <defs>
+          <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+        </defs>
+        <rect class="box good" x="16" y="30" width="164" height="46" rx="6"/>
+        <text class="t" x="98" y="58" text-anchor="middle">Full mission profile</text>
+        <path class="ln gap" d="M180,76 L214,96" marker-end="url(#a5)"/>
+        <rect class="box key" x="118" y="98" width="164" height="46" rx="6"/>
+        <text class="t" x="200" y="126" text-anchor="middle">Step down resolution</text>
+        <path class="ln gap" d="M282,144 L316,164" marker-end="url(#a5)"/>
+        <rect class="box key" x="220" y="166" width="164" height="46" rx="6"/>
+        <text class="t" x="302" y="194" text-anchor="middle">Reduce duration</text>
+        <path class="ln gap" d="M384,212 L418,232" marker-end="url(#a5)"/>
+        <rect class="box key" x="300" y="234" width="164" height="46" rx="6"/>
+        <text class="t" x="382" y="262" text-anchor="middle">Reduce precision</text>
+        <text class="el" x="16" y="300" >each rung: a pre-calibrated profile &middot; engaged at admission</text>
+        <line x1="16" y1="316" x2="464" y2="316" stroke="#131E29" stroke-width="2.5"/>
+        <text class="el crit" x="240" y="342" text-anchor="middle" font-size="13" font-weight="700">SYSTEM BLACKOUT</text>
+        <path d="M148,346 L332,330 M148,330 L332,346" stroke="#B03A26" stroke-width="2"/>
+        <text class="el" x="464" y="308" text-anchor="end">floor never reached</text>
+      </svg>
+    </div>
+  </div>
+  <div class="bot"><span>Meraqi &middot; Sovereign Multi-Modal Generative AI</span><span>2026-08-28 &middot; Version 1</span></div>
+</div>
+
+<!-- ============ SLIDE 6 ============ -->
+<div class="slide">
+  <div class="top">
+    <span class="eb"><span class="wm">Meraqi</span> &middot; The Phase I and II Transition Pathway</span>
+    <span class="num">6 / 6</span>
+  </div>
+  <h1>From Hardened Engineering Design to Fielded Mission Capability</h1>
+  <ul class="bl">
+    <li><b>Phase I objective.</b> Validate and lock the automated memory-envelope profiling matrix on ruggedized COTS high-performance edge compute (dual 32 GB GPU, Threadripper-class host), closing with chaos testing that proves 100% database, API, and control-plane uptime under injected failures.</li>
+    <li><b>Phase II objective.</b> Integrate the production fallback ladder, implement multi-echelon user token priority structures, and field-test with an Air Force stakeholder.</li>
+    <li><b>The transition goal.</b> A scalable, plug-and-play, zero-OOM tactical AI appliance ready for rapid field deployment across defense agencies.</li>
+  </ul>
+  <div class="vfull">
+    <svg viewBox="0 0 1140 230" role="img" aria-label="Execution timeline: Phase I months one through four cover baseline and hardening, locking the envelope matrix, ledger and priority partitions, and the chaos test proving 100% control-plane uptime; Phase II covers integration and an Air Force stakeholder field test; the pathway ends at a fielded zero-OOM tactical appliance.">
+      <defs>
+        <marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+      </defs>
+      <path d="M120,52 L120,44 L660,44 L660,52" fill="none" stroke="#10456B" stroke-width="1.5"/>
+      <text class="el" x="390" y="36" text-anchor="middle" fill="#10456B">phase i &middot; prove it</text>
+      <path d="M780,52 L780,44 L940,44 L940,52" fill="none" stroke="#8A5A00" stroke-width="1.5"/>
+      <text class="el" x="860" y="36" text-anchor="middle" fill="#8A5A00">phase ii &middot; field it</text>
+      <line x1="40" y1="120" x2="1080" y2="120" stroke="#66788A" stroke-width="2"/>
+      <path class="ln" d="M1080,120 L1104,120" marker-end="url(#a6)"/>
+      <circle cx="120" cy="120" r="6" fill="#10456B"/>
+      <text class="el" x="120" y="94" text-anchor="middle">month 1</text>
+      <text class="st" x="120" y="146" text-anchor="middle">Baseline + kernel hardening</text>
+      <circle cx="300" cy="120" r="6" fill="#10456B"/>
+      <text class="el" x="300" y="94" text-anchor="middle">month 2</text>
+      <text class="st" x="300" y="166" text-anchor="middle">Envelope matrix locked</text>
+      <circle cx="480" cy="120" r="6" fill="#10456B"/>
+      <text class="el" x="480" y="94" text-anchor="middle">month 3</text>
+      <text class="st" x="480" y="146" text-anchor="middle">Ledger + priority partitions</text>
+      <circle cx="660" cy="120" r="6" fill="#10456B"/>
+      <text class="el" x="660" y="94" text-anchor="middle">month 4</text>
+      <text class="st" x="660" y="166" text-anchor="middle">Chaos test:</text>
+      <text class="st" x="660" y="184" text-anchor="middle">100% control-plane uptime</text>
+      <circle cx="860" cy="120" r="6" fill="#8A5A00"/>
+      <text class="el" x="860" y="94" text-anchor="middle">phase ii</text>
+      <text class="st" x="860" y="146" text-anchor="middle">Integration + AF stakeholder</text>
+      <text class="st" x="860" y="164" text-anchor="middle">field test</text>
+      <circle cx="1040" cy="120" r="8" fill="#2C6E52"/>
+      <text class="el" x="1040" y="94" text-anchor="middle" fill="#2C6E52">transition</text>
+      <text class="st" x="1040" y="166" text-anchor="middle">Fielded zero-OOM</text>
+      <text class="st" x="1040" y="184" text-anchor="middle">tactical appliance</text>
+    </svg>
+  </div>
+  <div class="bot"><span>Meraqi &middot; Sovereign Multi-Modal Generative AI</span><span>2026-08-28 &middot; Version 1</span></div>
+</div>

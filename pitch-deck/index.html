@@ -54,6 +54,12 @@
   .pdfline{ margin-top:18px; font-family:var(--fmono); font-size:12px; letter-spacing:0.04em; color:var(--muted-dim); }
   .pdfline a{ color:var(--accent-ink); text-decoration:none; border-bottom:1px solid rgba(238,90,52,0.34); }
   .pdfline a:hover{ color:var(--accent); }
+  .about{ margin-top:clamp(40px,7vh,64px); border-top:1px solid var(--line); padding-top:32px; }
+  .about .eyebrow{ margin-bottom:24px; }
+  .point{ margin-bottom:22px; }
+  .point .k{ font-family:var(--fmono); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:var(--accent); margin-bottom:7px; }
+  .point p{ font-size:14.5px; line-height:1.62; color:var(--muted); }
+  .point p em{ font-style:italic; color:var(--accent-ink); }
   @media (max-width:520px){ a.card{ flex-direction:column; } .card .m{ white-space:normal; } }
 </style>
 </head>
@@ -61,9 +67,9 @@
 <div class="glow"></div>
 <main>
   <div class="lockup"><img src="/assets/brand.png" alt="Meraqi"/></div>
-  <div class="eyebrow">Investor &amp; Grant Materials</div>
+  <div class="eyebrow">Investor &amp; Federal Materials</div>
   <h1>Pitch Decks</h1>
-  <p class="lead">Shared by link with invited recipients. Decks open in the browser &mdash; arrow keys or scroll to advance.</p>
+  <p class="lead">Shared by link with invited recipients. Decks open in the browser; arrow keys or scroll to advance.</p>
   <nav class="decks">
     <a class="card" href="/pitch-deck/public">
       <div class="t"><div class="k">Investor Pitch</div><h2>Consumer Edition</h2></div>
@@ -81,8 +87,35 @@
       <div class="t"><div class="k">NSF SBIR</div><h2>Project Pitch V2</h2></div>
       <div class="m">Document →</div>
     </a>
+    <a class="card" href="/pitch-deck/dod">
+      <div class="t"><div class="k">DoD · AFWERX SBIR</div><h2>Defense Pitch Deck</h2></div>
+      <div class="m">6 slides →</div>
+    </a>
   </nav>
   <p class="pdfline">Prefer a file? <a href="/pitch-deck/Meraqi_NSF_Project_Pitch_V2.pdf">NSF Project Pitch V2 (PDF)</a></p>
+  <section class="about">
+    <div class="eyebrow">About Meraqi</div>
+    <div class="point">
+      <div class="k">The unmet need</div>
+      <p>Creative and media directors in regulated industries (banks, insurers, healthcare, defense, government) are locked out of the GenAI creative wave; every frontier model is a third-party cloud API, and their briefs, brand assets, customer data, and unreleased campaigns are not allowed to leave their environment; the teams under the most pressure to produce more content faster are precisely the ones who cannot touch the tools everyone else uses.</p>
+    </div>
+    <div class="point">
+      <div class="k">What Meraqi is</div>
+      <p>A GenAI design platform, named for the Greek <em>mer&aacute;ki</em> (&ldquo;to create with soul&rdquo;), built to give those teams the full creative stack; plain language becomes finished marketing content, images, multi-shot video ads with speech and sound, and soon decks and 3D, created and edited in any browser.</p>
+    </div>
+    <div class="point">
+      <div class="k">Sovereign by design</div>
+      <p>The entire platform ships self-hosted, up to fully air-gapped, inside the customer&rsquo;s own walls; local open-weight models only, zero telemetry, nothing ever leaves the environment, signed offline updates; a creative department gets modern generative tooling without asking compliance to bend a single rule.</p>
+    </div>
+    <div class="point">
+      <div class="k">The technology that makes it possible</div>
+      <p>A compositional consistency engine keeps people, products, and scenes coherent across a full spot (45 seconds of continuous video+audio proven, roughly 6 minutes wall-clock per ad), and deterministic GPU scheduling keeps long generation runs reliable on modest customer-owned hardware; no frontier-API dependence, no per-call tax.</p>
+    </div>
+    <div class="point">
+      <div class="k">Business and stage</div>
+      <p>The only vendor in its field with a published Regulated Industries tier, an on-prem license metered by VRAM (~$75k/yr baseline, unlimited seats), alongside outcome-priced SaaS at $12/$25/$50 per seat/month; solo-founder pre-seed raising $750K, with a signed pilot LOI and NSF SBIR and DoD/AFWERX tracks in flight.</p>
+    </div>
+  </section>
 </main>
 <footer>
   <img src="/assets/brand.png" alt="Meraqi"/>
