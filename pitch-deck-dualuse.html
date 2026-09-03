@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meraqi · Dual-Use Edition · Investor Pitch</title>
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#001533; --bg-soft:#04223f; --card:#082c4d;
+    --ink:#eef1ec; --cream-pure:#f7f8f4;
+    --accent:#ee5a34; --accent-deep:#d8421f; --accent-ink:#f6a085;
+    --muted:#95a9bf; --muted-dim:#7a8ea3;
+    --line:rgba(238,241,236,0.10); --line-strong:rgba(238,241,236,0.20);
+    --good:#5fbf8f; --good-soft:rgba(95,191,143,0.12);
+    --fdisplay:"Bodoni Moda","Didot",Georgia,serif;
+    --fbody:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --fmono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ background:#000a1c; color:var(--ink); font-family:var(--fbody); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  b,strong{ color:var(--cream-pure); font-weight:600; }
+  em{ font-style:italic; }
+  ::selection{ background:var(--accent); color:var(--cream-pure); }
+
+  .slide{
+    position:relative; width:100vw; height:100vh; min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:6vh 7vw; overflow:hidden;
+    background:radial-gradient(130% 110% at 86% -12%, #06305a 0%, transparent 52%), var(--bg);
+    border-bottom:1px solid var(--line); scroll-snap-align:start;
+  }
+  .deck.snap{ height:100vh; overflow-y:scroll; scroll-snap-type:y mandatory; scroll-behavior:smooth; }
+  .deck.snap .slide{ height:100vh; }
+  .glow{ position:absolute; z-index:0; width:44vw; height:44vw; border-radius:50%; top:-14vw; right:-10vw; pointer-events:none; background:radial-gradient(circle, rgba(238,90,52,0.16) 0%, transparent 62%); filter:blur(30px); }
+  .glow.bl{ top:auto; right:auto; bottom:-16vw; left:-12vw; width:38vw; height:38vw; background:radial-gradient(circle, rgba(238,90,52,0.10) 0%, transparent 62%); }
+  .inner{ position:relative; z-index:2; width:100%; max-width:1180px; margin:0 auto; }
+
+  .eyebrow{ font-family:var(--fmono); font-size:clamp(10px,0.86vw,13px); font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:12px; }
+  .eyebrow::after{ content:""; height:1px; flex:1; max-width:120px; background:linear-gradient(90deg,var(--accent),transparent); }
+  .kicker{ font-family:var(--fmono); font-size:clamp(10px,0.82vw,12px); letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-dim); }
+
+  h1{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; letter-spacing:-0.018em; color:var(--cream-pure); line-height:1.0; text-wrap:balance; }
+  h2{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; letter-spacing:-0.015em; color:var(--cream-pure); line-height:1.04; text-wrap:balance; }
+  h1 em,h2 em,.lead em{ font-style:italic; font-weight:500; color:var(--accent-ink); }
+  .h-xl{ font-size:clamp(40px,6.6vw,104px); }
+  .h-lg{ font-size:clamp(28px,4.2vw,58px); }
+  .h-md{ font-size:clamp(22px,2.9vw,38px); }
+  .lead{ font-size:clamp(15px,1.5vw,22px); line-height:1.5; color:var(--muted); max-width:62ch; }
+  .lead.wide{ max-width:80ch; }
+  p.body{ font-size:clamp(13px,1.12vw,16.5px); line-height:1.58; color:var(--muted); }
+  .slide-head{ margin-bottom:clamp(20px,3.2vh,40px); }
+  .slide-head .eyebrow{ margin-bottom:15px; }
+
+  .chrome{ position:absolute; z-index:3; left:5vw; right:5vw; bottom:2.4vh; display:flex; align-items:center; justify-content:space-between; font-family:var(--fmono); font-size:13px; letter-spacing:0.06em; color:var(--muted-dim); }
+  .chrome .b{ display:flex; align-items:center; gap:14px; }
+  .chrome .b img{ height:28px; width:auto; opacity:0.92; }
+  .chrome .b span{ font-family:var(--fbody); font-size:14px; letter-spacing:0.01em; color:var(--muted); white-space:nowrap; }
+  .chrome .pg b{ color:var(--accent-ink); font-weight:500; }
+
+  .pill{ display:inline-flex; align-items:center; gap:9px; font-family:var(--fmono); font-size:clamp(10px,0.8vw,12px); font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); background:rgba(238,90,52,0.09); border:1px solid rgba(238,90,52,0.28); padding:7px 15px; border-radius:100px; }
+  .pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(238,90,52,0.14); }
+
+  .cols{ display:grid; gap:clamp(14px,1.5vw,24px); }
+  .c2{ grid-template-columns:1fr 1fr; }
+  .c3{ grid-template-columns:repeat(3,1fr); }
+  .c4{ grid-template-columns:repeat(4,1fr); }
+  .split{ display:grid; grid-template-columns:1.02fr 0.98fr; gap:clamp(26px,4vw,60px); align-items:center; }
+
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:clamp(15px,1.5vw,23px); }
+  .card .k{ font-family:var(--fmono); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:var(--accent); margin-bottom:11px; }
+  .card h4{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(16px,1.5vw,22px); color:var(--cream-pure); line-height:1.14; margin-bottom:8px; }
+  .card p{ font-size:clamp(12.5px,1vw,15px); line-height:1.52; color:var(--muted); }
+  .card p b{ color:var(--cream-pure); }
+  .card.accent{ border-color:rgba(238,90,52,0.34); background:linear-gradient(155deg, rgba(238,90,52,0.10) 0%, var(--card) 60%); }
+  .card.plain{ background:var(--bg-soft); }
+  .num{ font-family:var(--fmono); font-size:12px; color:var(--accent); letter-spacing:0.08em; }
+
+  .stat .big{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(26px,3.4vw,50px); color:var(--cream-pure); line-height:1; letter-spacing:-0.01em; }
+  .stat .big em{ color:var(--accent-ink); font-style:italic; }
+  .stat .lab{ font-size:clamp(11.5px,1vw,14px); color:var(--muted); margin-top:7px; line-height:1.42; }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chips span{ font-family:var(--fmono); font-size:clamp(11px,0.95vw,13px); letter-spacing:0.03em; color:var(--ink); background:rgba(238,90,52,0.10); border:1px solid rgba(238,90,52,0.26); padding:7px 14px; border-radius:100px; }
+  .chips.soft span{ background:rgba(238,241,236,0.05); border-color:var(--line); color:var(--muted); }
+
+  /* security grid */
+  .sgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+  .scard{ background:var(--card); border:1px solid var(--line); border-radius:13px; padding:20px 18px; }
+  .scard .ic{ width:26px; height:26px; color:var(--accent); margin-bottom:13px; }
+  .scard h4{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(15px,1.35vw,18px); line-height:1.14; margin-bottom:8px; color:var(--cream-pure); }
+  .scard p{ font-size:clamp(11.5px,0.95vw,13.5px); color:var(--muted); line-height:1.48; }
+
+  /* market rings */
+  .rings{ display:flex; flex-direction:column; gap:11px; }
+  .ring{ display:flex; align-items:center; gap:16px; border:1px solid var(--line); border-radius:12px; padding:15px 18px; background:var(--bg-soft); }
+  .ring .val{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(20px,2.4vw,34px); color:var(--accent-ink); min-width:150px; letter-spacing:-0.01em; }
+  .ring .meta b{ display:block; color:var(--cream-pure); font-size:clamp(13px,1.1vw,16px); font-family:var(--fbody); }
+  .ring .meta span{ font-size:clamp(11.5px,0.95vw,13.5px); color:var(--muted); }
+  .ring.tam{ border-color:rgba(238,90,52,0.4); background:linear-gradient(150deg,rgba(238,90,52,0.10),var(--bg-soft)); }
+  .cagr{ font-family:var(--fmono); font-size:12px; color:var(--good); background:var(--good-soft); border:1px solid rgba(95,191,143,0.3); padding:4px 10px; border-radius:100px; white-space:nowrap; margin-left:auto; }
+  .srcnote{ font-family:var(--fmono); font-size:10.5px; letter-spacing:0.03em; color:var(--muted-dim); margin-top:16px; line-height:1.5; }
+
+  /* competitor revenue mini */
+  .rev-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .rev-grid.g3{ grid-template-columns:repeat(3,1fr); }
+  .rev{ border:1px solid var(--line); border-radius:12px; padding:16px 14px; background:var(--bg-soft); display:flex; flex-direction:column; gap:6px; }
+  .rev .co{ font-family:var(--fbody); font-weight:600; font-size:14px; color:var(--cream-pure); }
+  .rev .fig{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(20px,2vw,30px); color:var(--accent-ink); line-height:1; letter-spacing:-0.01em; }
+  .rev .gr{ font-family:var(--fmono); font-size:11px; color:var(--good); letter-spacing:0.02em; }
+  .rev .u{ font-family:var(--fmono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted-dim); margin-top:auto; }
+  .rev.hero{ border-color:rgba(238,90,52,0.4); background:linear-gradient(150deg,rgba(238,90,52,0.12),var(--bg-soft)); }
+
+  /* consumer tier ladder */
+  .ladder{ display:grid; grid-template-columns:repeat(5,1fr); gap:11px; align-items:stretch; }
+  .tier{ border:1px solid var(--line); border-radius:12px; padding:17px 15px; background:var(--bg-soft); display:flex; flex-direction:column; }
+  .tier .nm{ font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-dim); margin-bottom:9px; }
+  .tier .pr{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(19px,2vw,29px); color:var(--cream-pure); line-height:1; }
+  .tier .pr span{ font-family:var(--fbody); font-size:12px; color:var(--muted); font-weight:400; }
+  .tier .d{ font-size:12px; color:var(--muted); margin-top:9px; line-height:1.42; }
+  .tier.hot{ border-color:rgba(238,90,52,0.45); background:linear-gradient(155deg,rgba(238,90,52,0.12),var(--bg-soft)); }
+  .tier.hot .pr{ color:var(--accent-ink); }
+
+  .quoteline{ font-family:var(--fdisplay); font-style:italic; font-weight:500; font-size:clamp(19px,2.4vw,31px); line-height:1.3; color:var(--accent-ink); text-wrap:balance; }
+
+  /* engine diagram (title) */
+  .diagram{ display:flex; flex-wrap:wrap; align-items:flex-start; gap:6px 12px; margin-top:36px; }
+  .dnode{ display:flex; flex-direction:column; align-items:center; gap:11px; }
+  .dnode .box{ position:relative; width:92px; height:92px; border-radius:18px; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; background:var(--bg-soft); }
+  .dnode.local .box{ border-color:rgba(238,90,52,0.45); box-shadow:0 0 0 4px rgba(238,90,52,0.10); }
+  .dnode .box svg{ width:42px; height:42px; color:var(--muted); }
+  .dnode.local .box svg{ color:var(--accent); }
+  .dnode .shield{ position:absolute; top:-13px; right:-13px; width:34px; height:34px; color:var(--accent); background:var(--bg); border-radius:50%; padding:4px; }
+  .dnode .lab{ font-family:var(--fmono); font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); text-align:center; max-width:18ch; }
+  .dlink{ width:74px; height:2px; margin:45px 4px 0; background:repeating-linear-gradient(90deg, var(--muted-dim) 0 7px, transparent 7px 14px); position:relative; }
+
+  /* competitive matrix */
+  .matrix{ width:100%; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; }
+  .matrix .row{ display:grid; grid-template-columns:1.5fr 1fr 1fr; align-items:center; }
+  .matrix .row + .row{ border-top:1px solid var(--line); }
+  .matrix .row.head .cell{ background:var(--bg-soft); font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); }
+  .matrix .cell{ padding:15px 20px; font-size:clamp(13px,1.05vw,15px); border-right:1px solid var(--line); }
+  .matrix .cell:last-child{ border-right:none; }
+  .matrix .co{ font-weight:600; color:var(--ink); }
+  .matrix .co span{ display:block; font-size:12px; color:var(--muted-dim); font-weight:400; }
+  .matrix .yes{ color:var(--good); font-family:var(--fmono); font-size:12.5px; }
+  .matrix .no{ color:var(--accent); font-family:var(--fmono); font-size:12.5px; }
+  .matrix .row.us .cell{ background:linear-gradient(90deg, rgba(238,90,52,0.14), rgba(238,90,52,0.03)); }
+  .matrix .row.us .co{ color:var(--cream-pure); }
+
+  /* procurement threshold gauge */
+  .thresh{ position:relative; height:76px; border:1px solid var(--line-strong); border-radius:12px; background:var(--bg-soft); overflow:hidden; margin-top:6px; }
+  .thresh .zone{ position:absolute; top:0; bottom:0; left:50%; width:10%; background:rgba(95,191,143,0.16); border-left:2px solid var(--good); }
+  .thresh .zlab{ position:absolute; left:44%; width:22%; top:9px; text-align:center; font-family:var(--fmono); font-size:10.5px; letter-spacing:0.04em; color:var(--good); }
+  .thresh .line{ position:absolute; top:0; bottom:0; left:66.7%; width:2px; background:var(--accent); }
+  .thresh .llab{ position:absolute; left:calc(66.7% + 8px); top:11px; font-family:var(--fmono); font-size:10.5px; letter-spacing:0.04em; color:var(--accent-ink); max-width:26ch; }
+  .thresh .tick{ position:absolute; bottom:8px; transform:translateX(-50%); font-family:var(--fmono); font-size:10px; color:var(--muted-dim); }
+
+  /* sovereign pricing */
+  .price-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+  .price{ border:1px solid var(--line); border-radius:13px; background:var(--bg-soft); padding:20px 17px; display:flex; flex-direction:column; }
+  .price .nm{ font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-dim); margin-bottom:10px; }
+  .price .amt{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(21px,2.1vw,31px); color:var(--cream-pure); line-height:1; }
+  .price .amt span{ font-family:var(--fbody); font-size:12px; color:var(--muted); font-weight:400; }
+  .price .d{ font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.45; }
+  .price.hot{ border-color:rgba(238,90,52,0.45); background:linear-gradient(155deg,rgba(238,90,52,0.12),var(--bg-soft)); }
+  .price.hot .amt{ color:var(--accent-ink); }
+
+  /* funding allocation */
+  .alloc{ display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+  .abucket{ border:1px solid var(--line); border-radius:12px; background:var(--bg-soft); padding:18px 16px; display:flex; flex-direction:column; gap:9px; }
+  .abucket .amt{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(22px,2.3vw,34px); color:var(--accent-ink); line-height:1; }
+  .abucket .pct{ font-family:var(--fmono); font-size:11px; color:var(--muted-dim); }
+  .abucket .bart{ height:5px; border-radius:5px; background:var(--line); overflow:hidden; }
+  .abucket .bart i{ display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-deep)); }
+  .abucket .nm{ font-size:12.5px; color:var(--muted); line-height:1.4; }
+  .abucket .nm b{ color:var(--cream-pure); }
+
+  .title-slide .wordmark{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(60px,10vw,150px); line-height:1.0; letter-spacing:-0.02em; color:var(--cream-pure); }
+  .title-slide .gk{ font-family:var(--fmono); font-size:clamp(11px,1vw,14px); letter-spacing:0.28em; text-transform:uppercase; color:var(--accent); margin-top:22px; }
+  .title-slide .tag{ font-family:var(--fdisplay); font-style:italic; font-weight:400; font-size:clamp(20px,2.6vw,38px); color:var(--ink); margin-top:24px; line-height:1.2; text-wrap:balance; max-width:26ch; }
+  .title-slide .tag em{ color:var(--accent-ink); }
+  .title-slide .subh{ font-size:clamp(14px,1.35vw,19px); color:var(--muted); margin-top:16px; max-width:58ch; line-height:1.5; }
+  .title-slide .subh b{ color:var(--accent-ink); font-weight:500; }
+  .title-meta{ display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:32px; font-family:var(--fmono); font-size:clamp(11px,1vw,13.5px); letter-spacing:0.04em; color:var(--muted); }
+  .title-meta .s{ color:var(--accent); }
+
+  .founder-quote{ font-family:var(--fdisplay); font-weight:400; font-size:clamp(17px,1.75vw,25px); line-height:1.4; color:var(--cream-pure); }
+  .founder-quote em{ color:var(--accent-ink); }
+  .sig{ font-family:var(--fmono); font-size:13px; letter-spacing:0.06em; color:var(--accent-ink); margin-top:18px; }
+  .ask-cta{ display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:var(--cream-pure); font-weight:600; font-size:clamp(14px,1.2vw,17px); padding:13px 24px; border-radius:11px; }
+
+  .navdots{ position:fixed; z-index:40; right:18px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:9px; }
+  .navdots a{ width:8px; height:8px; border-radius:50%; background:var(--line-strong); transition:transform .15s, background .15s; }
+  .navdots a:hover, .navdots a.active{ background:var(--accent); transform:scale(1.4); }
+  .hint{ position:fixed; z-index:40; left:50%; bottom:12px; transform:translateX(-50%); font-family:var(--fmono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-dim); background:rgba(0,10,28,0.7); border:1px solid var(--line); padding:6px 14px; border-radius:100px; backdrop-filter:blur(6px); transition:opacity .4s; }
+
+  @media (max-width:860px){
+    .split,.c2{ grid-template-columns:1fr; }
+    .c3,.c4,.sgrid,.price-grid,.alloc,.ladder,.rev-grid,.rev-grid.g3{ grid-template-columns:1fr 1fr; }
+    .slide{ height:auto; min-height:100vh; padding:9vh 8vw; }
+    .navdots{ display:none; }
+    .matrix .row{ grid-template-columns:1.3fr 1fr 1fr; }
+  }
+  /* section header nav */
+  .dnav{ position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; gap:18px; height:70px; padding:0 7vw; background:rgba(0,10,28,0.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .dnav .brand{ display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-decoration:none; flex:none; }
+  .dnav .brand img{ height:42px; width:auto; display:block; }
+  .dnav .brand .strap{ font-family:var(--fbody); font-size:12px; color:var(--muted); white-space:nowrap; }
+  .dnav .links{ display:flex; align-items:center; gap:3px; margin:0 auto; overflow-x:auto; scrollbar-width:none; }
+  .dnav .links::-webkit-scrollbar{ display:none; }
+  .dnav .links a{ font-family:var(--fmono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted-dim); text-decoration:none; padding:6px 9px; border-radius:6px; white-space:nowrap; transition:color .15s, background .15s; }
+  .dnav .links a:hover, .dnav .links a.active{ color:var(--cream-pure); background:rgba(238,90,52,0.14); }
+  @media (max-width:900px){ .dnav .brand .strap{ display:none; } .dnav{ padding:0 5vw; } }
+  @media print{
+    @page{ size:13.333in 7.5in; margin:0; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    body{ background:var(--bg); }
+    .navdots,.hint,.dnav{ display:none; }
+    .deck.snap{ height:auto; overflow:visible; scroll-snap-type:none; }
+    .slide{ page-break-after:always; height:100vh; }
+    .slide:last-child{ page-break-after:auto; }
+  }
+</style>
+</head>
+<body>
+<header class="dnav">
+  <a class="brand" href="#s1"><img src="assets/brand.png" alt="Meraqi"/><span class="strap">Elegant, Simple, Sovereign and Secure</span></a>
+  <nav class="links">
+    <a href="#s1">Home</a>
+    <a href="#s2">Thesis</a>
+    <a href="#s3">Problem</a>
+    <a href="#s4">Solution</a>
+    <a href="#s5">Tech</a>
+    <a href="#s6">Proof</a>
+    <a href="#s7">Security</a>
+    <a href="#s8">Market</a>
+    <a href="#s9">Model</a>
+    <a href="#s10">Procure</a>
+    <a href="#s11">Compete</a>
+    <a href="#s12">GTM</a>
+    <a href="#s13">Milestones</a>
+    <a href="#s14">Founder</a>
+    <a href="#s15">Ask</a>
+  </nav>
+</header>
+<div class="deck snap" id="deck">
+
+  <!-- 1 · VISION -->
+  <section class="slide title-slide" id="s1">
+    <div class="glow"></div><div class="glow bl"></div>
+    <div class="inner">
+      <span class="pill"><span class="dot"></span> Pre-seed round · Dual-use edition</span>
+      <div class="wordmark" style="margin-top:24px;">Meraqi</div>
+      <div class="gk"><span style="text-transform:capitalize">meráki</span> · <span style="text-transform:none">μεράκι</span> · to create with soul</div>
+      <div class="tag">Create with soul. <em>From the open web to inside your walls.</em></div>
+      <p class="subh">One open-weight creative engine, sold twice: <b>a $25 a month subscription on the open web, and a $75K a year air-gapped deployment</b> inside regulated enterprise and government. Each edition de-risks the other.</p>
+      <div class="diagram">
+        <div class="dnode">
+          <div class="box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a15.3 15.3 0 0 1 0 18 15.3 15.3 0 0 1 0-18z"/></svg>
+          </div>
+          <div class="lab">The open web · $12-50 /seat/mo</div>
+        </div>
+        <div class="dlink"></div>
+        <div class="dnode local">
+          <div class="box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+            <svg class="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v5c0 5-3.4 7.7-8 9-4.6-1.3-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="lab">One engine · consistency + determinism</div>
+        </div>
+        <div class="dlink"></div>
+        <div class="dnode">
+          <div class="box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+          </div>
+          <div class="lab">Air-gapped · $75K/yr · unlimited users</div>
+        </div>
+      </div>
+      <div class="title-meta">
+        <span>Ani Panda <span class="s">·</span> Founder &amp; CEO</span>
+        <span>A product of AiOne LLC</span>
+        <span>Made in Seattle</span>
+        <span class="s">$750K pre-seed</span>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div></div>
+  </section>
+
+  <!-- 2 · DUAL-USE THESIS -->
+  <section class="slide" id="s2">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The dual-use thesis</span>
+        <h2 class="h-lg">One engine. Two doors. <em>Each de-risks the other.</em></h2>
+      </div>
+      <div class="cols c3" style="margin-bottom:22px;">
+        <div class="card"><div class="k">Commercial edition · velocity</div><h4>Proves the engine in public</h4><p>Consumer-simple, browser-native, viral by design. The open web proves speed, scale, and <b>80-85% gross margins</b> where everyone can watch.</p></div>
+        <div class="card"><div class="k">Sovereign edition · durability</div><h4>Sells where no one else can</h4><p>The identical product self-hosts up to fully air-gapped. Nothing removed, nothing crippled; only the door to the outside closes. <b>90%+ software margins.</b></p></div>
+        <div class="card accent"><div class="k">The flywheel</div><h4>One R&amp;D budget, two revenue engines</h4><p>The 300-user public beta <b>is</b> the stress test for sovereign installs, and sovereign hardening feeds reliability straight back to the consumer stack.</p></div>
+      </div>
+      <p class="quoteline" style="text-align:center;">Not a consumer app with a government side quest. Not a defense tool hoping for consumers. <em>One engine with two doors.</em></p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>02 / 15</b></div></div>
+  </section>
+
+  <!-- 3 · PROBLEM -->
+  <section class="slide" id="s3">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The problem</span>
+        <h2 class="h-lg">Two sides of the <em>same failure.</em></h2>
+      </div>
+      <div class="cols c3">
+        <div class="card"><div class="k">For consumers</div><h4>Frozen pixels</h4><p>Type a prompt, get a flat image baked into pixels. Change one word or move one thing? Regenerate and pray. It never feels like yours.</p></div>
+        <div class="card"><div class="k">For builders · the API tax</div><h4>Someone else's meter</h4><p>99% of consumer AI apps are wrappers paying a frontier API fee on every click. Go viral and the margins <b>detonate</b>; one price change or banned key kills the app overnight.</p></div>
+        <div class="card accent"><div class="k">For regulated buyers</div><h4>Locked out entirely</h4><p>Every prompt and asset leaves the building, so defense, intelligence, healthcare, finance, and legal are blocked by exfiltration risk and zero-trust policy. Cloud AI is a <b>non-starter</b>, not a preference.</p></div>
+      </div>
+      <p class="quoteline" style="margin-top:30px; text-align:center;">The organizations with the strictest rules and the biggest budgets are the ones locked out.</p>
+      <p class="kicker" style="margin-top:18px; text-align:center;">And the DIY alternative fails differently: stochastic memory demand crashes standard local stacks. One unexpected query, cascading out-of-memory, platform down.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>03 / 15</b></div></div>
+  </section>
+
+  <!-- 4 · SOLUTION -->
+  <section class="slide" id="s4">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The solution</span>
+        <h2 class="h-lg">Own the <em>whole engine.</em></h2>
+      </div>
+      <div class="cols c3">
+        <div class="card accent"><div class="k">No frontier API anywhere</div><h4>Open-weight, hyper-optimized</h4><p>Open-weight models, compressed and optimized to run on hardware we or the customer control. Costs are <b>flat capacity, never per-token</b>.</p></div>
+        <div class="card"><div class="k">Plain words in, design out</div><h4>Editable DesignSpec, not pixels</h4><p>A real multi-layer design you can recolor, resize, and rearrange, in any browser; a cheap phone gets workstation performance because the cluster does the work.</p></div>
+        <div class="card"><div class="k">One codebase, three shapes</div><h4>Cloud, self-hosted, air-gapped</h4><p>The full creative suite in every shape. Air-gapped just means features that reach outside have <b>nothing to reach</b>.</p></div>
+      </div>
+      <div class="chips soft" style="margin-top:20px;">
+        <span>Web-native</span><span>Open-weight models, run locally</span><span>Self-hosted or air-gapped</span><span>On customer hardware, to our spec</span><span>Nothing removed, nothing crippled</span>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>04 / 15</b></div></div>
+  </section>
+
+  <!-- 5 · TECHNOLOGY MOAT -->
+  <section class="slide" id="s5">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The technology moat · NSF + DoD SBIR tracks</span>
+        <h2 class="h-lg">Two inventions. <em>One moat.</em></h2>
+        <p class="lead wide" style="margin-top:10px;">A consistency framework makes independently-trained open models behave as one coherent engine; a deterministic execution protocol makes that engine impossible to crash from load. Both live outside the models, with <b>no retraining</b>.</p>
+      </div>
+      <div class="cols c3" style="margin-bottom:16px;">
+        <div class="card"><div class="k">Compositional consistency</div><p>Cross-modal latent anchoring plus long-horizon streaming: an identity and spatial prior corrects drift at every model hand-off, and the anchored latent tail re-injects across windows so long video holds together.</p></div>
+        <div class="card"><div class="k">Deterministic admission · ADR-0021</div><p>Every request reserves a pre-measured memory envelope against a per-device ledger before dispatch. Out-of-memory becomes <b>queue, degrade, or reject, never a crash</b>; formally specified, with a provable containment property.</p></div>
+        <div class="card"><div class="k">Self-supervising closed loop</div><p>Observed memory peaks feed back: drift detection re-calibrates and demotes profiles automatically, and a calibrated fallback ladder degrades at admission, <b>never mid-deliverable</b>. No manual tuning in the field.</p></div>
+      </div>
+      <div class="card accent" style="margin-bottom:14px;">
+        <div class="k">The before and after</div>
+        <p style="font-size:15px;">The identical 45-second workload that <b>died out-of-memory at six seconds</b> before the streaming redesign now completes, picture and synchronized voice, on one 24 GB consumer GPU.</p>
+      </div>
+      <p class="kicker">Model-agnostic by design: model families are calibration data, never code. Every better open model composes in; we turn commodity open models into a compliant production system.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>05 / 15</b></div></div>
+  </section>
+
+  <!-- 6 · PROOF -->
+  <section class="slide" id="s6">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Proof</span>
+        <h2 class="h-lg">Live today. <em>Demo-able on one GPU.</em></h2>
+      </div>
+      <div class="split" style="margin-bottom:16px;">
+        <div>
+          <div style="position:relative; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,0.45); background:#000;">
+            <video src="assets/meraqi-ad-cimba.mp4" autoplay muted loop playsinline controls preload="metadata" style="width:100%; display:block; aspect-ratio:16/9; object-fit:contain; background:#000;"></video>
+            <span style="position:absolute; top:10px; right:10px; pointer-events:none; font-family:var(--fmono); font-size:10.5px; letter-spacing:0.04em; color:var(--cream-pure); background:rgba(0,10,28,0.66); border:1px solid rgba(255,255,255,0.18); padding:4px 9px; border-radius:100px;">🔊 muted · click to unmute</span>
+          </div>
+          <p style="font-family:var(--fmono); font-size:11.5px; letter-spacing:0.02em; color:var(--muted-dim); margin-top:12px; line-height:1.55;">Made with Meraqi from one product URL, for Cimba.ai's CEO, who signed a pilot letter of intent. A continuous 45-second spot, picture and voice in one pass on a single RTX 4090, about 6 minutes at 720p, not clips stitched or lip-synced.</p>
+        </div>
+        <div class="cols c2" style="gap:13px; align-content:center;">
+          <div class="card accent"><div class="stat"><div class="big">1st pilot<br/><em>LOI signed</em></div><div class="lab">Cimba.ai's CEO, inbound, after we delivered his ad.</div></div></div>
+          <div class="card"><div class="stat"><div class="big">4 ways<br/><em>to create</em></div><div class="lab">Text, Link, Photo → image &amp; video, live at 1080p.</div></div></div>
+          <div class="card"><div class="stat"><div class="big">Ledger<br/><em>working</em></div><div class="lab">Versioned output provenance: who, what, when, where, every version.</div></div></div>
+          <div class="card"><div class="stat"><div class="big">30<br/><em>sessions</em></div><div class="lab">One box serves 90-120 staff; 50-100 concurrent on the 192 GB configuration.</div></div></div>
+        </div>
+      </div>
+      <p class="kicker">The entire stack, engine to canvas, was built by one person with no outside funding.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>06 / 15</b></div></div>
+  </section>
+
+  <!-- 7 · SECURITY MECHANISM -->
+  <section class="slide" id="s7">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">How the data stays theirs</span>
+        <h2 class="h-lg">Not a promise. A <em>mechanism</em> a reviewer can verify.</h2>
+      </div>
+      <div class="sgrid" style="margin-bottom:18px;">
+        <div class="scard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 9l2 2-2 2M12 13h4"/></svg>
+          <h4>Models run where the data lives</h4><p>Every model runs inside the customer's environment. There is no external API to a service anyone else operates.</p>
+        </div>
+        <div class="scard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M16 8l-8 8M8 8l8 8"/></svg>
+          <h4>Nothing leaves the boundary</h4><p>Air-gapped, there is literally no path out. Prompts, assets, and outputs stay inside the perimeter.</p>
+        </div>
+        <div class="scard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8c0-2 2-3 7-3s7 1 7 3M5 8v8c0 2 2 3 7 3s7-1 7-3V8"/></svg>
+          <h4>Never a training set</h4><p>Customer content and customer-trained style models stay theirs, never used to train Meraqi's models or anyone's.</p>
+        </div>
+        <div class="scard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+          <h4>Governed &amp; auditable</h4><p>Separation of duties, RBAC / ABAC, and an append-only object audit trail through every version.</p>
+        </div>
+      </div>
+      <div class="chips" style="margin-bottom:13px;">
+        <span>Never phones home</span><span>Pen-test on your schedule</span><span>Customer-held encryption keys</span><span>Passwordless sign-in</span><span>SHA-256-pinned models</span><span>Signed offline updates</span>
+      </div>
+      <p class="kicker" style="margin-bottom:10px;">Architected to map to the buyer's framework · Phase I adds automated output screening and adversarial assurance, 0% outbound under load as a measured criterion</p>
+      <div class="chips soft">
+        <span>FedRAMP path</span><span>NIST 800-171</span><span>CMMC</span><span>FIPS</span><span>DoD IL4 / IL5 / IL6</span><span>HIPAA-supporting</span><span>SOC 2 &amp; ISO 27001 · in progress</span>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>07 / 15</b></div></div>
+  </section>
+
+  <!-- 8 · MARKET -->
+  <section class="slide" id="s8">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Market</span>
+        <h2 class="h-lg">Two engines. <em>Two curves.</em></h2>
+      </div>
+      <div class="split" style="align-items:start;">
+        <div>
+          <p class="kicker" style="margin-bottom:12px;">The open web · proven appetite</p>
+          <div class="rev-grid g3" style="margin-bottom:12px;">
+            <div class="rev hero"><div class="co">Canva</div><div class="fig">$4.0B</div><div class="gr">▲ ~43% YoY</div><div class="u">ARR · ~240M users</div></div>
+            <div class="rev"><div class="co">Higgsfield</div><div class="fig">~$500M</div><div class="gr">▲ ~2.5× in 6 mo</div><div class="u">Run-rate</div></div>
+            <div class="rev"><div class="co">OpenArt</div><div class="fig">~$70M</div><div class="gr">▲ ~7× YoY</div><div class="u">ARR</div></div>
+          </div>
+          <div class="cols c2" style="gap:12px;">
+            <div class="card plain"><div class="stat"><div class="big" style="font-size:clamp(18px,1.9vw,26px);">$8.7→61B</div><div class="lab">AI image + video · ~38% CAGR</div></div></div>
+            <div class="card plain"><div class="stat"><div class="big" style="font-size:clamp(18px,1.9vw,26px);">$1T+</div><div class="lab">Creator economy by 2034</div></div></div>
+          </div>
+        </div>
+        <div>
+          <p class="kicker" style="margin-bottom:12px;">Inside the walls · the emptier lane</p>
+          <div class="rings" style="margin-bottom:12px;">
+            <div class="ring tam"><div class="val">$500-600B</div><div class="meta"><b>Sovereignty-shaped AI spend</b><span>by 2030, 30-40% of all AI spending (McKinsey)</span></div></div>
+            <div class="ring"><div class="val">$19→63B</div><div class="meta"><b>Private / on-prem GenAI infrastructure</b><span>2025 → 2033</span></div><span class="cagr">~16% CAGR</span></div>
+            <div class="ring"><div class="val">$9→19B</div><div class="meta"><b>AI in defense</b><span>the budget line the DoD track sells into</span></div></div>
+          </div>
+          <div class="card accent">
+            <div class="k">Bottom-up reachable market</div>
+            <p style="font-size:14px;">Tens of thousands of US departments can run a department-wide deployment at <b>$85-100K first-year ACV</b>, unlimited users. Just <b>1,000 deployments is $75M+ recurring</b>.</p>
+          </div>
+        </div>
+      </div>
+      <p class="srcnote">Company disclosures, Sacra, Fortune, TechCrunch, Reuters (2025-26); McKinsey (Sovereign AI), Grand View, MarketsandMarkets. Directional, not a forecast. Market priority: B2G, then B2B, then B2C velocity.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>08 / 15</b></div></div>
+  </section>
+
+  <!-- 9 · BUSINESS MODEL -->
+  <section class="slide" id="s9">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Business model &amp; pricing</span>
+        <h2 class="h-lg">Two revenue engines. <em>One cost base.</em></h2>
+      </div>
+      <p class="kicker" style="margin-bottom:10px;">Consumer · SaaS · priced in outcomes, not credits</p>
+      <div class="ladder" style="margin-bottom:16px;">
+        <div class="tier"><div class="nm">Trial</div><div class="pr">Free<span> /1 mo</span></div><div class="d">200 images &amp; 10 videos a day.</div></div>
+        <div class="tier"><div class="nm">Starter</div><div class="pr">$12<span>/mo</span></div><div class="d">Individuals &amp; creators.</div></div>
+        <div class="tier hot"><div class="nm">Pro</div><div class="pr">$25<span>/mo</span></div><div class="d">Power creators. More, faster, longer.</div></div>
+        <div class="tier"><div class="nm">Business</div><div class="pr">$50<span>/seat</span></div><div class="d">Teams. Priority + collaboration.</div></div>
+        <div class="tier"><div class="nm">Annual</div><div class="pr">2 mo<span> free</span></div><div class="d">Pay yearly, two months free.</div></div>
+      </div>
+      <p class="kicker" style="margin-bottom:10px;">Sovereign · self-hosted · BYOS, the customer buys the server from their vendor to our spec</p>
+      <div class="price-grid" style="margin-bottom:14px;">
+        <div class="price hot"><div class="nm">Platform base</div><div class="amt">$50K<span>/yr</span></div><div class="d">Annual subscription. Unlimited users.</div></div>
+        <div class="price"><div class="nm">Capacity · licensed VRAM</div><div class="amt">$12.5K<span>/48 GB/yr</span></div><div class="d">48 GB blocks; baseline 96 GB = $25K.</div></div>
+        <div class="price"><div class="nm">Deployment</div><div class="amt">$25K<span> one-time</span></div><div class="d">One on-site visit. $15K founding rate, pilots 1-3.</div></div>
+        <div class="price"><div class="nm">Private pilot</div><div class="amt">$15K<span> /90 days</span></div><div class="d">In the customer's tenancy; credited on conversion.</div></div>
+      </div>
+      <p class="kicker">80-85% consumer gross · 90%+ sovereign software gross · $0 API cost anywhere · one 96 GB baseline year = 100 Business seats + a 25% sovereignty premium</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>09 / 15</b></div></div>
+  </section>
+
+  <!-- 10 · PROCUREMENT & NON-DILUTIVE -->
+  <section class="slide" id="s10">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The procurement wedge · the non-dilutive tracks</span>
+        <h2 class="h-lg">Approved <em>this quarter.</em> Funded three ways.</h2>
+      </div>
+      <div class="thresh">
+        <div class="zone"></div>
+        <div class="zlab">$75K-$90K<br/>our first year</div>
+        <div class="line"></div>
+        <div class="llab">$100K: board / C-suite sign-off, 6-12 month cycle</div>
+        <span class="tick" style="left:0;">$0</span>
+        <span class="tick" style="left:66.7%;">$100K</span>
+        <span class="tick" style="left:100%; transform:translateX(-100%);">$150K</span>
+      </div>
+      <div class="cols c3" style="margin-top:18px; margin-bottom:14px;">
+        <div class="card"><div class="k">The enterprise friction</div><p>Deals over <b>$100,000</b> trigger executive-board or C-suite sign-off, dragging sales cycles out to 6 to 12 months.</p></div>
+        <div class="card accent"><div class="k">Our procurement hack</div><p>Through the pilot path a baseline first year lands at <b>$85-90K</b>, papered as a services PO plus a <b>$75K</b> subscription PO, each below discretionary thresholds. Department heads and colonels approve <b>instantly</b>.</p></div>
+        <div class="card"><div class="k">Non-dilutive R&amp;D · two tracks</div><p>SAM.gov complete. <b>NSF SBIR pitch prepared</b>: the science track. <b>DoD SBIR / AFWERX brief + deck prepared</b>: the mission track, targeting an Air Force end-user memo. SBIR opens a sole-source pathway. <b>The SAFE buys execution; the SBIRs buy the research.</b></p></div>
+      </div>
+      <p class="kicker" style="margin-bottom:10px;">Beachhead: secure knowledge visualization, controlled reports (CUI) and spoken briefings into brand-compliant decks, entirely on-premises. Then synthetic data and secure 3D environments for training and simulation.</p>
+      <div class="chips soft">
+        <span>Defense training &amp; simulation</span><span>Intelligence</span><span>Aerospace digital twins</span><span>Public-sector health</span><span>Public affairs &amp; recruiting</span><span>Tactical edge · DIL</span>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>10 / 15</b></div></div>
+  </section>
+
+  <!-- 11 · COMPETITIVE LANDSCAPE -->
+  <section class="slide" id="s11">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Competitive landscape</span>
+        <h2 class="h-lg">The only box with <em>both</em> checks.</h2>
+      </div>
+      <div class="matrix" style="margin-bottom:16px;">
+        <div class="row head"><div class="cell"></div><div class="cell">Modern creative AI</div><div class="cell">Sovereign &amp; air-gapped</div></div>
+        <div class="row"><div class="cell co">Cloud creative AI <span>Canva, Midjourney, the wrapper field</span></div><div class="cell yes">✓ High</div><div class="cell no">✕ None, cloud-dependent</div></div>
+        <div class="row"><div class="cell co">Traditional defense software <span>accredited, on-prem</span></div><div class="cell no">✕ None</div><div class="cell yes">✓ High</div></div>
+        <div class="row"><div class="cell co">Open-source DIY <span>ComfyUI, Automatic1111</span></div><div class="cell no">✕ Unusable for consumers</div><div class="cell no">✕ No governance, no support</div></div>
+        <div class="row us"><div class="cell co">Meraqi <span>dual-use creative AI</span></div><div class="cell yes">✓ High</div><div class="cell yes">✓ 100% air-gapped</div></div>
+      </div>
+      <div class="card accent" style="margin-bottom:14px;">
+        <div class="k">Why this fits a dual-use portfolio</div>
+        <p style="font-size:15px;">Meraqi <b>does not conflict</b> with generic B2C / B2B generative-AI bets; it is the sovereign complement to them, reaching the regulated buyers those companies structurally cannot serve, while running a real consumer business in the open.</p>
+      </div>
+      <p class="kicker">Incumbents can't follow without unwinding cloud, data-trained businesses. Wrappers can't follow because their engine is someone else's API. Neither ships a zero-uncontained-failure engine on customer hardware.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>11 / 15</b></div></div>
+  </section>
+
+  <!-- 12 · GO-TO-MARKET -->
+  <section class="slide" id="s12">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Go-to-market</span>
+        <h2 class="h-lg">One flywheel. <em>Two lanes.</em></h2>
+      </div>
+      <div class="cols c2" style="margin-bottom:14px;">
+        <div class="card"><div class="k">Commercial lane · live now</div><h4>Every design is a clickable ad</h4><p>300-creator closed beta (ends 09/30, lifetime Annual Pro $199 for the first 300). Every shared design carries a <b>Made with Meraqi</b> link; one click opens the app, so every active user is organic acquisition. Creator partnerships seed the feeds. Near-zero CAC.</p></div>
+        <div class="card"><div class="k">Sovereign lane · sequenced</div><h4>White-glove to box in the mail</h4><p><b>Phase 1</b>, pilots 1-3: white-glove on-site at the founding $15K deployment rate (standard $25K). <b>Phase 2</b>, pilots 4-10: remote-assisted with client IT. <b>Phase 3</b>, scale 10+: certified install media shipped by certified mail.</p></div>
+      </div>
+      <div class="card accent" style="margin-bottom:16px;">
+        <div class="k">Frictionless evaluation · nobody buys a box to find out if they want one</div>
+        <p style="font-size:14.5px;"><b>Stage 1:</b> free capability evaluation on the public portal, synthetic or public assets only. <b>Stage 2:</b> a $15K 90-day private pilot in the customer's own tenancy or on hardware they already own, credited to year one on conversion. Hardware is purchased only at contract signing.</p>
+      </div>
+      <p class="quoteline" style="text-align:center; font-size:clamp(17px,2vw,26px);">The public product is the unclassified demo any government evaluator can try before a private pilot.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>12 / 15</b></div></div>
+  </section>
+
+  <!-- 13 · MILESTONES -->
+  <section class="slide" id="s13">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">What this capital de-risks</span>
+        <h2 class="h-lg">Four milestones. <em>Both engines.</em></h2>
+      </div>
+      <div class="cols c4" style="margin-bottom:18px;">
+        <div class="card"><div class="k">01 · Technical hardening</div><p>High, concurrent load on the open web stack; the same stability evidence sovereign buyers require.</p></div>
+        <div class="card"><div class="k">02 · Viral proof</div><p><b>300 beta users</b> to public launch with low CAC via shareability.</p></div>
+        <div class="card accent"><div class="k">03 · Revenue proof</div><p><b>5 on-site installations</b>, generating <b>$375K ARR</b> plus <b>~$95K</b> in deployment fees, alongside consumer MRR that validates the margins.</p></div>
+        <div class="card"><div class="k">04 · Operational automation</div><p>White-glove to <b>box-in-the-mail</b>; Series A ready with predictable MRR plus repeatable sovereign deployments.</p></div>
+      </div>
+      <p class="kicker">In parallel, non-dilutive: NSF Phase I validates the deterministic protocol (100+ runs, zero uncontained failures) and funds image → 3D, rigged animation, deck synthesis, and output screening; the DoD track pursues an Air Force end-user memo toward Phase II fielding. The SAFE buys execution; the SBIRs buy the research.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>13 / 15</b></div></div>
+  </section>
+
+  <!-- 14 · FOUNDER -->
+  <section class="slide" id="s14">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Founder</span>
+        <h2 class="h-lg">Two decades shipping at scale. Now, <em>both doors.</em></h2>
+      </div>
+      <div class="split">
+        <div>
+          <p class="lead">The founder has spent <b>20+ years architecting, building, and deploying software and data platforms at enterprise scale</b>, and built Meraqi's full stack solo, with no outside funding: the air-gapped orchestration engine, the deterministic memory-admission engine (formal record ADR-0021), the versioned provenance ledger, the streaming architecture, and the canvas.</p>
+          <p class="body" style="margin-top:16px;">Sovereign deployment is, at its core, an enterprise-architecture problem: reliability, control, and security under real constraints. That is home turf.</p>
+        </div>
+        <div class="cols c2" style="gap:13px;">
+          <div class="card"><div class="k">Experience</div><h4>20+ year technology &amp; data veteran</h4><p>Two decades across enterprise software and data, from architecture to production deployment.</p></div>
+          <div class="card"><div class="k">Education</div><h4>M.S. Computer Science &amp; Applications</h4><p>Formal grounding in the systems the platform runs on.</p></div>
+          <div class="card"><div class="k">Proof</div><h4>Meraqi, built hands-on</h4><p>Engine, orchestration, and canvas, architected and shipped by one person, unfunded.</p></div>
+          <div class="card accent"><div class="k">Team plan</div><h4>Leverage, not headcount</h4><p>First hire: a senior infrastructure &amp; security contractor. SBIR adds contract 3D-graphics research, evaluation engineering, and procurement advisors.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>14 / 15</b></div></div>
+  </section>
+
+  <!-- 15 · THE ASK -->
+  <section class="slide" id="s15">
+    <div class="glow"></div><div class="glow bl"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The pre-seed ask</span>
+        <h2 class="h-lg">$750K. <em>18 months.</em> Two engines to Series A.</h2>
+        <p class="lead" style="margin-top:12px;">A post-money SAFE at a $7.5M cap, roughly 10%, milestone-gated across both lanes.</p>
+      </div>
+      <div class="alloc" style="margin-bottom:20px;">
+        <div class="abucket"><div class="amt">$225K</div><div class="pct">30% · R&amp;D &amp; roadmap</div><div class="bart"><i style="width:100%"></i></div><div class="nm"><b>R&amp;D &amp; roadmap.</b> Model compression, local orchestration, UI/UX, inference speed.</div></div>
+        <div class="abucket"><div class="amt">$150K</div><div class="pct">20% · founder salary</div><div class="bart"><i style="width:67%"></i></div><div class="nm"><b>Founder compensation, 18 months.</b> Held below market to extend the runway.</div></div>
+        <div class="abucket"><div class="amt">$150K</div><div class="pct">20% · infra &amp; security</div><div class="bart"><i style="width:67%"></i></div><div class="nm"><b>Senior infra &amp; security contractor.</b> Serves both lanes: web scale and hardened installs.</div></div>
+        <div class="abucket"><div class="amt">$150K</div><div class="pct">20% · GPU &amp; installs</div><div class="bart"><i style="width:67%"></i></div><div class="nm"><b>GPU capacity, first installs &amp; air-gap packaging.</b> Beta scaling plus install media and travel.</div></div>
+        <div class="abucket"><div class="amt">$40K</div><div class="pct">5% · admin, S&amp;M &amp; legal</div><div class="bart"><i style="width:18%"></i></div><div class="nm"><b>Administration, sales &amp; marketing, legal.</b> Corporate upkeep, demand-gen, counsel.</div></div>
+        <div class="abucket"><div class="amt">$35K</div><div class="pct">5% · beta operations</div><div class="bart"><i style="width:16%"></i></div><div class="nm"><b>Scale testing &amp; public beta.</b> Cloud servers for up to 300 concurrent beta users.</div></div>
+      </div>
+      <div class="cols c2" style="align-items:center;">
+        <p class="founder-quote" style="font-size:clamp(16px,1.7vw,22px);">Built sovereign from the first line, because the people who most need to create safely are the ones every cloud tool turns away. <em>Their data should never leave the building to become beautiful.</em></p>
+        <div style="display:flex; flex-direction:column; gap:14px; align-items:flex-start;">
+          <span class="ask-cta">Serve the market no one else can →</span>
+          <p class="sig" style="margin-top:0;">- Ani Panda, Founder &amp; CEO · AiOne LLC · Seattle</p>
+        </div>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>15 / 15</b></div></div>
+  </section>
+
+</div>
+
+<nav class="navdots" id="navdots"></nav>
+<div class="hint" id="hint">↑ ↓ or ← → to navigate · press F for fullscreen</div>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('navdots');
+  slides.forEach(function(s,i){ var a=document.createElement('a'); a.href='#'+s.id; a.setAttribute('aria-label','Slide '+(i+1)); dots.appendChild(a); });
+  var dotEls = Array.prototype.slice.call(dots.children);
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.dnav .links a'));
+  var current = 0;
+  function goto(i){ i=Math.max(0,Math.min(slides.length-1,i)); current=i; slides[i].scrollIntoView({behavior:'smooth'}); }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); goto(current+1); }
+    else if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); goto(current-1); }
+    else if(e.key==='Home'){ e.preventDefault(); goto(0); }
+    else if(e.key==='End'){ e.preventDefault(); goto(slides.length-1); }
+    else if(e.key==='f'||e.key==='F'){ if(!document.fullscreenElement){ document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); } else { document.exitFullscreen&&document.exitFullscreen(); } }
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ var i=slides.indexOf(en.target); if(i>=0){ current=i; dotEls.forEach(function(d,j){ d.classList.toggle('active', j===i); }); navLinks.forEach(function(a,j){ a.classList.toggle('active', j===i); }); } } });
+  }, { threshold:0.55 });
+  slides.forEach(function(s){ io.observe(s); });
+  var hint=document.getElementById('hint');
+  ['keydown','wheel','touchstart'].forEach(function(ev){ window.addEventListener(ev, function(){ hint.style.opacity='0'; }, {once:true}); });
+</script>
+</body>
+</html>

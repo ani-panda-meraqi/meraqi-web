@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meraqi · Consumer Edition · Investor Pitch</title>
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#001533; --bg-soft:#04223f; --card:#082c4d;
+    --ink:#eef1ec; --cream-pure:#f7f8f4;
+    --accent:#ee5a34; --accent-deep:#d8421f; --accent-ink:#f6a085;
+    --muted:#95a9bf; --muted-dim:#7a8ea3;
+    --line:rgba(238,241,236,0.10); --line-strong:rgba(238,241,236,0.20);
+    --good:#5fbf8f; --good-soft:rgba(95,191,143,0.12);
+    --fdisplay:"Bodoni Moda","Didot",Georgia,serif;
+    --fbody:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --fmono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ background:#000a1c; color:var(--ink); font-family:var(--fbody); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  b,strong{ color:var(--cream-pure); font-weight:600; }
+  em{ font-style:italic; }
+  ::selection{ background:var(--accent); color:var(--cream-pure); }
+
+  .slide{
+    position:relative; width:100vw; height:100vh; min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:6vh 7vw; overflow:hidden;
+    background:radial-gradient(130% 110% at 86% -12%, #06305a 0%, transparent 52%), var(--bg);
+    border-bottom:1px solid var(--line); scroll-snap-align:start;
+  }
+  .deck.snap{ height:100vh; overflow-y:scroll; scroll-snap-type:y mandatory; scroll-behavior:smooth; }
+  .deck.snap .slide{ height:100vh; }
+  .glow{ position:absolute; z-index:0; width:44vw; height:44vw; border-radius:50%; top:-14vw; right:-10vw; pointer-events:none; background:radial-gradient(circle, rgba(238,90,52,0.16) 0%, transparent 62%); filter:blur(30px); }
+  .glow.bl{ top:auto; right:auto; bottom:-16vw; left:-12vw; width:38vw; height:38vw; background:radial-gradient(circle, rgba(238,90,52,0.10) 0%, transparent 62%); }
+  .inner{ position:relative; z-index:2; width:100%; max-width:1180px; margin:0 auto; }
+
+  .eyebrow{ font-family:var(--fmono); font-size:clamp(10px,0.86vw,13px); font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:12px; }
+  .eyebrow::after{ content:""; height:1px; flex:1; max-width:120px; background:linear-gradient(90deg,var(--accent),transparent); }
+  .kicker{ font-family:var(--fmono); font-size:clamp(10px,0.82vw,12px); letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-dim); }
+
+  h1{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; letter-spacing:-0.018em; color:var(--cream-pure); line-height:1.0; text-wrap:balance; }
+  h2{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; letter-spacing:-0.015em; color:var(--cream-pure); line-height:1.04; text-wrap:balance; }
+  h1 em,h2 em,.lead em{ font-style:italic; font-weight:500; color:var(--accent-ink); }
+  .h-xl{ font-size:clamp(40px,6.6vw,104px); }
+  .h-lg{ font-size:clamp(28px,4.2vw,58px); }
+  .h-md{ font-size:clamp(22px,2.9vw,38px); }
+  .lead{ font-size:clamp(15px,1.5vw,22px); line-height:1.5; color:var(--muted); max-width:62ch; }
+  .lead.wide{ max-width:80ch; }
+  p.body{ font-size:clamp(13px,1.12vw,16.5px); line-height:1.58; color:var(--muted); }
+  .slide-head{ margin-bottom:clamp(20px,3.2vh,40px); }
+  .slide-head .eyebrow{ margin-bottom:15px; }
+
+  .chrome{ position:absolute; z-index:3; left:5vw; right:5vw; bottom:2.4vh; display:flex; align-items:center; justify-content:space-between; font-family:var(--fmono); font-size:13px; letter-spacing:0.06em; color:var(--muted-dim); }
+  .chrome .b{ display:flex; align-items:center; gap:14px; }
+  .chrome .b img{ height:28px; width:auto; opacity:0.92; }
+  .chrome .b span{ font-family:var(--fbody); font-size:14px; letter-spacing:0.01em; color:var(--muted); white-space:nowrap; }
+  .chrome .pg b{ color:var(--accent-ink); font-weight:500; }
+
+  .pill{ display:inline-flex; align-items:center; gap:9px; font-family:var(--fmono); font-size:clamp(10px,0.8vw,12px); font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); background:rgba(238,90,52,0.09); border:1px solid rgba(238,90,52,0.28); padding:7px 15px; border-radius:100px; }
+  .pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(238,90,52,0.14); }
+
+  .cols{ display:grid; gap:clamp(14px,1.5vw,24px); }
+  .c2{ grid-template-columns:1fr 1fr; }
+  .c3{ grid-template-columns:repeat(3,1fr); }
+  .c4{ grid-template-columns:repeat(4,1fr); }
+  .split{ display:grid; grid-template-columns:1.02fr 0.98fr; gap:clamp(26px,4vw,60px); align-items:center; }
+
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:clamp(15px,1.5vw,23px); }
+  .card .k{ font-family:var(--fmono); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:var(--accent); margin-bottom:11px; }
+  .card h4{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(16px,1.5vw,22px); color:var(--cream-pure); line-height:1.14; margin-bottom:8px; }
+  .card p{ font-size:clamp(12.5px,1vw,15px); line-height:1.52; color:var(--muted); }
+  .card p b{ color:var(--cream-pure); }
+  .card.accent{ border-color:rgba(238,90,52,0.34); background:linear-gradient(155deg, rgba(238,90,52,0.10) 0%, var(--card) 60%); }
+  .card.plain{ background:var(--bg-soft); }
+  .num{ font-family:var(--fmono); font-size:12px; color:var(--accent); letter-spacing:0.08em; }
+
+  .stat .big{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(26px,3.4vw,50px); color:var(--cream-pure); line-height:1; letter-spacing:-0.01em; }
+  .stat .big em{ color:var(--accent-ink); font-style:italic; }
+  .stat .lab{ font-size:clamp(11.5px,1vw,14px); color:var(--muted); margin-top:7px; line-height:1.42; }
+
+  ul.ticks{ list-style:none; display:flex; flex-direction:column; gap:clamp(9px,1.2vh,14px); }
+  ul.ticks li{ position:relative; padding-left:29px; font-size:clamp(13.5px,1.12vw,17px); line-height:1.48; color:var(--muted); }
+  ul.ticks li::before{ content:""; position:absolute; left:0; top:0.34em; width:15px; height:15px; border-radius:50%; background:rgba(238,90,52,0.16); box-shadow:inset 0 0 0 1.5px var(--accent); }
+  ul.ticks li b{ color:var(--cream-pure); }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chips span{ font-family:var(--fmono); font-size:clamp(11px,0.95vw,13px); letter-spacing:0.03em; color:var(--ink); background:rgba(238,90,52,0.10); border:1px solid rgba(238,90,52,0.26); padding:7px 14px; border-radius:100px; }
+  .chips.soft span{ background:rgba(238,241,236,0.05); border-color:var(--line); color:var(--muted); }
+
+  /* audience spectrum */
+  .spectrum{ position:relative; }
+  .spectrum .track{ display:grid; grid-template-columns:repeat(6,1fr); gap:11px; }
+  .persona{ border:1px solid var(--line); border-radius:13px; background:var(--bg-soft); padding:18px 14px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:9px; transition:transform .2s, border-color .2s; }
+  .persona:hover{ transform:translateY(-3px); border-color:rgba(238,90,52,0.4); }
+  .persona .ic{ width:30px; height:30px; color:var(--accent); }
+  .persona .who{ font-family:var(--fbody); font-weight:600; font-size:14px; color:var(--cream-pure); line-height:1.15; }
+  .persona .use{ font-size:11.5px; color:var(--muted); line-height:1.35; }
+  .spectrum .bar{ height:3px; border-radius:3px; margin-top:16px; background:linear-gradient(90deg, var(--accent-ink), var(--accent), var(--accent-deep)); }
+  .spectrum .ends{ display:flex; justify-content:space-between; margin-top:9px; font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-dim); }
+
+  /* competitor revenue mini */
+  .rev-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .rev{ border:1px solid var(--line); border-radius:12px; padding:16px 14px; background:var(--bg-soft); display:flex; flex-direction:column; gap:6px; }
+  .rev .co{ font-family:var(--fbody); font-weight:600; font-size:14px; color:var(--cream-pure); }
+  .rev .fig{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(20px,2vw,30px); color:var(--accent-ink); line-height:1; letter-spacing:-0.01em; }
+  .rev .gr{ font-family:var(--fmono); font-size:11px; color:var(--good); letter-spacing:0.02em; }
+  .rev .u{ font-family:var(--fmono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted-dim); margin-top:auto; }
+  .rev.hero{ border-color:rgba(238,90,52,0.4); background:linear-gradient(150deg,rgba(238,90,52,0.12),var(--bg-soft)); }
+
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:11px 14px; }
+  .flow.live{ border-color:rgba(238,90,52,0.3); }
+  .flow .t{ font-family:var(--fmono); font-size:clamp(12px,1vw,14px); padding:6px 11px; border-radius:7px; }
+  .flow .i{ color:var(--ink); border:1px solid var(--line-strong); background:rgba(238,241,236,0.05); }
+  .flow .o{ color:var(--cream-pure); background:rgba(238,90,52,0.2); border:1px solid rgba(238,90,52,0.5); }
+  .flow .arr{ color:var(--accent); }
+  .flow .plus{ color:var(--accent); font-family:var(--fmono); font-weight:600; }
+
+  .mock{ position:relative; aspect-ratio:4/5; border-radius:14px; overflow:hidden; border:1px solid var(--line-strong); box-shadow:0 30px 80px rgba(0,0,0,0.5); background:radial-gradient(120% 90% at 80% 0%, #f7c9a6 0%, transparent 55%), linear-gradient(160deg,#f5e7d4 0%,#f0d2b8 100%); }
+  .mock .el{ position:absolute; }
+  .mock .tag{ position:absolute; top:-8px; left:-1px; transform:translateY(-100%); font-family:var(--fmono); font-size:9px; letter-spacing:0.04em; color:var(--accent); background:var(--bg); padding:2px 6px; border-radius:4px; white-space:nowrap; }
+  .mock .sel{ outline:1.5px solid var(--accent); outline-offset:3px; border-radius:3px; }
+  .mock .badge{ top:7%; left:8%; font-family:var(--fmono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#9a4a28; padding:4px 9px; border:1px solid #c98a63; border-radius:100px; }
+  .mock .photo{ top:19%; left:50%; transform:translateX(-50%); width:46%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 35% 30%,#ffffff55,transparent 60%), linear-gradient(150deg,#e8633a,#b8371b); box-shadow:inset 0 -8px 22px rgba(120,30,10,0.4); }
+  .mock .head{ top:60%; left:9%; right:9%; font-family:var(--fdisplay); font-weight:700; font-size:clamp(18px,2vw,26px); line-height:0.98; color:#3a2417; }
+  .mock .head em{ font-style:italic; color:#c0411f; }
+  .mock .cta{ bottom:7%; left:9%; background:#cf4521; color:#fff7ef; font-family:var(--fbody); font-weight:600; font-size:11px; padding:8px 15px; border-radius:7px; }
+  .layers-note{ font-family:var(--fmono); font-size:11px; line-height:1.65; color:var(--muted-dim); margin-top:14px; position:relative; padding-left:16px; }
+  .layers-note::before{ content:""; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .layers-note code{ color:var(--accent-ink); }
+
+  /* competitive matrix */
+  .matrix{ width:100%; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; }
+  .matrix .row{ display:grid; grid-template-columns:1.5fr 1fr 1fr; align-items:center; }
+  .matrix .row + .row{ border-top:1px solid var(--line); }
+  .matrix .row.head .cell{ background:var(--bg-soft); font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); }
+  .matrix .cell{ padding:15px 20px; font-size:clamp(13px,1.05vw,15px); border-right:1px solid var(--line); }
+  .matrix .cell:last-child{ border-right:none; }
+  .matrix .co{ font-weight:600; color:var(--ink); }
+  .matrix .co span{ display:block; font-size:12px; color:var(--muted-dim); font-weight:400; }
+  .matrix .yes{ color:var(--good); font-family:var(--fmono); font-size:12.5px; }
+  .matrix .no{ color:var(--accent); font-family:var(--fmono); font-size:12.5px; }
+  .matrix .row.us .cell{ background:linear-gradient(90deg, rgba(238,90,52,0.14), rgba(238,90,52,0.03)); }
+  .matrix .row.us .co{ color:var(--cream-pure); }
+
+  .rings{ display:flex; flex-direction:column; gap:11px; }
+  .ring{ display:flex; align-items:center; gap:16px; border:1px solid var(--line); border-radius:12px; padding:15px 18px; background:var(--bg-soft); }
+  .ring .val{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(20px,2.4vw,34px); color:var(--accent-ink); min-width:150px; letter-spacing:-0.01em; }
+  .ring .meta b{ display:block; color:var(--cream-pure); font-size:clamp(13px,1.1vw,16px); font-family:var(--fbody); }
+  .ring .meta span{ font-size:clamp(11.5px,0.95vw,13.5px); color:var(--muted); }
+  .ring.tam{ border-color:rgba(238,90,52,0.4); background:linear-gradient(150deg,rgba(238,90,52,0.10),var(--bg-soft)); }
+  .cagr{ font-family:var(--fmono); font-size:12px; color:var(--good); background:var(--good-soft); border:1px solid rgba(95,191,143,0.3); padding:4px 10px; border-radius:100px; white-space:nowrap; margin-left:auto; }
+  .srcnote{ font-family:var(--fmono); font-size:10.5px; letter-spacing:0.03em; color:var(--muted-dim); margin-top:16px; line-height:1.5; }
+
+  .ladder{ display:grid; grid-template-columns:repeat(5,1fr); gap:11px; align-items:stretch; }
+  .tier{ border:1px solid var(--line); border-radius:12px; padding:17px 15px; background:var(--bg-soft); display:flex; flex-direction:column; }
+  .tier .nm{ font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-dim); margin-bottom:9px; }
+  .tier .pr{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(19px,2vw,29px); color:var(--cream-pure); line-height:1; }
+  .tier .pr span{ font-family:var(--fbody); font-size:12px; color:var(--muted); font-weight:400; }
+  .tier .d{ font-size:12px; color:var(--muted); margin-top:9px; line-height:1.42; }
+  .tier.hot{ border-color:rgba(238,90,52,0.45); background:linear-gradient(155deg,rgba(238,90,52,0.12),var(--bg-soft)); }
+  .tier.hot .pr{ color:var(--accent-ink); }
+
+  .rail{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:6px; }
+  .rail .col{ position:relative; padding:26px 16px 0; }
+  .rail .col::before{ content:""; position:absolute; top:7px; left:0; right:0; height:2px; background:var(--line); }
+  .rail .col:first-child::before{ left:50%; }
+  .rail .col:last-child::before{ right:50%; }
+  .rail .dot{ position:absolute; top:1px; left:calc(50% - 6px); width:13px; height:13px; border-radius:50%; background:var(--bg); border:2px solid var(--accent); }
+  .rail .col.now .dot{ background:var(--accent); box-shadow:0 0 0 5px rgba(238,90,52,0.16); }
+  .rail .col.future .dot{ border-color:var(--muted-dim); }
+  .rail .when{ font-family:var(--fmono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; text-align:center; }
+  .rail .col.future .when{ color:var(--muted-dim); }
+  .rail ul{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .rail li{ font-size:12px; color:var(--muted); line-height:1.38; padding-left:13px; position:relative; }
+  .rail li::before{ content:""; position:absolute; left:0; top:0.5em; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  .rail .col.future li::before{ background:var(--muted-dim); }
+
+  .quoteline{ font-family:var(--fdisplay); font-style:italic; font-weight:500; font-size:clamp(19px,2.4vw,31px); line-height:1.3; color:var(--accent-ink); text-wrap:balance; }
+
+  .title-slide .wordmark{ font-family:var(--fdisplay); font-weight:600; font-size:clamp(60px,10vw,150px); line-height:1.0; letter-spacing:-0.02em; color:var(--cream-pure); }
+  .title-slide .gk{ font-family:var(--fmono); font-size:clamp(11px,1vw,14px); letter-spacing:0.28em; text-transform:uppercase; color:var(--accent); margin-top:22px; }
+  .title-slide .tag{ font-family:var(--fdisplay); font-style:italic; font-weight:400; font-size:clamp(21px,2.8vw,40px); color:var(--ink); margin-top:24px; line-height:1.2; text-wrap:balance; }
+  .title-slide .tag em{ color:var(--accent-ink); }
+  .title-slide .subh{ font-size:clamp(14px,1.35vw,19px); color:var(--muted); margin-top:16px; max-width:58ch; line-height:1.5; }
+  .title-slide .subh b{ color:var(--accent-ink); font-weight:500; }
+  .title-meta{ display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:32px; font-family:var(--fmono); font-size:clamp(11px,1vw,13.5px); letter-spacing:0.04em; color:var(--muted); }
+  .title-meta .s{ color:var(--accent); }
+
+  .founder-quote{ font-family:var(--fdisplay); font-weight:400; font-size:clamp(18px,1.85vw,26px); line-height:1.4; color:var(--cream-pure); }
+  .founder-quote em{ color:var(--accent-ink); }
+  .sig{ font-family:var(--fmono); font-size:13px; letter-spacing:0.06em; color:var(--accent-ink); margin-top:18px; }
+  .ask-cta{ display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:var(--cream-pure); font-weight:600; font-size:clamp(14px,1.2vw,17px); padding:13px 24px; border-radius:11px; }
+
+  .navdots{ position:fixed; z-index:40; right:18px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:9px; }
+  .navdots a{ width:8px; height:8px; border-radius:50%; background:var(--line-strong); transition:transform .15s, background .15s; }
+  .navdots a:hover, .navdots a.active{ background:var(--accent); transform:scale(1.4); }
+  .hint{ position:fixed; z-index:40; left:50%; bottom:12px; transform:translateX(-50%); font-family:var(--fmono); font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-dim); background:rgba(0,10,28,0.7); border:1px solid var(--line); padding:6px 14px; border-radius:100px; backdrop-filter:blur(6px); transition:opacity .4s; }
+
+  @media (max-width:860px){
+    .split,.c2{ grid-template-columns:1fr; }
+    .c3,.c4,.ladder,.rail,.rev-grid,.spectrum .track{ grid-template-columns:1fr 1fr; }
+    .slide{ height:auto; min-height:100vh; padding:9vh 8vw; }
+    .navdots{ display:none; }
+    .matrix .row{ grid-template-columns:1.3fr 1fr 1fr; }
+  }
+  /* section header nav */
+  .dnav{ position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; gap:18px; height:70px; padding:0 7vw; background:rgba(0,10,28,0.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .dnav .brand{ display:flex; flex-direction:column; align-items:flex-start; gap:4px; text-decoration:none; flex:none; }
+  .dnav .brand img{ height:42px; width:auto; display:block; }
+  .dnav .brand .strap{ font-family:var(--fbody); font-size:12px; color:var(--muted); white-space:nowrap; }
+  .dnav .links{ display:flex; align-items:center; gap:3px; margin:0 auto; overflow-x:auto; scrollbar-width:none; }
+  .dnav .links::-webkit-scrollbar{ display:none; }
+  .dnav .links a{ font-family:var(--fmono); font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted-dim); text-decoration:none; padding:6px 9px; border-radius:6px; white-space:nowrap; transition:color .15s, background .15s; }
+  .dnav .links a:hover, .dnav .links a.active{ color:var(--cream-pure); background:rgba(238,90,52,0.14); }
+  @media (max-width:900px){ .dnav .brand .strap{ display:none; } .dnav{ padding:0 5vw; } }
+  @media print{
+    @page{ size:13.333in 7.5in; margin:0; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    body{ background:var(--bg); }
+    .navdots,.hint,.dnav{ display:none; }
+    .deck.snap{ height:auto; overflow:visible; scroll-snap-type:none; }
+    .slide{ page-break-after:always; height:100vh; }
+    .slide:last-child{ page-break-after:auto; }
+  }
+</style>
+</head>
+<body>
+<header class="dnav">
+  <a class="brand" href="#s1"><img src="assets/brand.png" alt="Meraqi"/><span class="strap">Elegant, Simple, Sovereign and Secure</span></a>
+  <nav class="links">
+    <a href="#s1">Home</a>
+    <a href="#s2">Problem</a>
+    <a href="#s3">Solution</a>
+    <a href="#s4">Product</a>
+    <a href="#s5">Who</a>
+    <a href="#s6">Moat</a>
+    <a href="#s7">Compete</a>
+    <a href="#s8">Market</a>
+    <a href="#s9">Pricing</a>
+    <a href="#s10">Growth</a>
+    <a href="#s11">Traction</a>
+    <a href="#s12">Ask</a>
+  </nav>
+</header>
+<div class="deck snap" id="deck">
+
+  <!-- 1 · VISION -->
+  <section class="slide title-slide" id="s1">
+    <div class="glow"></div><div class="glow bl"></div>
+    <div class="inner">
+      <span class="pill"><span class="dot"></span> Pre-seed round · Consumer edition</span>
+      <div class="wordmark" style="margin-top:24px;">Meraqi</div>
+      <div class="gk"><span style="text-transform:capitalize">meráki</span> · <span style="text-transform:none">μεράκι</span> · to create with soul</div>
+      <div class="tag">Create with soul. <em>For everyone, everywhere.</em></div>
+      <p class="subh">The high-margin consumer GenAI design platform: <b>web-native, open-weight, no frontier-API tax.</b> Plain language becomes a design you actually own and edit, in any browser.</p>
+      <div class="title-meta">
+        <span>Ani Panda <span class="s">·</span> Founder &amp; CEO</span>
+        <span>A product of AiOne LLC</span>
+        <span>Made in Seattle</span>
+        <span class="s">$750K pre-seed</span>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div></div>
+  </section>
+
+  <!-- 2 · PROBLEM -->
+  <section class="slide" id="s2">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The problem</span>
+        <h2 class="h-lg">Frozen pixels for users. Broken margins for <em>the builders.</em></h2>
+      </div>
+      <div class="cols c3">
+        <div class="card"><div class="k">For the user</div><h4>Un-editable and soulless</h4><p>Type a prompt, get a flat image baked into pixels. Change one word or move one thing? Regenerate and pray. It never feels like yours.</p></div>
+        <div class="card"><div class="k">For the builder · the API tax</div><h4>Every click costs them money</h4><p>99% of consumer AI apps are thin wrappers on OpenAI, Anthropic, or Midjourney, paying a per-token fee for every generation. Go viral and heavy users <b>detonate the margins.</b></p></div>
+        <div class="card accent"><div class="k">The death trap</div><h4>Built on someone else's meter</h4><p>One price change, model update, or banned key from a frontier provider, and the app dies overnight. No control, no moat, no business.</p></div>
+      </div>
+      <p class="quoteline" style="margin-top:30px; text-align:center;">Consumers get frozen pixels; the startups serving them are built on someone else's meter.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>02 / 12</b></div></div>
+  </section>
+
+  <!-- 3 · SOLUTION -->
+  <section class="slide" id="s3">
+    <div class="glow"></div>
+    <div class="inner">
+      <div>
+        <div class="slide-head">
+          <span class="eyebrow">The solution</span>
+          <h2 class="h-lg">Say it plainly. Own what you make, <em>in your browser.</em></h2>
+        </div>
+        <p class="lead">Describe what you want in plain words. Meraqi returns a real, multi-layer design you can recolor, resize, and rearrange, not a frozen JPEG. It runs entirely in the browser, with the heavy lifting on our <b>own optimized open-weight engine</b>.</p>
+        <p class="layers-note">Every design lands as an editable <code>DesignSpec</code>, not pixels. <b>Our stack, our models, our roadmap, no vendor lock-in.</b></p>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>03 / 12</b></div></div>
+  </section>
+
+  <!-- 4 · PRODUCT & UX -->
+  <section class="slide" id="s4">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Product &amp; UX</span>
+        <h2 class="h-lg">Zero friction. Same blazing speed on <em>any device.</em></h2>
+      </div>
+      <div class="cols c3" style="margin-bottom:22px;">
+        <div class="card"><div class="k">Zero-friction access</div><h4>Link to design in seconds</h4><p>Click a social link, land in the app, and create, no download, no install, no setup. The web is the whole product.</p></div>
+        <div class="card"><div class="k">Cross-device fluidity</div><h4>A cheap phone = a workstation</h4><p>The work runs on our backend clusters, so a low-end smartphone gets the same instant performance as a high-end desktop.</p></div>
+        <div class="card accent"><div class="k">Editable, and in motion</div><h4>Layers, and video with a voice</h4><p>Every element is an editable layer. And a full <b>45-second video with its own voice in one pass</b>, 720p in about 6 minutes on a single RTX 4090.</p></div>
+      </div>
+      <div class="cols c4" style="gap:11px;">
+        <div class="flow live"><span class="t i">Text</span><span class="arr">→</span><span class="t o">Image</span></div>
+        <div class="flow live"><span class="t i">Text</span><span class="arr">→</span><span class="t o">Video</span></div>
+        <div class="flow live"><span class="t i">Link</span><span class="arr">→</span><span class="t o">Video</span></div>
+        <div class="flow live"><span class="t i">Photo</span><span class="plus">+</span><span class="t i">Text</span><span class="arr">→</span><span class="t o">Video</span></div>
+      </div>
+      <p class="kicker" style="margin-top:13px;">All live today · Magic Resize to 13+ formats · brand kits &amp; style memory · collaboration &amp; agents</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>04 / 12</b></div></div>
+  </section>
+
+  <!-- 5 · WHO IT'S FOR -->
+  <section class="slide" id="s5">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Who it's for</span>
+        <h2 class="h-lg">One product. From a <em>grandparent</em> to a <em>Fortune 500</em>.</h2>
+        <p class="lead wide" style="margin-top:10px;">The same simplicity that helps a grandmother make a birthday card helps a creative director ship a campaign. Nobody has to graduate to a different tool as they grow.</p>
+      </div>
+      <div class="spectrum">
+        <div class="track">
+          <div class="persona"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10z"/></svg><div class="who">Family &amp; friends</div><div class="use">Cards, invites, gifts, keepsakes</div></div>
+          <div class="persona"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10L12 5 2 10l10 5 10-5zM6 12v5c0 1 3 2 6 2s6-1 6-2v-5"/></svg><div class="who">Students &amp; hobbyists</div><div class="use">Projects, clubs, side passions</div></div>
+          <div class="persona"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><div class="who">Creators</div><div class="use">Posts, thumbnails, a growing audience</div></div>
+          <div class="persona"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8l6-4 6 4v13M9 21v-5h4v5M15 12h4v9"/></svg><div class="who">Solopreneurs &amp; SMBs</div><div class="use">Ads, menus, promos, launches</div></div>
+          <div class="persona"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M4 20V10l5-3 5 3M14 20V7l6 3v10"/></svg><div class="who">Agencies</div><div class="use">Per-client brand kits, batch variants</div></div>
+          <div class="persona"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg><div class="who">Creative teams</div><div class="use">SMB to Fortune 500 in-house depts</div></div>
+        </div>
+        <div class="bar"></div>
+        <div class="ends"><span>Personal expression</span><span>Professional creative</span></div>
+      </div>
+      <div class="chips soft" style="margin-top:22px; justify-content:center;">
+        <span>Editable layers</span><span>Brand kits + style memory</span><span>Magic Resize · 13+ formats</span><span>Video to 45s</span><span>Collaboration</span><span>Agents</span>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>05 / 12</b></div></div>
+  </section>
+
+  <!-- 6 · INFRASTRUCTURE MOAT -->
+  <section class="slide" id="s6">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">The infrastructure moat · the tech math</span>
+        <h2 class="h-lg">We own the stack. That's the whole <em>business.</em></h2>
+      </div>
+      <div class="cols c3" style="margin-bottom:22px;">
+        <div class="card"><div class="k">Decoupled costs</div><h4>Flat capacity, not per-token</h4><p>We pay predictable monthly GPU capacity we control, not a variable fee for every image or token. No frontier-API tax on every click.</p></div>
+        <div class="card"><div class="k">Margins that hold</div><h4>80-85% gross, at scale</h4><p>Infra is our main cost, and it is <b>capacity-based and predictable</b>. Heavy users who generate thousands of assets don't drain the company.</p></div>
+        <div class="card accent"><div class="k">The LTV / CAC engine</div><h4>Outspend the wrappers</h4><p>A $25/mo subscription stays lucrative even for power users, so we have the financial leverage to <b>outspend API-taxed competitors on acquisition.</b></p></div>
+      </div>
+      <p class="quoteline" style="text-align:center;">When a wrapper goes viral, it bleeds. When we go viral, we <em>compound.</em></p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>06 / 12</b></div></div>
+  </section>
+
+  <!-- 7 · COMPETITIVE -->
+  <section class="slide" id="s7">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Why we win</span>
+        <h2 class="h-lg">Consumer-simple <em>and</em> high-margin. Nobody else is both.</h2>
+      </div>
+      <div class="matrix" style="margin-bottom:16px;">
+        <div class="row head"><div class="cell"></div><div class="cell">Consumer-simple</div><div class="cell">Owns its economics</div></div>
+        <div class="row"><div class="cell co">Frontier wrappers <span>Higgsfield, Artlist, OpenArt, Magnific, InVideo</span></div><div class="cell yes">✓ Easy</div><div class="cell no">✕ Credit-metered, low margin</div></div>
+        <div class="row"><div class="cell co">Open-source UIs <span>Automatic1111, ComfyUI</span></div><div class="cell no">✕ Unusable for consumers</div><div class="cell yes">✓ Cheap to self-host</div></div>
+        <div class="row us"><div class="cell co">Meraqi <span>web-native + open-weight</span></div><div class="cell yes">✓ Link to design in seconds</div><div class="cell yes">✓ 80-85% margin, own stack</div></div>
+      </div>
+      <div class="cols c2" style="gap:14px;">
+        <div class="card"><div class="k">The incumbents</div><p>Canva and Adobe own deep, mature workflows, and we're not racing to out-feature them there. But their AI is bolted on through acquisitions that carry the same wrapper economics. <b>We compete on a different axis: AI-native creation and structural margins they can't match.</b></p></div>
+        <div class="card accent"><div class="k">The second moat</div><p>The same platform self-hosts, up to air-gapped, a higher-ACV sovereign market the whole category is locked out of. <span style="color:var(--muted-dim)">(See the Sovereign edition.)</span></p></div>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>07 / 12</b></div></div>
+  </section>
+
+  <!-- 8 · MARKET -->
+  <section class="slide" id="s8">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Market</span>
+        <h2 class="h-lg">Proven appetite. A <em>trillion-dollar</em> tailwind.</h2>
+        <p class="lead wide" style="margin-top:10px;">Consumers already pay a lot for AI creation, the category is real, and it rides the fastest-growing arc in software.</p>
+      </div>
+      <div class="rev-grid" style="margin-bottom:16px;">
+        <div class="rev hero"><div class="co">Canva</div><div class="fig">$4.0B</div><div class="gr">▲ ~43% YoY</div><div class="u">ARR · ~240M users</div></div>
+        <div class="rev"><div class="co">Higgsfield</div><div class="fig">~$500M</div><div class="gr">▲ ~2.5× in 6 mo</div><div class="u">Run-rate</div></div>
+        <div class="rev"><div class="co">Artlist</div><div class="fig">$260M</div><div class="gr">▲ 50% YoY</div><div class="u">ARR</div></div>
+        <div class="rev"><div class="co">Freepik / Magnific</div><div class="fig">$230M</div><div class="gr">▲ profitable</div><div class="u">ARR</div></div>
+        <div class="rev"><div class="co">OpenArt</div><div class="fig">~$70M</div><div class="gr">▲ ~7× YoY</div><div class="u">ARR</div></div>
+      </div>
+      <div class="cols c4" style="gap:12px;">
+        <div class="card plain"><div class="stat"><div class="big" style="font-size:clamp(18px,1.9vw,26px);">$9→19B</div><div class="lab">Design software · ~9-10% CAGR</div></div></div>
+        <div class="card plain"><div class="stat"><div class="big" style="font-size:clamp(18px,1.9vw,26px);">$32→70B</div><div class="lab">Digital content creation · ~14%</div></div></div>
+        <div class="card plain"><div class="stat"><div class="big" style="font-size:clamp(18px,1.9vw,26px);">$8.7→61B</div><div class="lab">AI image + video · ~38% CAGR</div></div></div>
+        <div class="card plain"><div class="stat"><div class="big" style="font-size:clamp(18px,1.9vw,26px);">$1T+</div><div class="lab">Creator economy by 2034</div></div></div>
+      </div>
+      <p class="srcnote">Competitor figures private; ARR / run-rate from company disclosures and Sacra, Fortune, TechCrunch, Reuters (2025-26); Adobe $23.8B FY2025. TAM: Grand View, MarketsandMarkets, TBRC, Precedence. Directional, not a forecast.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>08 / 12</b></div></div>
+  </section>
+
+  <!-- 9 · BUSINESS MODEL & PRICING -->
+  <section class="slide" id="s9">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Business model &amp; pricing</span>
+        <h2 class="h-lg">Free to start. <em>Loved</em> into paying. 80-85% margins.</h2>
+      </div>
+      <div class="ladder" style="margin-bottom:16px;">
+        <div class="tier"><div class="nm">Trial</div><div class="pr">Free<span> /1 mo</span></div><div class="d">200 images &amp; 10 videos a day.</div></div>
+        <div class="tier"><div class="nm">Starter</div><div class="pr">$12<span>/mo</span></div><div class="d">For individuals &amp; creators.</div></div>
+        <div class="tier hot"><div class="nm">Pro</div><div class="pr">$25<span>/mo</span></div><div class="d">Power creators. More, faster, longer video.</div></div>
+        <div class="tier"><div class="nm">Business</div><div class="pr">$50<span>/seat</span></div><div class="d">Teams &amp; agencies. Priority + collaboration.</div></div>
+        <div class="tier"><div class="nm">Annual</div><div class="pr">2 mo<span> free</span></div><div class="d">Pay yearly, get two months.</div></div>
+      </div>
+      <div class="cols c3">
+        <div class="card"><div class="k">Priced in outcomes</div><p>Images and videos per day, not confusing credits. The one tool a grandparent or a CFO can read the bill for.</p></div>
+        <div class="card"><div class="k">Beta offer</div><p>The first <b>300 beta testers</b> keep a lifetime Annual Pro rate of <b>$199/yr</b> and watermark-free export, for their patronage and feedback.</p></div>
+        <div class="card accent"><div class="k">Margins that scale</div><p><b>80-85% gross margin</b> at scale. Infra is the main cost as usage grows, but it is capacity-based and predictable, never a per-token tax.</p></div>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>09 / 12</b></div></div>
+  </section>
+
+  <!-- 10 · GO-TO-MARKET & VIRALITY -->
+  <section class="slide" id="s10">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Go-to-market &amp; virality</span>
+        <h2 class="h-lg">Every design is a <em>clickable ad.</em></h2>
+      </div>
+      <div class="cols c3">
+        <div class="card"><div class="k">The web loop</div><h4>Made with Meraqi</h4><p>Every shared design carries a "Made with Meraqi" link. One click opens the browser app instantly, turning every active user into organic acquisition.</p></div>
+        <div class="card"><div class="k">Social proof</div><h4>The 300-creator beta</h4><p>A closed circle of highly active creators stress-tests the web clusters and seeds early proof before the public launch.</p></div>
+        <div class="card accent"><div class="k">Creator partnerships</div><h4>Seed the feeds</h4><p>Mid-tier TikTok, Instagram, and YouTube creators get premium free in exchange for workflow tutorials, native reach where the users already are.</p></div>
+      </div>
+      <p class="kicker" style="margin-top:18px;">Land a creator, grow into their side hustle, their SMB, their team. Near-zero CAC, and margins that let us pour fuel on what works.</p>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>10 / 12</b></div></div>
+  </section>
+
+  <!-- 11 · TRACTION -->
+  <section class="slide" id="s11">
+    <div class="glow"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Traction</span>
+        <h2 class="h-lg">Live today. <em>Compounding</em> from here.</h2>
+      </div>
+      <div class="split" style="margin-bottom:22px;">
+        <div>
+          <div style="position:relative; border:1px solid var(--line-strong); border-radius:14px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,0.45); background:#000;">
+            <video src="assets/meraqi-ad-cimba.mp4" autoplay muted loop playsinline controls preload="metadata" style="width:100%; display:block; aspect-ratio:16/9; object-fit:contain; background:#000;"></video>
+            <span style="position:absolute; top:10px; right:10px; pointer-events:none; font-family:var(--fmono); font-size:10.5px; letter-spacing:0.04em; color:var(--cream-pure); background:rgba(0,10,28,0.66); border:1px solid rgba(255,255,255,0.18); padding:4px 9px; border-radius:100px;">🔊 muted · click to unmute</span>
+          </div>
+          <p style="font-family:var(--fmono); font-size:11.5px; letter-spacing:0.02em; color:var(--muted-dim); margin-top:12px; line-height:1.55;">Made with Meraqi from one product URL, for Cimba.ai's CEO, who signed a letter of intent for a pilot. A continuous 45-second spot, picture and voice in one pass on a single RTX 4090, about 6 minutes at 720p, not short clips stitched together or lip-synced.</p>
+        </div>
+        <div class="cols c2" style="gap:13px; align-content:center;">
+          <div class="card accent"><div class="stat"><div class="big">1st pilot<br/><em>LOI signed</em></div><div class="lab">Cimba.ai's CEO, inbound, after we delivered his ad.</div></div></div>
+          <div class="card"><div class="stat"><div class="big">4 ways<br/><em>to create</em></div><div class="lab">Text, Link, Photo → image &amp; video, live at 1080p.</div></div></div>
+          <div class="card"><div class="stat"><div class="big">First <em>300</em></div><div class="lab">beta testers &amp; privileged users.</div></div></div>
+          <div class="card"><div class="stat"><div class="big">Beta ends<br/><em>09 / 30</em></div><div class="lab">Ahead of full public launch.</div></div></div>
+        </div>
+      </div>
+      <div class="rail">
+        <div class="col now"><span class="dot"></span><div class="when">Now · live</div><ul><li>Editable layers on a canvas</li><li>Image + video generation</li><li>Magic Resize, brand kits</li></ul></div>
+        <div class="col now"><span class="dot"></span><div class="when">Rolling out</div><ul><li>Restyle a photo by text/image</li><li>Longer video</li><li>Collaboration &amp; agents</li></ul></div>
+        <div class="col future"><span class="dot"></span><div class="when">Next</div><ul><li>Photo → 3D</li><li>Voice + notes → slideshow</li><li>One-tap publish to socials</li></ul></div>
+        <div class="col future"><span class="dot"></span><div class="when">Later</div><ul><li>Mobile apps</li><li>Style-model marketplace</li><li>Chat-to-create from messaging apps</li></ul></div>
+      </div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>11 / 12</b></div></div>
+  </section>
+
+  <!-- 12 · TEAM & ASK -->
+  <section class="slide" id="s12">
+    <div class="glow"></div><div class="glow bl"></div>
+    <div class="inner">
+      <div class="slide-head">
+        <span class="eyebrow">Team &amp; the ask</span>
+        <h2 class="h-lg">$750K to break the <em>API monopoly.</em></h2>
+      </div>
+      <div class="split" style="margin-bottom:18px; align-items:start;">
+        <div>
+          <p class="lead">Built by a <b>20+ year technology, enterprise-software &amp; data veteran</b> (M.S. Computer Science &amp; Applications) who has architected and shipped at enterprise scale, and built Meraqi's full stack, engine to canvas, solo. Engineer's rigor, artist's eye.</p>
+          <div class="chips soft" style="margin-top:16px;">
+            <span>Open-source &amp; open-weight</span><span>Cloud infra optimization</span><span>Consumer product</span><span>Enterprise-scale delivery</span>
+          </div>
+          <p class="sig">- Ani Panda, Founder &amp; CEO · AiOne LLC · Seattle</p>
+        </div>
+        <div class="card accent" style="padding:24px;">
+          <div class="k">The ask</div>
+          <h4 class="h-md" style="margin-bottom:4px;">$750K <span style="font-family:var(--fbody); font-weight:400; font-size:0.4em; color:var(--muted); letter-spacing:0;">post-money SAFE · $7.5M cap · ~10%</span></h4>
+          <p style="font-size:13.5px; color:var(--muted); margin-bottom:13px;">An 18-month runway that caps early dilution at ~10%.</p>
+          <ul class="ticks" style="gap:7px;">
+            <li><b>$225K</b> · R&amp;D &amp; web roadmap, UI/UX &amp; inference speed</li>
+            <li><b>$150K</b> · founder salary, 18 months</li>
+            <li><b>$150K</b> · core engineering, a senior infra contractor</li>
+            <li><b>$150K</b> · GPU infrastructure &amp; beta scaling</li>
+            <li><b>$35K</b> · 300-user beta operations &amp; concurrency</li>
+            <li><b>$40K</b> · admin, sales, marketing, GTM &amp; legal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cols c4" style="gap:11px;">
+        <div class="card plain"><div class="k">Milestone 01</div><p>Technical hardening: high, concurrent load on the open web stack.</p></div>
+        <div class="card plain"><div class="k">Milestone 02</div><p>Viral proof: 300 beta to public launch, low CAC via shareability.</p></div>
+        <div class="card plain"><div class="k">Milestone 03</div><p>Financial de-risk: a revenue run-rate that validates the margins.</p></div>
+        <div class="card plain"><div class="k">Milestone 04</div><p>Series A ready: predictable MRR, a hyper-scalable consumer brand.</p></div>
+      </div>
+      <div style="margin-top:18px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;"><span class="ask-cta">Break the API monopoly. Let's chat →</span><span class="quoteline" style="font-size:clamp(15px,1.6vw,20px);">“Speed should never cost you your soul.”</span></div>
+    </div>
+    <div class="chrome"><div class="b"><img src="assets/brand.png" alt="Meraqi"/><span>Elegant, Simple, Sovereign and Secure</span></div><div class="pg"><b>12 / 12</b></div></div>
+  </section>
+
+</div>
+
+<nav class="navdots" id="navdots"></nav>
+<div class="hint" id="hint">↑ ↓ or ← → to navigate · press F for fullscreen</div>
+
+<script>
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('navdots');
+  slides.forEach(function(s,i){ var a=document.createElement('a'); a.href='#'+s.id; a.setAttribute('aria-label','Slide '+(i+1)); dots.appendChild(a); });
+  var dotEls = Array.prototype.slice.call(dots.children);
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.dnav .links a'));
+  var current = 0;
+  function goto(i){ i=Math.max(0,Math.min(slides.length-1,i)); current=i; slides[i].scrollIntoView({behavior:'smooth'}); }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); goto(current+1); }
+    else if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); goto(current-1); }
+    else if(e.key==='Home'){ e.preventDefault(); goto(0); }
+    else if(e.key==='End'){ e.preventDefault(); goto(slides.length-1); }
+    else if(e.key==='f'||e.key==='F'){ if(!document.fullscreenElement){ document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); } else { document.exitFullscreen&&document.exitFullscreen(); } }
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ var i=slides.indexOf(en.target); if(i>=0){ current=i; dotEls.forEach(function(d,j){ d.classList.toggle('active', j===i); }); navLinks.forEach(function(a,j){ a.classList.toggle('active', j===i); }); } } });
+  }, { threshold:0.55 });
+  slides.forEach(function(s){ io.observe(s); });
+  var hint=document.getElementById('hint');
+  ['keydown','wheel','touchstart'].forEach(function(ev){ window.addEventListener(ev, function(){ hint.style.opacity='0'; }, {once:true}); });
+</script>
+</body>
+</html>
