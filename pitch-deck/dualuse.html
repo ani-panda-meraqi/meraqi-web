@@ -413,9 +413,9 @@
         <p class="lead wide" style="margin-top:10px;">A consistency framework makes independently-trained open models behave as one coherent engine; a deterministic execution protocol makes that engine impossible to crash from load. Both live outside the models, with <b>no retraining</b>.</p>
       </div>
       <div class="cols c3" style="margin-bottom:16px;">
-        <div class="card"><div class="k">Compositional consistency</div><p>Cross-modal latent anchoring plus long-horizon streaming: an identity and spatial prior corrects drift at every model hand-off, and the anchored latent tail re-injects across windows so long video holds together.</p></div>
-        <div class="card"><div class="k">Deterministic admission · ADR-0021</div><p>Every request reserves a pre-measured memory envelope against a per-device ledger before dispatch. Out-of-memory becomes <b>queue, degrade, or reject, never a crash</b>; formally specified, with a provable containment property.</p></div>
-        <div class="card"><div class="k">Self-supervising closed loop</div><p>Observed memory peaks feed back: drift detection re-calibrates and demotes profiles automatically, and a calibrated fallback ladder degrades at admission, <b>never mid-deliverable</b>. No manual tuning in the field.</p></div>
+        <div class="card"><div class="k">Compositional consistency</div><p>A model-agnostic consistency layer keeps people, products, and scenes coherent across every model hand-off, so <b>long video holds together</b> as one continuous piece.</p></div>
+        <div class="card"><div class="k">Deterministic admission · ADR-0021</div><p>Every job is admitted only if it provably fits the hardware. Out-of-memory becomes <b>queue, degrade, or reject, never a crash</b>; formally specified, with a provable containment property.</p></div>
+        <div class="card"><div class="k">Self-supervising closed loop</div><p>The system tunes itself in the field and only ever degrades at admission, <b>never mid-deliverable</b>, so outputs are never corrupted. No manual tuning in the field.</p></div>
       </div>
       <div class="card accent" style="margin-bottom:14px;">
         <div class="k">The before and after</div>
