@@ -126,7 +126,7 @@
     <h2>What self-hosted actually means here</h2>
     <p>The phrase gets stretched. Plenty of tools describe themselves as self-hosted when what they mean is that you host a thin front end which then calls someone else's inference API. Your prompt still leaves the building, and the bill still scales with a token counter you cannot see.</p>
     <p>Meraqi is not that. The inference runs locally. Model weights are pulled once, staged on your disk, and served from your own GPU. With the weights in place the platform will run with outbound network access blocked entirely, which is something you can verify with a firewall rule rather than a trust exercise.</p>
-    <div class="statement">If your network is down and it still works, it was self-hosted. If it stops, it was not.</div>
+    <div class="statement">If your internet is down and it still works, it was self-hosted. If it stops, it was not.</div>
   </section>
 
   <section>
