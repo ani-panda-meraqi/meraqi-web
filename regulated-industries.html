@@ -135,7 +135,7 @@
 
   <section>
     <h2>The compliance question is a network question</h2>
-    <p>Every mainstream AI design tool is a hosted service on the public internet. To use one, your team uploads the asset to a third party's infrastructure. That might be a patient photograph, an unreleased product render, a technical drawing. There it is processed by models you do not control, retained under a policy you did not write, and handled by subprocessors you did not select.</p>
+    <p>Every mainstream AI design tool is a public website. To use one, your team uploads the asset to a third party's infrastructure. That might be a patient photograph, an unreleased product render, a technical drawing. There it is processed by models you do not control, retained under a policy you did not write, and handled by subprocessors you did not select.</p>
     <p>For most companies that is a procurement conversation. For a hospital marketing team, a broker-dealer, an agency on a federal contract or a defense supplier, it is a control failure, and no amount of vendor assurance changes where the bytes went.</p>
     <div class="statement">If the content never crosses your network boundary, most of the compliance argument never has to be made.</div>
     <p>Meraqi is built to run on either side of that boundary. Deployed to your intranet, the models, the rendering pipeline and the generated assets all sit inside your own perimeter. There is no upload step, no third-party model API call, and no telemetry carrying content out.</p>
@@ -147,7 +147,7 @@
     <div class="scroller">
       <table>
         <thead>
-          <tr><th>Obligation</th><th>The usual problem with hosted tools</th><th>What running it on your network changes</th></tr>
+          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -185,7 +185,7 @@
     <div class="modes">
       <div class="mode">
         <h3>Our service, over the internet</h3>
-        <p>We host it and you sign in. The right choice when your content is not sensitive enough to justify running infrastructure, or when you would rather not own GPUs.</p>
+        <p>Sign up and sign in at meraqi.ai. It is one multi-tenant service that individuals and businesses all share. The right choice when your content is not sensitive enough to need absolute control over egress, or when you would rather not own GPUs.</p>
         <div class="who">Creators · Teams · Agencies</div>
       </div>
       <div class="mode">
@@ -195,6 +195,7 @@
       </div>
     </div>
     <p>There is no third option and no confusing middle tier. Either the content travels to us or it does not, and that single fact is what your assessor actually cares about.</p>
+    <p>We do not currently run private instances for individual customers. We are still a small company, and running, monitoring and sustaining a private instance for each customer is a commitment we will not make until we can keep it. If you need your own instance, it runs on your network.</p>
 
     <h3>Air-gapped deployments arrive on a drive</h3>
 
@@ -239,7 +240,7 @@
 
     <h3>Lineage runs in both directions</h3>
     <p>Events on their own tell you what happened. Lineage tells you what it touched. Every asset records the inputs it was built from and the outputs it went on to produce, so the chain running from source material through generation to export is one connected record rather than a scatter of unrelated log lines.</p>
-    <p>That makes the expensive question cheap. If a source file turns out to have carried protected health information, or a licensed image is withdrawn, or legal pulls a campaign after it has shipped, you can ask what else is downstream of this one file and get a complete answer. Ask a hosted design tool the same question and there is no answer available at any price, because it never recorded which upload fed which output.</p>
+    <p>That makes the expensive question cheap. If a source file turns out to have carried protected health information, or a licensed image is withdrawn, or legal pulls a campaign after it has shipped, you can ask what else is downstream of this one file and get a complete answer. Ask a public design website the same question and there is no answer available at any price, because it never recorded which upload fed which output.</p>
 
     <h3>The record is yours</h3>
     <p>Audit records and lineage live on your deployment, queryable there, under your retention. Nothing is sampled, summarized or held back behind a higher pricing tier, which is the usual way audit data becomes an upsell.</p>
