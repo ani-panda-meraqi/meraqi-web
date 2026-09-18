@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meraqi - AI design and media inside your own network</title>
+<link rel="canonical" href="https://meraqi.ai/regulated-industries"/>
+<meta name="description" content="Meraqi runs inside your own network boundary, whether cloud direct connect, government cloud, a private data center or an in-office server room, so protected health information and controlled technical data never leave it. Built for teams working under HIPAA, CMMC and ITAR obligations.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meraqi">
+<meta property="og:url" content="https://meraqi.ai/regulated-industries">
+<meta property="og:title" content="Meraqi - AI design and media inside your own network">
+<meta property="og:description" content="For teams whose content cannot go to a third party. Runs on your intranet, whether that is a cloud direct connect, a government cloud, a private data center or an in-office server room.">
+<meta property="og:image" content="https://meraqi.ai/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meraqi - AI design and media inside your own network">
+<meta name="twitter:description" content="For teams whose content cannot go to a third party. Runs on your intranet, whether that is a cloud direct connect, a government cloud, a private data center or an in-office server room.">
+<meta name="twitter:image" content="https://meraqi.ai/assets/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css"/>
+<style>
+  :root{ color-scheme:dark; }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--fbody);
+    font-size:17px; line-height:1.65; font-weight:400;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ color:var(--accent-ink); }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--accent); color:var(--cream-pure); }
+
+  .page{ max-width:860px; margin:0 auto; padding-inline:32px; }
+  @media(max-width:640px){ .page{ padding-inline:20px; } }
+
+  .hero{ padding-block:64px 44px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:var(--fmono); font-size:12px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; }
+  h1{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(32px,5.4vw,52px); line-height:1.06; letter-spacing:-.015em; color:var(--cream-pure); margin-bottom:22px; text-wrap:balance; }
+  .lede{ font-size:20px; line-height:1.55; color:var(--muted); max-width:64ch; }
+  .lede strong{ color:var(--ink); font-weight:500; }
+
+  section{ padding-block:40px; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  h2{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(25px,3.6vw,34px); line-height:1.2; letter-spacing:-.01em; color:var(--cream-pure); margin-bottom:18px; text-wrap:balance; }
+  h3{ font-size:18.5px; font-weight:600; color:var(--cream-pure); margin:30px 0 8px; }
+  p{ margin-bottom:16px; max-width:66ch; }
+  p:last-child{ margin-bottom:0; }
+  strong{ font-weight:600; color:var(--cream-pure); }
+  ul{ margin:0 0 16px 22px; max-width:66ch; }
+  li{ margin-bottom:9px; color:var(--muted); }
+  li strong{ color:var(--ink); }
+
+  .statement{ border-left:2px solid var(--accent); padding:4px 0 4px 22px; margin:26px 0; font-family:var(--fdisplay); font-size:23px; line-height:1.4; color:var(--cream-pure); max-width:60ch; }
+
+  .scroller{ overflow-x:auto; margin:22px 0; border:1px solid var(--line); border-radius:10px; }
+  table{ border-collapse:collapse; width:100%; min-width:620px; font-size:15px; }
+  th{ text-align:left; font-family:var(--fmono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-dim); font-weight:500; padding:13px 16px; background:var(--card); border-bottom:1px solid var(--line-strong); white-space:nowrap; }
+  td{ padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--muted); }
+  tr:last-child td{ border-bottom:none; }
+  td:first-child{ color:var(--cream-pure); font-weight:600; white-space:nowrap; }
+
+  .modes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:24px 0; }
+  .mode{ background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:22px; }
+  .mode h3{ margin:0 0 8px; font-size:17px; }
+  .mode p{ font-size:15px; color:var(--muted); margin-bottom:14px; }
+  .mode .who{ font-family:var(--fmono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); padding-top:13px; border-top:1px solid var(--line); }
+
+  figure.drive{ margin:30px 0 26px; }
+  figure.drive img{ width:100%; height:auto; border-radius:10px; }
+  figure.drive figcaption{ margin-top:12px; font-family:var(--fmono); font-size:13px; color:var(--muted-dim); text-align:center; }
+
+  .candid{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:10px; padding:26px 28px; }
+  .candid h2{ font-size:26px; margin-bottom:14px; }
+  .candid ul{ margin-bottom:0; }
+
+  .faq{ border-top:1px solid var(--line); padding-top:22px; margin-top:22px; }
+  .faq:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
+  .faq h3{ margin:0 0 8px; font-size:18px; }
+  .faq p{ color:var(--muted); margin-bottom:0; }
+
+  .cta{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:12px; padding:36px 32px; text-align:center; margin-block:24px; }
+  .cta h2{ margin-bottom:12px; }
+  .cta p{ margin-inline:auto; color:var(--muted); }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; margin-top:10px; background:var(--accent); color:var(--cream-pure); font-weight:600; font-size:15px; padding:12px 26px; border-radius:9px; transition:background .15s, transform .15s; }
+  .btn:hover{ background:var(--accent-deep); color:var(--cream-pure); transform:translateY(-1px); }
+</style>
+<link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+<header class="mnav" id="mnav">
+  <div class="mnav-row">
+    <a class="mnav-brand" href="/" aria-label="Meraqi home"><img src="assets/brand.png" alt="Meraqi"/><span class="mnav-strap">Elegant, Simple, Sovereign and Secure</span></a>
+    <nav class="mnav-links">
+      <a href="/#who">Who it's for</a>
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/#video">Video</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+    <button class="mnav-burger" id="mnav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav-drawer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+  <div class="mnav-drawer" id="mnav-drawer">
+    <a href="/#who">Who it's for</a>
+    <a href="/#how">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/#video">Video</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="page">
+    <div class="eyebrow">Healthcare · Finance · Government · Defense</div>
+    <h1>AI design and media that runs inside your own network</h1>
+    <p class="lede">Meraqi turns plain language into fully editable, multi-layer designs and video. <strong>It runs where your data already lives</strong>, on your intranet, your private data center, your government cloud or a server room you can walk into, so protected health information, controlled technical data and unreleased material never cross your boundary and never train a model.</p>
+  </div>
+</div>
+
+<main>
+<div class="page">
+
+  <section>
+    <h2>The compliance question is a network question</h2>
+    <p>Every mainstream AI design tool is a hosted service on the public internet. To use one, your team uploads the asset to a third party's infrastructure. That might be a patient photograph, an unreleased product render, a technical drawing. There it is processed by models you do not control, retained under a policy you did not write, and handled by subprocessors you did not select.</p>
+    <p>For most companies that is a procurement conversation. For a hospital marketing team, a broker-dealer, an agency on a federal contract or a defense supplier, it is a control failure, and no amount of vendor assurance changes where the bytes went.</p>
+    <div class="statement">If the content never crosses your network boundary, most of the compliance argument never has to be made.</div>
+    <p>Meraqi is built to run on either side of that boundary. Deployed to your intranet, the models, the rendering pipeline and the generated assets all sit inside your own perimeter. There is no upload step, no third-party model API call, and no telemetry carrying content out.</p>
+  </section>
+
+  <section>
+    <h2>How deployment maps to obligations</h2>
+    <p>This describes what the architecture provides. It is not a claim of certification. See <a href="#candid">what we don't claim</a> below.</p>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Obligation</th><th>The usual problem with hosted tools</th><th>What running it on your network changes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HIPAA</td>
+            <td>Uploading imagery or copy containing PHI makes the vendor a business associate, requiring a BAA, subprocessor review and breach-notification terms.</td>
+            <td>PHI never reaches AiOne. No business-associate relationship is created, so there is no BAA to negotiate and no external breach surface to assess.</td>
+          </tr>
+          <tr>
+            <td>CMMC · CUI</td>
+            <td>Controlled Unclassified Information processed in a commercial multi-tenant cloud falls outside most enclave boundaries.</td>
+            <td>Meraqi runs inside your existing enclave as another containerized workload, under controls you have already had assessed.</td>
+          </tr>
+          <tr>
+            <td>ITAR · EAR</td>
+            <td>Transmitting technical data to a provider whose staff or infrastructure may be non-US is a potential export.</td>
+            <td>Nothing is transmitted. Technical data stays on hardware inside a boundary you control, in a facility you choose.</td>
+          </tr>
+          <tr>
+            <td>Data residency</td>
+            <td>Cross-border transfer, subprocessor chains, and retention terms you cannot alter.</td>
+            <td>The data never moves. Residency is wherever you put the server, and retention is whatever your own policy says.</td>
+          </tr>
+          <tr>
+            <td>Model training</td>
+            <td>Many providers reserve broad rights to train on customer content, sometimes behind an opt-out rather than an opt-in.</td>
+            <td>Weights are static and local. There is no pipeline from your content back to any model. That is a matter of architecture, not of policy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Two places it can run</h2>
+    <div class="modes">
+      <div class="mode">
+        <h3>Our service, over the internet</h3>
+        <p>We host it and you sign in. The right choice when your content is not sensitive enough to justify running infrastructure, or when you would rather not own GPUs.</p>
+        <div class="who">Creators · Teams · Agencies</div>
+      </div>
+      <div class="mode">
+        <h3>Your network, whatever that means to you</h3>
+        <p>A cloud direct connect, a government cloud, a private data center, an in-office server room, or a box under someone's desk. If it is inside your perimeter, it qualifies. At the far end of this is a deployment with no egress at all.</p>
+        <div class="who">Healthcare · Finance · Government · Defense</div>
+      </div>
+    </div>
+    <p>There is no third option and no confusing middle tier. Either the content travels to us or it does not, and that single fact is what your assessor actually cares about.</p>
+
+    <h3>Air-gapped deployments arrive on a drive</h3>
+
+    <figure class="drive">
+      <picture>
+        <source srcset="assets/meraqi-airgap-drive.webp" type="image/webp">
+        <img src="assets/meraqi-airgap-drive.jpg"
+             alt="A Meraqi-branded M.2 2280 NVMe drive held in one hand, the delivery medium for air-gapped deployments"
+             width="1543" height="672" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>One M.2 2280 drive. The platform, the model weights, and nothing that needs a network.</figcaption>
+    </figure>
+
+    <p>A network with no egress cannot download anything, which is rather the point of it. So an air-gapped Meraqi ships as a single NVMe M.2 drive carrying the platform, the model weights and everything needed to stand it up inside the enclave. Nothing is fetched at install time, nothing phones home afterwards, and no step quietly assumes a connection.</p>
+    <p>Air-gapped delivery is built to order as part of an enterprise engagement rather than a download you configure yourself, because every enclave has its own rules about media, and pretending otherwise would waste your time and ours. Verification, government furnished media, and re-imaging before the boundary are all things we agree with you up front.</p>
+    <p>Updates arrive the same way, on your schedule, and they update the software, not your data.</p>
+  </section>
+
+  <section>
+    <h2>Everything that happens in Meraqi stays in Meraqi</h2>
+    <p>Containment is only half the requirement. The other half is being able to prove it. An auditor does not accept an architecture diagram as evidence, and neither does an incident review at two in the morning.</p>
+    <p>Every action taken in the system is written to an append-only audit record that lives on your deployment alongside everything else, so your audit trail is not sitting in a vendor's database behind a support ticket.</p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Recorded</th><th>What the audit record contains</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Who</td><td>The identity and role behind every action, tied to the account that performed it.</td></tr>
+          <tr><td>What</td><td>The action and its object. Prompt submitted, asset generated, layer edited, version restored, asset exported, asset deleted.</td></tr>
+          <tr><td>When</td><td>Every object in the system carries a UUIDv7, which is time-ordered by construction, so a sequence can be reconstructed exactly rather than approximately. The v1, v2, v3 you see in the interface are labels over those identifiers.</td></tr>
+          <tr><td>Where</td><td>Two things. Where the request came from, and the path of the content itself, meaning which source assets were drawn on, which output they produced, and where that output was exported to.</td></tr>
+          <tr><td>How</td><td>The interface used, and the generation job behind the output. Each asset traces to its job, and the job records the model and version that ran.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Every user has their own library, and nothing is overwritten</h3>
+    <p>Each user works in a library of their own, holding every asset they have generated, images and video alike, together with every version of each one. Users do not see one another's work unless it has been deliberately shared. That is how minimum necessary access under HIPAA, need to know handling for controlled information, and information barriers between deal teams get enforced rather than merely intended.</p>
+    <p>Versions accumulate instead of replacing one another. The asset that was live last March is still there exactly as it was, which is the difference between answering a complaint and reconstructing an answer to one. Offboarding a user, placing a legal hold and satisfying an erasure request all operate against that boundary rather than as a search across shared storage you then have to prove was exhaustive.</p>
+
+    <h3>Lineage runs in both directions</h3>
+    <p>Events on their own tell you what happened. Lineage tells you what it touched. Every asset records the inputs it was built from and the outputs it went on to produce, so the chain running from source material through generation to export is one connected record rather than a scatter of unrelated log lines.</p>
+    <p>That makes the expensive question cheap. If a source file turns out to have carried protected health information, or a licensed image is withdrawn, or legal pulls a campaign after it has shipped, you can ask what else is downstream of this one file and get a complete answer. Ask a hosted design tool the same question and there is no answer available at any price, because it never recorded which upload fed which output.</p>
+
+    <h3>The record is yours</h3>
+    <p>Audit records and lineage live on your deployment, queryable there, under your retention. Nothing is sampled, summarized or held back behind a higher pricing tier, which is the usual way audit data becomes an upsell.</p>
+  </section>
+
+  <section>
+    <h2>Built on open models, not an API wrapper</h2>
+    <p>Meraqi runs open-weight models on its own inference stack. That matters for three reasons beyond privacy.</p>
+    <ul>
+      <li><strong>No dependency on a third-party API.</strong> Your creative pipeline cannot be broken by someone else's rate limit, deprecation notice or price change.</li>
+      <li><strong>Auditability.</strong> You can name the model, the version and the license under which it is used, which is the first question any serious procurement review asks.</li>
+      <li><strong>Output is editable, not final.</strong> Meraqi produces multi-layer designs you can open and change, not flat images you have to regenerate. In a regulated setting that matters more than elsewhere, because legal review marks up copy and you need to change that line without re-rolling the whole asset.</li>
+    </ul>
+  </section>
+
+  <section id="candid">
+    <div class="candid">
+      <h2>What we don't claim</h2>
+      <p>Regulated buyers are used to vendors who blur this line. We would rather be precise, because you will find out at diligence anyway.</p>
+      <ul>
+        <li><strong>Meraqi is not "HIPAA certified."</strong> No software is, because HIPAA has no certification regime. Compliance is a property of your organization and your configuration. What we provide is an architecture that keeps PHI inside your boundary so the obligation stays yours to satisfy rather than ours to promise.</li>
+        <li><strong>We do not hold SOC 2 or FedRAMP authorization today.</strong> AiOne LLC is an early-stage company and we will say so plainly rather than imply otherwise.</li>
+        <li><strong>Export to your SIEM is on the roadmap, not shipped.</strong> Audit records are queryable on your deployment today. Integrations with Splunk, Sentinel, Elastic and syslog are planned and we will not pretend they exist.</li>
+        <li><strong>Model provenance is recorded per generation job, not yet stamped on each asset.</strong> Lineage joins the two, so the answer is reachable, but the per-asset stamp is still to come.</li>
+        <li><strong>Signed release media is intended, not yet in place.</strong> We want a repeatable signed build with hashes published away from the drive. Until that exists, verification is something we agree with you per engagement rather than a process we can point at.</li>
+        <li><strong>Self-hosting does not make you compliant by itself.</strong> Your access controls, audit review, retention schedule and staff training still do the work. Meraqi removes one category of risk, which is third-party data handling. It does not remove the rest.</li>
+        <li><strong>We are pre-launch.</strong> Meraqi is in active development with a beta program. If you need a production deployment on a fixed date, tell us the date before you invest time in evaluation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Questions we get asked</h2>
+
+    <div class="faq">
+      <h3>Is there a HIPAA-compliant design tool for healthcare marketing?</h3>
+      <p>Not in the sense of a certified product, because HIPAA certifies organizations rather than software. The practical version of the question is whether a design tool can be used without creating a business-associate relationship. One that runs inside your own network can, because protected health information never reaches the vendor. Meraqi is built for that deployment model.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can AI design and video generation run in an air-gapped environment?</h3>
+      <p>Yes, provided the models run locally rather than behind an API, which is how Meraqi is built. Air-gapped deployments are built to order as part of an enterprise engagement and delivered on physical media, so no network path in or out is ever required.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How is air-gapped software delivered if the environment has no network?</h3>
+      <p>On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What audit trail does Meraqi provide?</h3>
+      <p>An append-only audit record for every action in the system, capturing who performed it, what object it acted on, when it happened, where the request came from, and the generation job behind any output. Every object carries a time-ordered UUIDv7, so ordering is intrinsic rather than inferred. Records stay on your deployment and are queryable there under your own retention.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Are users isolated from each other, and is version history kept?</h3>
+      <p>Each user has their own asset library containing every image and video they have generated and every version of each one. Nothing is visible to other users unless it is deliberately shared, and versions accumulate rather than overwrite, so any earlier state of an asset can be produced on request. Offboarding, legal hold and erasure all operate against that boundary.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I trace which source assets were used to generate a design, and where it ended up?</h3>
+      <p>Yes. Meraqi records asset lineage in both directions, so every generated design is linked to the source material it was built from and to every export downstream of it. If a source file has to be withdrawn, whether because it carried protected health information, lost its license, or was pulled by legal, you can query everything derived from it rather than reconstructing the chain by hand.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I prove that content never left my environment?</h3>
+      <p>The audit record shows every action taken on every asset, and in a deployment with no egress there is no network path off the system for anything to have taken. Evidence and architecture agree, which is what an assessor is actually looking for.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can defense contractors use this under ITAR or CMMC?</h3>
+      <p>Meraqi deploys as a containerized workload inside an existing enclave, so it inherits the boundary you have already had assessed rather than asking you to extend it to a new cloud provider. Whether a given configuration satisfies your specific obligations is a determination for you and your assessor. We will provide the architectural detail needed to make it.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2>Tell us what you're working under</h2>
+      <p>If you have an obligation we have not addressed here, that is the more useful conversation. Beta access is opening to regulated teams first, because the requirements are strictest and the feedback is most valuable.</p>
+      <a class="btn" href="/#beta">Join the beta</a>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="mfoot">
+  <div class="mfoot-wrap">
+    <div class="mfoot-top">
+      <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
+      <div class="mfoot-col"><h6>Product</h6><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h6>Company</h6><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="mfoot-col"><h6>Legal</h6><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
+    </div>
+  </div>
+  <div class="mfoot-bottom">
+    <span>&copy; 2026 Meraqi. A product of <a href="https://www.aionellc.com">AiOne LLC</a>. Made in Seattle.</span>
+    <span><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://meraqi.ai/regulated-industries#faq",
+  "isPartOf": { "@id": "https://meraqi.ai/#website" },
+  "about": { "@id": "https://meraqi.ai/#software" },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a HIPAA-compliant design tool for healthcare marketing?",
+      "acceptedAnswer": {"@type":"Answer","text":"Not in the sense of a certified product, because HIPAA certifies organizations rather than software. The practical version of the question is whether a design tool can be used without creating a business-associate relationship. One that runs inside your own network can, because protected health information never reaches the vendor. Meraqi is built for that deployment model."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI design and video generation run in an air-gapped environment?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes, provided the models run locally rather than behind an API, which is how Meraqi is built. Air-gapped deployments are built to order as part of an enterprise engagement and delivered on physical media, so no network path in or out is ever required."}
+    },
+    {
+      "@type": "Question",
+      "name": "How is air-gapped software delivered if the environment has no network?",
+      "acceptedAnswer": {"@type":"Answer","text":"On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you."}
+    },
+    {
+      "@type": "Question",
+      "name": "What audit trail does Meraqi provide?",
+      "acceptedAnswer": {"@type":"Answer","text":"An append-only audit record for every action in the system, capturing who performed it, what object it acted on, when it happened, where the request came from, and the generation job behind any output. Every object carries a time-ordered UUIDv7, so ordering is intrinsic rather than inferred. Records stay on your deployment and are queryable there under your own retention."}
+    },
+    {
+      "@type": "Question",
+      "name": "Are users isolated from each other, and is version history kept?",
+      "acceptedAnswer": {"@type":"Answer","text":"Each user has their own asset library containing every image and video they have generated and every version of each one. Nothing is visible to other users unless it is deliberately shared, and versions accumulate rather than overwrite, so any earlier state of an asset can be produced on request. Offboarding, legal hold and erasure all operate against that boundary."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I trace which source assets were used to generate a design, and where it ended up?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. Meraqi records asset lineage in both directions, so every generated design is linked to the source material it was built from and to every export downstream of it. If a source file has to be withdrawn, whether because it carried protected health information, lost its license, or was pulled by legal, you can query everything derived from it rather than reconstructing the chain by hand."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I prove that content never left my environment?",
+      "acceptedAnswer": {"@type":"Answer","text":"The audit record shows every action taken on every asset, and in a deployment with no egress there is no network path off the system for anything to have taken. Evidence and architecture agree, which is what an assessor is actually looking for."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can defense contractors use Meraqi under ITAR or CMMC?",
+      "acceptedAnswer": {"@type":"Answer","text":"Meraqi deploys as a containerized workload inside an existing enclave, so it inherits the boundary you have already had assessed rather than asking you to extend it to a new cloud provider. Whether a given configuration satisfies specific obligations is a determination for the contractor and their assessor. AiOne provides the architectural detail needed to make it."}
+    }
+  ]
+}
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

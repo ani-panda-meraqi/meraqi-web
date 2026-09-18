@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meraqi - Self-hosted AI design platform</title>
+<link rel="canonical" href="https://meraqi.ai/self-hosted"/>
+<meta name="description" content="Meraqi is a self-hosted AI design platform you run on your own network. Images, video and fully editable multi-layer designs, on open-weight models, with nothing uploaded to generate anything.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meraqi">
+<meta property="og:url" content="https://meraqi.ai/self-hosted">
+<meta property="og:title" content="Meraqi - Self-hosted AI design platform">
+<meta property="og:description" content="Run the whole platform on your own network. Open-weight models, containers, nothing uploaded anywhere.">
+<meta property="og:image" content="https://meraqi.ai/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meraqi - Self-hosted AI design platform">
+<meta name="twitter:description" content="Run the whole platform on your own network. Open-weight models, containers, nothing uploaded anywhere.">
+<meta name="twitter:image" content="https://meraqi.ai/assets/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css"/>
+<style>
+  :root{ color-scheme:dark; }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--fbody);
+    font-size:17px; line-height:1.65; font-weight:400;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ color:var(--accent-ink); }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--accent); color:var(--cream-pure); }
+
+  .page{ max-width:860px; margin:0 auto; padding-inline:32px; }
+  @media(max-width:640px){ .page{ padding-inline:20px; } }
+
+  .hero{ padding-block:64px 44px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:var(--fmono); font-size:12px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; }
+  h1{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(32px,5.4vw,52px); line-height:1.06; letter-spacing:-.015em; color:var(--cream-pure); margin-bottom:22px; text-wrap:balance; }
+  .lede{ font-size:20px; line-height:1.55; color:var(--muted); max-width:64ch; }
+  .lede strong{ color:var(--ink); font-weight:500; }
+
+  section{ padding-block:40px; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  h2{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(25px,3.6vw,34px); line-height:1.2; letter-spacing:-.01em; color:var(--cream-pure); margin-bottom:18px; text-wrap:balance; }
+  h3{ font-size:18.5px; font-weight:600; color:var(--cream-pure); margin:30px 0 8px; }
+  p{ margin-bottom:16px; max-width:66ch; }
+  p:last-child{ margin-bottom:0; }
+  strong{ font-weight:600; color:var(--cream-pure); }
+  ul{ margin:0 0 16px 22px; max-width:66ch; }
+  li{ margin-bottom:9px; color:var(--muted); }
+  li strong{ color:var(--ink); }
+
+  .statement{ border-left:2px solid var(--accent); padding:4px 0 4px 22px; margin:26px 0; font-family:var(--fdisplay); font-size:23px; line-height:1.4; color:var(--cream-pure); max-width:60ch; }
+
+  .modes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:24px 0; }
+  .mode{ background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:22px; }
+  .mode h3{ margin:0 0 8px; font-size:17px; }
+  .mode p{ font-size:15px; color:var(--muted); margin-bottom:14px; }
+  .mode .who{ font-family:var(--fmono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); padding-top:13px; border-top:1px solid var(--line); }
+
+  .candid{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:10px; padding:26px 28px; }
+  .candid h2{ font-size:26px; margin-bottom:14px; }
+  .candid p:last-child{ margin-bottom:0; }
+
+  .faq{ border-top:1px solid var(--line); padding-top:22px; margin-top:22px; }
+  .faq:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
+  .faq h3{ margin:0 0 8px; font-size:18px; }
+  .faq p{ color:var(--muted); margin-bottom:0; }
+
+  .cta{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:12px; padding:36px 32px; text-align:center; margin-block:24px; }
+  .cta h2{ margin-bottom:12px; }
+  .cta p{ margin-inline:auto; color:var(--muted); }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; margin-top:10px; background:var(--accent); color:var(--cream-pure); font-weight:600; font-size:15px; padding:12px 26px; border-radius:9px; transition:background .15s, transform .15s; }
+  .btn:hover{ background:var(--accent-deep); color:var(--cream-pure); transform:translateY(-1px); }
+</style>
+<link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+<header class="mnav" id="mnav">
+  <div class="mnav-row">
+    <a class="mnav-brand" href="/" aria-label="Meraqi home"><img src="assets/brand.png" alt="Meraqi"/><span class="mnav-strap">Elegant, Simple, Sovereign and Secure</span></a>
+    <nav class="mnav-links">
+      <a href="/#who">Who it's for</a>
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/#video">Video</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+    <button class="mnav-burger" id="mnav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav-drawer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+  <div class="mnav-drawer" id="mnav-drawer">
+    <a href="/#who">Who it's for</a>
+    <a href="/#how">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/#video">Video</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="page">
+    <div class="eyebrow">Containers · Open weights · Your network</div>
+    <h1>Self-hosted AI design platform</h1>
+    <p class="lede">Meraqi turns plain language into fully editable, multi-layer designs, images and video. <strong>You can run the whole thing on your own network.</strong> The models sit on your disk, your work stays in your storage, and nothing is uploaded to anyone in order to generate anything.</p>
+  </div>
+</div>
+
+<main>
+<div class="page">
+
+  <section>
+    <h2>What self-hosted actually means here</h2>
+    <p>The phrase gets stretched. Plenty of tools describe themselves as self-hosted when what they mean is that you host a thin front end which then calls someone else's inference API. Your prompt still leaves the building, and the bill still scales with a token counter you cannot see.</p>
+    <p>Meraqi is not that. The inference runs locally. Model weights are pulled once, staged on your disk, and served from your own GPU. With the weights in place the platform will run with outbound network access blocked entirely, which is something you can verify with a firewall rule rather than a trust exercise.</p>
+    <div class="statement">If your network is down and it still works, it was self-hosted. If it stops, it was not.</div>
+  </section>
+
+  <section>
+    <h2>Two places it can run</h2>
+    <div class="modes">
+      <div class="mode">
+        <h3>Our service, over the internet</h3>
+        <p>We host it, you sign in, nothing to provision. The right answer if you would rather not own GPUs or think about containers.</p>
+        <div class="who">Creators · Teams · Agencies</div>
+      </div>
+      <div class="mode">
+        <h3>Your network, whatever that means to you</h3>
+        <p>A cloud direct connect, a government cloud, a private data center, an in-office server room, or a box under someone's desk. If it sits inside your perimeter, it qualifies. At the far end is a deployment with no egress at all.</p>
+        <div class="who">Homelabs · Studios · Regulated teams</div>
+      </div>
+    </div>
+    <p>There is no confusing middle tier. Either the content travels to us or it does not. If you want the second option and have a reasonably current GPU, tell us what you are running and we will say honestly whether it will work before you spend an evening on it.</p>
+  </section>
+
+  <section>
+    <h2>The stack, stated plainly</h2>
+    <p>Deployment is containerized. The whole runtime is declared in one place, and that declaration is the single source of truth for what gets started.</p>
+    <ul>
+      <li><strong>An inference server</strong> for the language side, serving the quantized open-weight model that handles prompt interpretation and the design treatment.</li>
+      <li><strong>A diffusion runtime</strong> for image generation, driven by a versioned workflow catalog so the exact graph that produced an image is recorded rather than implied.</li>
+      <li><strong>A video pipeline</strong> built on an open-weight video model.</li>
+      <li><strong>The editor</strong>, which is where the layered output lands and stays editable rather than arriving as a flat render.</li>
+    </ul>
+    <p>Every service binds to loopback by default. Nothing is exposed on a public interface unless you choose to put it there, and no component phones home for license checks during generation.</p>
+    <p>Model choices live in a published deployment catalog rather than being hidden in the application, so you can see which weights are in play, swap them for others you prefer, and pin a version that does not move until you move it.</p>
+  </section>
+
+  <section>
+    <h2>What running it yourself gets you</h2>
+
+    <h3>The model does not change underneath you</h3>
+    <p>Hosted tools update their models when it suits them, and you are not told when the swap happens. Here the weights are a file on your disk, and they change when you replace them. Updates arrive the same way, on your schedule, and they update the software, not your data.</p>
+
+    <h3>Nothing is uploaded to generate anything</h3>
+    <p>Source material, prompts, brand assets and output all stay in your storage. There is no upload step to audit, no retention policy to read, and no subprocessor list to review, because there is no third party in the path.</p>
+
+    <h3>Cost stops tracking headcount</h3>
+    <p>On your own hardware the marginal cost of another generation is electricity. Seat-based pricing exists because hosted vendors carry your compute. Once you carry it, that logic no longer applies to you.</p>
+
+    <h3>Your history is a record, not a feature tier</h3>
+    <p>Every object in the system carries a time-ordered UUIDv7, and the v1, v2, v3 you see in the interface are labels over those identifiers. Every asset keeps its versions and its lineage, back to the source material it was built from and forward to wherever it was exported. That is stored with everything else on your deployment rather than rented back to you as an audit add-on. The full treatment is on the <a href="/regulated-industries">regulated industries</a> page.</p>
+  </section>
+
+  <section>
+    <div class="candid">
+      <h2>Is Meraqi open source?</h2>
+      <p>No, and it is worth saying that plainly rather than letting the word do work it has not earned.</p>
+      <p>Meraqi is commercial software that you self-host. The models it runs are open weight, the deployment is yours, the data is yours, and nothing reaches us. What you do not get is the platform source under an OSI-approved license or the right to fork it.</p>
+      <p>If open source is a hard requirement rather than shorthand for control, the honest answer is that <a href="https://penpot.app/" target="_blank" rel="noopener">Penpot</a> and <a href="https://graphite.rs/" target="_blank" rel="noopener">Graphite</a> are the projects worth your time. They solve a different problem, being design tools rather than generative ones, and both are genuinely open with real communities behind them.</p>
+      <p>If what you actually want is control over where your content lives, which model runs, and when anything changes, self-hosted commercial software gets you all three without the license.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Questions we get asked</h2>
+
+    <div class="faq">
+      <h3>Is Meraqi a self-hosted AI image generator?</h3>
+      <p>It does that, and more than that. Image generation is one capability alongside video and fully editable multi-layer design, with 3D on the roadmap. If you only want a self-hosted image generator there are simpler tools. Meraqi is for people who need the output to stay editable and to sit in a platform rather than a folder of renders.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Is Meraqi an open-source Canva alternative?</h3>
+      <p>It is a self-hosted alternative rather than an open-source one. The platform is commercial software you run on your own network, built on open-weight models. If you need an OSI license and the right to fork, Penpot and Graphite are the genuinely open projects in this space, though neither is generative in the way Meraqi is.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Does it need an internet connection to generate anything?</h3>
+      <p>No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What if I do not have a GPU?</h3>
+      <p>Then use the hosted service. Self-hosting means you supply the compute, and generative work of this kind needs a reasonably current GPU to be pleasant. We would rather tell you that than sell you a deployment that disappoints. Tell us what hardware you have and we will give you a straight answer about whether it is worth it.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I choose or swap the models?</h3>
+      <p>Yes. Model choices live in a published deployment catalog rather than being hidden in the application, so you can see which weights are in use, substitute others, and pin a version that stays put until you decide to change it.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Is my work used to train anything?</h3>
+      <p>No. In a self-hosted deployment there is no mechanism by which it could be. The weights are local and static and nothing is transmitted off the system.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How does self-hosting affect pricing?</h3>
+      <p>Once you supply the compute, the marginal cost of a generation is electricity rather than a per-seat fee. Licensing for self-hosted deployment is handled separately from the hosted plans. See <a href="/pricing">pricing</a> for the hosted tiers, and talk to us for a self-hosted quote.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2>Run it on your own metal</h2>
+      <p>Beta access is opening now. If you have a specific card, a specific stack, or a specific constraint, say so when you sign up and we will tell you honestly whether it will work.</p>
+      <a class="btn" href="/#beta">Join the beta</a>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="mfoot">
+  <div class="mfoot-wrap">
+    <div class="mfoot-top">
+      <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
+      <div class="mfoot-col"><h6>Product</h6><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h6>Company</h6><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="mfoot-col"><h6>Legal</h6><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
+    </div>
+  </div>
+  <div class="mfoot-bottom">
+    <span>&copy; 2026 Meraqi. A product of <a href="https://www.aionellc.com">AiOne LLC</a>. Made in Seattle.</span>
+    <span><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://meraqi.ai/self-hosted#faq",
+  "isPartOf": { "@id": "https://meraqi.ai/#website" },
+  "about": { "@id": "https://meraqi.ai/#software" },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Meraqi a self-hosted AI image generator?",
+      "acceptedAnswer": {"@type":"Answer","text":"It does that, and more than that. Image generation is one capability alongside video and fully editable multi-layer design, with 3D on the roadmap. If you only want a self-hosted image generator there are simpler tools. Meraqi is for people who need the output to stay editable and to sit in a platform rather than a folder of renders."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is Meraqi an open-source Canva alternative?",
+      "acceptedAnswer": {"@type":"Answer","text":"It is a self-hosted alternative rather than an open-source one. The platform is commercial software you run on your own network, built on open-weight models. If you need an OSI license and the right to fork, Penpot and Graphite are the genuinely open projects in this space, though neither is generative in the way Meraqi is."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does it need an internet connection to generate anything?",
+      "acceptedAnswer": {"@type":"Answer","text":"No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust."}
+    },
+    {
+      "@type": "Question",
+      "name": "What if I do not have a GPU?",
+      "acceptedAnswer": {"@type":"Answer","text":"Then use the hosted service. Self-hosting means you supply the compute, and generative work of this kind needs a reasonably current GPU to be pleasant. Tell us what hardware you have and we will give you a straight answer about whether it is worth it."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I choose or swap the models?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. Model choices live in a published deployment catalog rather than being hidden in the application, so you can see which weights are in use, substitute others, and pin a version that stays put until you decide to change it."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is my work used to train anything?",
+      "acceptedAnswer": {"@type":"Answer","text":"No. In a self-hosted deployment there is no mechanism by which it could be. The weights are local and static and nothing is transmitted off the system."}
+    },
+    {
+      "@type": "Question",
+      "name": "How does self-hosting affect pricing?",
+      "acceptedAnswer": {"@type":"Answer","text":"Once you supply the compute, the marginal cost of a generation is electricity rather than a per-seat fee. Licensing for self-hosted deployment is handled separately from the hosted plans."}
+    }
+  ]
+}
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
