@@ -83,11 +83,6 @@
   .candid h2{ font-size:26px; margin-bottom:14px; }
   .candid ul{ margin-bottom:0; }
 
-  .faq{ border-top:1px solid var(--line); padding-top:22px; margin-top:22px; }
-  .faq:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
-  .faq h3{ margin:0 0 8px; font-size:18px; }
-  .faq p{ color:var(--muted); margin-bottom:0; }
-
   .cta{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:12px; padding:36px 32px; text-align:center; margin-block:24px; }
   .cta h2{ margin-bottom:12px; }
   .cta p{ margin-inline:auto; color:var(--muted); }
@@ -275,46 +270,8 @@
 
   <section>
     <h2>Questions we get asked</h2>
-
-    <div class="faq">
-      <h3>Is there a HIPAA-compliant design tool for healthcare marketing?</h3>
-      <p>Not in the sense of a certified product, because HIPAA certifies organizations rather than software. The practical version of the question is whether a design tool can be used without creating a business-associate relationship. One that runs inside your own network can, because protected health information never reaches the vendor. Meraqi is built for that deployment model.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Can AI design and video generation run in an air-gapped environment?</h3>
-      <p>Yes, provided the models run locally rather than behind an API, which is how Meraqi is built. Air-gapped deployments are built to order as part of an enterprise engagement and delivered on physical media, so no network path in or out is ever required.</p>
-    </div>
-
-    <div class="faq">
-      <h3>How is air-gapped software delivered if the environment has no network?</h3>
-      <p>On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you.</p>
-    </div>
-
-    <div class="faq">
-      <h3>What audit trail does Meraqi provide?</h3>
-      <p>An append-only audit record for every action in the system, capturing who performed it, what object it acted on, when it happened, where the request came from, and the generation job behind any output. Every object carries a time-ordered UUIDv7, so ordering is intrinsic rather than inferred. Records stay on your deployment and are queryable there under your own retention.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Are users isolated from each other, and is version history kept?</h3>
-      <p>Each user has their own asset library containing every image and video they have generated and every version of each one. Nothing is visible to other users unless it is deliberately shared, and versions accumulate rather than overwrite, so any earlier state of an asset can be produced on request. Offboarding, legal hold and erasure all operate against that boundary.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Can I trace which source assets were used to generate a design, and where it ended up?</h3>
-      <p>Yes. Meraqi records asset lineage in both directions, so every generated design is linked to the source material it was built from and to every export downstream of it. If a source file has to be withdrawn, whether because it carried protected health information, lost its license, or was pulled by legal, you can query everything derived from it rather than reconstructing the chain by hand.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Can I prove that content never left my environment?</h3>
-      <p>The audit record shows every action taken on every asset, and in a deployment with no egress there is no network path off the system for anything to have taken. Evidence and architecture agree, which is what an assessor is actually looking for.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Can defense contractors use Meraqi under ITAR or CMMC?</h3>
-      <p>Meraqi deploys as a containerized workload inside an existing enclave, so it inherits the boundary you have already had assessed rather than asking you to extend it to a new cloud provider. Whether a given configuration satisfies your specific obligations is a determination for you and your assessor. We will provide the architectural detail needed to make it.</p>
-    </div>
+    <p>HIPAA and healthcare marketing, air-gapped generation and how the software reaches an enclave with no network, proving that content never left, and what ITAR and CMMC mean for a defense contractor. Those answers sit with the rest of them on the FAQ page, along with the audit trail, per-user isolation and lineage, which work the same way wherever Meraqi runs.</p>
+    <a class="btn" href="/faq#regulated">Read the regulated-work questions</a>
   </section>
 
   <section>
@@ -332,7 +289,7 @@
   <div class="mfoot-wrap">
     <div class="mfoot-top">
       <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
-      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/#beta">Join the beta</a></div>
       <div class="mfoot-col"><h2>Company</h2><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
       <div class="mfoot-col"><h2>Legal</h2><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
     </div>
@@ -343,57 +300,6 @@
   </div>
 </footer>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://meraqi.ai/regulated-industries#faq",
-  "isPartOf": { "@id": "https://meraqi.ai/#website" },
-  "about": { "@id": "https://meraqi.ai/#software" },
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is there a HIPAA-compliant design tool for healthcare marketing?",
-      "acceptedAnswer": {"@type":"Answer","text":"Not in the sense of a certified product, because HIPAA certifies organizations rather than software. The practical version of the question is whether a design tool can be used without creating a business-associate relationship. One that runs inside your own network can, because protected health information never reaches the vendor. Meraqi is built for that deployment model."}
-    },
-    {
-      "@type": "Question",
-      "name": "Can AI design and video generation run in an air-gapped environment?",
-      "acceptedAnswer": {"@type":"Answer","text":"Yes, provided the models run locally rather than behind an API, which is how Meraqi is built. Air-gapped deployments are built to order as part of an enterprise engagement and delivered on physical media, so no network path in or out is ever required."}
-    },
-    {
-      "@type": "Question",
-      "name": "How is air-gapped software delivered if the environment has no network?",
-      "acceptedAnswer": {"@type":"Answer","text":"On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you."}
-    },
-    {
-      "@type": "Question",
-      "name": "What audit trail does Meraqi provide?",
-      "acceptedAnswer": {"@type":"Answer","text":"An append-only audit record for every action in the system, capturing who performed it, what object it acted on, when it happened, where the request came from, and the generation job behind any output. Every object carries a time-ordered UUIDv7, so ordering is intrinsic rather than inferred. Records stay on your deployment and are queryable there under your own retention."}
-    },
-    {
-      "@type": "Question",
-      "name": "Are users isolated from each other, and is version history kept?",
-      "acceptedAnswer": {"@type":"Answer","text":"Each user has their own asset library containing every image and video they have generated and every version of each one. Nothing is visible to other users unless it is deliberately shared, and versions accumulate rather than overwrite, so any earlier state of an asset can be produced on request. Offboarding, legal hold and erasure all operate against that boundary."}
-    },
-    {
-      "@type": "Question",
-      "name": "Can I trace which source assets were used to generate a design, and where it ended up?",
-      "acceptedAnswer": {"@type":"Answer","text":"Yes. Meraqi records asset lineage in both directions, so every generated design is linked to the source material it was built from and to every export downstream of it. If a source file has to be withdrawn, whether because it carried protected health information, lost its license, or was pulled by legal, you can query everything derived from it rather than reconstructing the chain by hand."}
-    },
-    {
-      "@type": "Question",
-      "name": "Can I prove that content never left my environment?",
-      "acceptedAnswer": {"@type":"Answer","text":"The audit record shows every action taken on every asset, and in a deployment with no egress there is no network path off the system for anything to have taken. Evidence and architecture agree, which is what an assessor is actually looking for."}
-    },
-    {
-      "@type": "Question",
-      "name": "Can defense contractors use Meraqi under ITAR or CMMC?",
-      "acceptedAnswer": {"@type":"Answer","text":"Meraqi deploys as a containerized workload inside an existing enclave, so it inherits the boundary you have already had assessed rather than asking you to extend it to a new cloud provider. Whether a given configuration satisfies your specific obligations is a determination for you and your assessor. We will provide the architectural detail needed to make it."}
-    }
-  ]
-}
-</script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meraqi - Frequently asked questions</title>
+<link rel="canonical" href="https://meraqi.ai/faq"/>
+<meta name="description" content="Answers about Meraqi in one place. What an asset is, what a design is, the online service, work in regulated environments, and running the platform on your own network.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meraqi">
+<meta property="og:url" content="https://meraqi.ai/faq">
+<meta property="og:title" content="Meraqi - Frequently asked questions">
+<meta property="og:description" content="What an asset is, what a design is, how the online service works, and what regulated and self-hosting teams ask us.">
+<meta property="og:image" content="https://meraqi.ai/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meraqi - Frequently asked questions">
+<meta name="twitter:description" content="What an asset is, what a design is, how the online service works, and what regulated and self-hosting teams ask us.">
+<meta name="twitter:image" content="https://meraqi.ai/assets/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css"/>
+<style>
+  :root{ color-scheme:dark; }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--fbody);
+    font-size:17px; line-height:1.65; font-weight:400;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ color:var(--accent-ink); }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--accent); color:var(--cream-pure); }
+
+  .page{ max-width:860px; margin:0 auto; padding-inline:32px; }
+  @media(max-width:640px){ .page{ padding-inline:22px; } }
+
+  .hero{ padding-block:64px 44px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:var(--fmono); font-size:12px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; }
+  h1{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(32px,5.4vw,52px); line-height:1.06; letter-spacing:-.015em; color:var(--cream-pure); margin-bottom:22px; text-wrap:balance; }
+  .lede{ font-size:20px; line-height:1.55; color:var(--muted); max-width:64ch; }
+
+  .jump{ display:flex; flex-wrap:wrap; gap:9px; margin-top:26px; }
+  .jump a{ font-family:var(--fmono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line-strong); border-radius:99px; padding:8px 15px; transition:border-color .15s, color .15s; }
+  .jump a:hover{ color:var(--cream-pure); border-color:var(--accent); }
+
+  section{ padding-block:40px; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  /* The top navigation is sticky, so a heading linked to from another
+     page has to clear it. */
+  section[id]{ scroll-margin-top:110px; }
+  h2{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(25px,3.6vw,34px); line-height:1.2; letter-spacing:-.01em; color:var(--cream-pure); margin-bottom:8px; text-wrap:balance; }
+  .sectnote{ color:var(--muted-dim); font-family:var(--fmono); font-size:12px; letter-spacing:.02em; margin-bottom:22px; }
+  p{ margin-bottom:16px; max-width:66ch; }
+  p:last-child{ margin-bottom:0; }
+  strong{ font-weight:600; color:var(--cream-pure); }
+
+  .faq{ border-top:1px solid var(--line); padding-top:22px; margin-top:22px; }
+  .faq:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
+  .faq h3{ margin:0 0 8px; font-size:18px; font-weight:600; color:var(--cream-pure); }
+  .faq p{ color:var(--muted); margin-bottom:0; }
+
+  .cta{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:12px; padding:36px 32px; text-align:center; margin-block:24px; }
+  .cta h2{ margin-bottom:12px; }
+  .cta p{ margin-inline:auto; color:var(--muted); }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; margin-top:10px; background:var(--accent); color:var(--on-accent, #001533); font-weight:600; font-size:15px; padding:12px 26px; border-radius:9px; transition:background .15s, transform .15s; }
+  .btn:hover{ background:var(--accent-hover, #f6a085); color:var(--on-accent, #001533); transform:translateY(-1px); }
+</style>
+<link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mnav" id="mnav">
+  <div class="mnav-row">
+    <a class="mnav-brand" href="/" aria-label="Meraqi home"><img src="assets/brand.png" alt="Meraqi"/><span class="mnav-strap">Elegant, Simple, Sovereign and Secure</span></a>
+    <nav class="mnav-links">
+      <a href="/#who">Who it's for</a>
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/#video">Video</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+    <button class="mnav-burger" id="mnav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav-drawer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+  <div class="mnav-drawer" id="mnav-drawer">
+    <a href="/#who">Who it's for</a>
+    <a href="/#how">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/#video">Video</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+  </div>
+</header>
+
+<main class="page" id="main">
+
+  <section class="hero">
+    <div class="eyebrow">Questions</div>
+    <h1>Questions we get asked</h1>
+    <p class="lede">Everything people ask us about Meraqi, in one place. If yours is not here, <a href="/contact">ask us</a> and we will answer it and add it.</p>
+    <nav class="jump" aria-label="Sections">
+      <a href="#common">Common to all</a>
+      <a href="#online">Online service</a>
+      <a href="#regulated">Regulated work</a>
+      <a href="#self-hosting">Self-hosting</a>
+    </nav>
+  </section>
+
+  <section id="common">
+    <h2>Common to all</h2>
+    <div class="sectnote">True wherever you run Meraqi</div>
+
+    <div class="faq">
+      <h3>What is an asset?</h3>
+      <p>An asset is something you bring to Meraqi and use as reference for new work. It covers your brand assets, meaning your logo and the fonts and colors that make your brand look like itself, and anything you upload for a particular job, such as images, speech, text, Word documents and PDFs. Assets are the input side of Meraqi, and every user has their own brand asset library to keep them in.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What is a design?</h3>
+      <p>A design is what Meraqi makes for you, from a prompt and whichever assets you point it at. A design is an image or a video today, and 3D is on the way. Every user has their own design library, and it holds the original design together with every later version of it, so nothing you make is replaced by the next attempt.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Are users isolated from each other, and is version history kept?</h3>
+      <p>Each user has their own design library containing every image and video they have generated and every version of each one. Nothing is visible to other users unless it is deliberately shared, and versions accumulate rather than overwrite, so any earlier state of a design can be produced on request. Offboarding, legal hold and erasure all operate against that boundary.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I trace which assets were used to make a design, and where it ended up?</h3>
+      <p>Yes. Meraqi records lineage in both directions, so every design is linked to the assets it was built from and to every export downstream of it. If a source file has to be withdrawn, whether because it carried protected health information, lost its license, or was pulled by legal, you can query everything derived from it rather than reconstructing the chain by hand.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What audit trail does Meraqi provide?</h3>
+      <p>An append-only audit record for every action in the system, capturing who performed it, what object it acted on, when it happened, where the request came from, and the generation job behind any output. Every object carries a time-ordered UUIDv7, so ordering is intrinsic rather than inferred. On a deployment you run, the records stay on your deployment and are queryable there under your own retention.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Will my work be used to train a model?</h3>
+      <p>No, and there is no setting that turns it on. Your prompts, your brand assets and your designs are never a training set, for us or for anyone else. On our online service Meraqi runs open-weight models we host ourselves rather than calling a third-party API, so your work is not handed to another company either. On a deployment you run, there is no mechanism by which it could happen, because the weights are local and static and nothing is transmitted off the system.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Does Meraqi train its own models?</h3>
+      <p>Not at this time. Meraqi runs open-weight models made by others, and our own work is the platform that turns them into editable, consistent designs and video. We may train models of our own in the future. If we do, they will never learn from your content.</p>
+    </div>
+  </section>
+
+  <section id="online">
+    <h2>The online service at meraqi.ai</h2>
+    <div class="sectnote">Plans and prices on the <a href="/pricing">pricing page</a></div>
+
+    <div class="faq">
+      <h3>Is the online service the same product as the self-hosted one?</h3>
+      <p>It is the same platform. What differs is where it runs. At meraqi.ai it is one online service that individuals and businesses all share, and on your own network it is the same software running inside your own perimeter.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How do I sign in, and what is my password?</h3>
+      <p>There is no password. You sign in with an account you already have, Google or Microsoft today with more to come, or with a 6-digit code sent to your email or your phone. Nothing to remember, and nothing for us to store.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What happens when I delete something?</h3>
+      <p>Deletion is real. Anything you delete is permanently removed after a 30-day recovery window, which exists so that an accident stays recoverable rather than final.</p>
+    </div>
+  </section>
+
+  <section id="regulated">
+    <h2>Regulated and classified work</h2>
+    <div class="sectnote">More on the <a href="/regulated-industries">regulated industries page</a></div>
+
+    <div class="faq">
+      <h3>Is there a HIPAA-compliant design tool for healthcare marketing?</h3>
+      <p>Not in the sense of a certified product, because HIPAA certifies organizations rather than software. The practical version of the question is whether a design tool can be used without creating a business-associate relationship. One that runs inside your own network can, because protected health information never reaches the vendor. Meraqi is built for that deployment model.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can AI design and video generation run in an air-gapped environment?</h3>
+      <p>Yes, provided the models run locally rather than behind an API, which is how Meraqi is built. Air-gapped deployments are built to order as part of an enterprise engagement and delivered on physical media, so no network path in or out is ever required.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How is air-gapped software delivered if the environment has no network?</h3>
+      <p>On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I prove that content never left my environment?</h3>
+      <p>The audit record shows every action taken on every asset and every design, and in a deployment with no egress there is no network path off the system for anything to have taken. Evidence and architecture agree, which is what an assessor is actually looking for.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can defense contractors use Meraqi under ITAR or CMMC?</h3>
+      <p>Meraqi deploys as a containerized workload inside an existing enclave, so it inherits the boundary you have already had assessed rather than asking you to extend it to a new cloud provider. Whether a given configuration satisfies your specific obligations is a determination for you and your assessor. We will provide the architectural detail needed to make it.</p>
+    </div>
+  </section>
+
+  <section id="self-hosting">
+    <h2>Running Meraqi on your own network</h2>
+    <div class="sectnote">More on the <a href="/self-hosted">self-hosted page</a></div>
+
+    <div class="faq">
+      <h3>Is Meraqi a self-hosted AI image generator?</h3>
+      <p>It does that, and more than that. Image generation is one capability alongside video and fully editable multi-layer design, with 3D on the roadmap. If you only want a self-hosted image generator there are simpler tools. Meraqi is for people who need the output to stay editable and to sit in a platform rather than a folder of renders.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Is Meraqi an open-source Canva alternative?</h3>
+      <p>It is a self-hosted alternative rather than an open-source one. The platform is commercial software you run on your own network, built on open-weight models. If you need an OSI-approved license and the right to fork, Meraqi will not meet that requirement, and a genuinely open project is the better choice for you.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Who else offers a self-hosted generative AI design platform?</h3>
+      <p>None that we have found, as of September 18, 2026, if you mean a finished design platform for a creative team, with editable multi-layer designs, images and video in one product, that runs entirely on your own network. The nearby options are different things. Most AI design and media tools are <a href="/comparative-pricing">public websites that meter usage in credits</a>, so self-hosting is not offered. Open-source image and video generators run locally for free. They produce renders rather than editable design documents and are yours to run and maintain, and some are self-hosted in name only because the part you run still calls someone else's models. A small number of enterprise vendors deploy generative models inside your environment, usually as an API for developers to build on. If you know of a platform we have missed, <a href="/contact">tell us</a> and we will correct this answer. Whichever you evaluate, apply the same test. Block outbound access and see whether it still generates.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Does it need an internet connection to generate anything?</h3>
+      <p>No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust.</p>
+    </div>
+
+    <div class="faq">
+      <h3>What if I do not have a GPU?</h3>
+      <p>Then use our online service at meraqi.ai. Self-hosting means you supply the compute, and generative work of this kind needs a reasonably current GPU to be pleasant. We would rather tell you that than sell you a deployment that disappoints. Tell us what hardware you have and we will give you a straight answer about whether it is worth it.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can I choose or swap the models?</h3>
+      <p>Yes. Model choices live in a deployment catalog that comes with the platform, rather than being hidden in the application, so you can see which weights are in use, substitute others, and pin a version that stays put until you decide to change it.</p>
+    </div>
+
+    <div class="faq">
+      <h3>How does self-hosting affect pricing?</h3>
+      <p>Once you supply the compute, the marginal cost of a generation is electricity rather than a per-seat fee. Licensing for self-hosted deployment is handled separately from the online plans. See <a href="/pricing">pricing</a> for the online plans, and talk to us for a self-hosted quote.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2>Still stuck on something?</h2>
+      <p>Ask us directly. We answer questions ourselves, and the good ones end up on this page.</p>
+      <a class="btn" href="/contact">Ask a question</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="mfoot">
+  <div class="mfoot-wrap">
+    <div class="mfoot-top">
+      <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
+      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h2>Company</h2><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="mfoot-col"><h2>Legal</h2><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
+    </div>
+  </div>
+  <div class="mfoot-bottom">
+    <span>&copy; 2026 Meraqi. A product of <a href="https://www.aionellc.com">AiOne LLC</a>. Made in Seattle.</span>
+    <span><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://meraqi.ai/faq#faq",
+  "isPartOf": { "@id": "https://meraqi.ai/#website" },
+  "about": { "@id": "https://meraqi.ai/#software" },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an asset?",
+      "acceptedAnswer": {"@type":"Answer","text":"An asset is something you bring to Meraqi and use as reference for new work. It covers your brand assets, meaning your logo and the fonts and colors that make your brand look like itself, and anything you upload for a particular job, such as images, speech, text, Word documents and PDFs. Assets are the input side of Meraqi, and every user has their own brand asset library to keep them in."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is a design?",
+      "acceptedAnswer": {"@type":"Answer","text":"A design is what Meraqi makes for you, from a prompt and whichever assets you point it at. A design is an image or a video today, and 3D is on the way. Every user has their own design library, and it holds the original design together with every later version of it, so nothing you make is replaced by the next attempt."}
+    },
+    {
+      "@type": "Question",
+      "name": "Are users isolated from each other, and is version history kept?",
+      "acceptedAnswer": {"@type":"Answer","text":"Each user has their own design library containing every image and video they have generated and every version of each one. Nothing is visible to other users unless it is deliberately shared, and versions accumulate rather than overwrite, so any earlier state of a design can be produced on request. Offboarding, legal hold and erasure all operate against that boundary."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I trace which assets were used to make a design, and where it ended up?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. Meraqi records lineage in both directions, so every design is linked to the assets it was built from and to every export downstream of it. If a source file has to be withdrawn, whether because it carried protected health information, lost its license, or was pulled by legal, you can query everything derived from it rather than reconstructing the chain by hand."}
+    },
+    {
+      "@type": "Question",
+      "name": "What audit trail does Meraqi provide?",
+      "acceptedAnswer": {"@type":"Answer","text":"An append-only audit record for every action in the system, capturing who performed it, what object it acted on, when it happened, where the request came from, and the generation job behind any output. Every object carries a time-ordered UUIDv7, so ordering is intrinsic rather than inferred. On a deployment you run, the records stay on your deployment and are queryable there under your own retention."}
+    },
+    {
+      "@type": "Question",
+      "name": "Will my work be used to train a model?",
+      "acceptedAnswer": {"@type":"Answer","text":"No, and there is no setting that turns it on. Your prompts, your brand assets and your designs are never a training set, for us or for anyone else. On our online service Meraqi runs open-weight models we host ourselves rather than calling a third-party API, so your work is not handed to another company either. On a deployment you run, there is no mechanism by which it could happen, because the weights are local and static and nothing is transmitted off the system."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does Meraqi train its own models?",
+      "acceptedAnswer": {"@type":"Answer","text":"Not at this time. Meraqi runs open-weight models made by others, and our own work is the platform that turns them into editable, consistent designs and video. We may train models of our own in the future. If we do, they will never learn from your content."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is the online service the same product as the self-hosted one?",
+      "acceptedAnswer": {"@type":"Answer","text":"It is the same platform. What differs is where it runs. At meraqi.ai it is one online service that individuals and businesses all share, and on your own network it is the same software running inside your own perimeter."}
+    },
+    {
+      "@type": "Question",
+      "name": "How do I sign in, and what is my password?",
+      "acceptedAnswer": {"@type":"Answer","text":"There is no password. You sign in with an account you already have, Google or Microsoft today with more to come, or with a 6-digit code sent to your email or your phone. Nothing to remember, and nothing for us to store."}
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when I delete something?",
+      "acceptedAnswer": {"@type":"Answer","text":"Deletion is real. Anything you delete is permanently removed after a 30-day recovery window, which exists so that an accident stays recoverable rather than final."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a HIPAA-compliant design tool for healthcare marketing?",
+      "acceptedAnswer": {"@type":"Answer","text":"Not in the sense of a certified product, because HIPAA certifies organizations rather than software. The practical version of the question is whether a design tool can be used without creating a business-associate relationship. One that runs inside your own network can, because protected health information never reaches the vendor. Meraqi is built for that deployment model."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI design and video generation run in an air-gapped environment?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes, provided the models run locally rather than behind an API, which is how Meraqi is built. Air-gapped deployments are built to order as part of an enterprise engagement and delivered on physical media, so no network path in or out is ever required."}
+    },
+    {
+      "@type": "Question",
+      "name": "How is air-gapped software delivered if the environment has no network?",
+      "acceptedAnswer": {"@type":"Answer","text":"On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I prove that content never left my environment?",
+      "acceptedAnswer": {"@type":"Answer","text":"The audit record shows every action taken on every asset and every design, and in a deployment with no egress there is no network path off the system for anything to have taken. Evidence and architecture agree, which is what an assessor is actually looking for."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can defense contractors use Meraqi under ITAR or CMMC?",
+      "acceptedAnswer": {"@type":"Answer","text":"Meraqi deploys as a containerized workload inside an existing enclave, so it inherits the boundary you have already had assessed rather than asking you to extend it to a new cloud provider. Whether a given configuration satisfies your specific obligations is a determination for you and your assessor. We will provide the architectural detail needed to make it."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is Meraqi a self-hosted AI image generator?",
+      "acceptedAnswer": {"@type":"Answer","text":"It does that, and more than that. Image generation is one capability alongside video and fully editable multi-layer design, with 3D on the roadmap. If you only want a self-hosted image generator there are simpler tools. Meraqi is for people who need the output to stay editable and to sit in a platform rather than a folder of renders."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is Meraqi an open-source Canva alternative?",
+      "acceptedAnswer": {"@type":"Answer","text":"It is a self-hosted alternative rather than an open-source one. The platform is commercial software you run on your own network, built on open-weight models. If you need an OSI-approved license and the right to fork, Meraqi will not meet that requirement, and a genuinely open project is the better choice for you."}
+    },
+    {
+      "@type": "Question",
+      "name": "Who else offers a self-hosted generative AI design platform?",
+      "acceptedAnswer": {"@type":"Answer","text":"None that we have found, as of September 18, 2026, if you mean a finished design platform for a creative team, with editable multi-layer designs, images and video in one product, that runs entirely on your own network. The nearby options are different things. Most AI design and media tools are public websites that meter usage in credits, so self-hosting is not offered. Open-source image and video generators run locally for free. They produce renders rather than editable design documents and are yours to run and maintain, and some are self-hosted in name only because the part you run still calls someone else's models. A small number of enterprise vendors deploy generative models inside your environment, usually as an API for developers to build on. If you know of a platform we have missed, tell us and we will correct this answer. Whichever you evaluate, apply the same test. Block outbound access and see whether it still generates."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does it need an internet connection to generate anything?",
+      "acceptedAnswer": {"@type":"Answer","text":"No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust."}
+    },
+    {
+      "@type": "Question",
+      "name": "What if I do not have a GPU?",
+      "acceptedAnswer": {"@type":"Answer","text":"Then use our online service at meraqi.ai. Self-hosting means you supply the compute, and generative work of this kind needs a reasonably current GPU to be pleasant. We would rather tell you that than sell you a deployment that disappoints. Tell us what hardware you have and we will give you a straight answer about whether it is worth it."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I choose or swap the models?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. Model choices live in a deployment catalog that comes with the platform, rather than being hidden in the application, so you can see which weights are in use, substitute others, and pin a version that stays put until you decide to change it."}
+    },
+    {
+      "@type": "Question",
+      "name": "How does self-hosting affect pricing?",
+      "acceptedAnswer": {"@type":"Answer","text":"Once you supply the compute, the marginal cost of a generation is electricity rather than a per-seat fee. Licensing for self-hosted deployment is handled separately from the online plans. See pricing for the online plans, and talk to us for a self-hosted quote."}
+    }
+  ]
+}
+</script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

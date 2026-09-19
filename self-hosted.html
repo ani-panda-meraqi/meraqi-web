@@ -72,11 +72,6 @@
   .candid h2{ font-size:26px; margin-bottom:14px; }
   .candid p:last-child{ margin-bottom:0; }
 
-  .faq{ border-top:1px solid var(--line); padding-top:22px; margin-top:22px; }
-  .faq:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
-  .faq h3{ margin:0 0 8px; font-size:18px; }
-  .faq p{ color:var(--muted); margin-bottom:0; }
-
   .cta{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:12px; padding:36px 32px; text-align:center; margin-block:24px; }
   .cta h2{ margin-bottom:12px; }
   .cta p{ margin-inline:auto; color:var(--muted); }
@@ -188,51 +183,8 @@
 
   <section>
     <h2>Questions we get asked</h2>
-
-    <div class="faq">
-      <h3>Is Meraqi a self-hosted AI image generator?</h3>
-      <p>It does that, and more than that. Image generation is one capability alongside video and fully editable multi-layer design, with 3D on the roadmap. If you only want a self-hosted image generator there are simpler tools. Meraqi is for people who need the output to stay editable and to sit in a platform rather than a folder of renders.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Is Meraqi an open-source Canva alternative?</h3>
-      <p>It is a self-hosted alternative rather than an open-source one. The platform is commercial software you run on your own network, built on open-weight models. If you need an OSI-approved license and the right to fork, Meraqi will not meet that requirement, and a genuinely open project is the better choice for you.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Who else offers a self-hosted generative AI design platform?</h3>
-      <p>None that we have found, as of September 18, 2026, if you mean a finished design platform for a creative team, with editable multi-layer designs, images and video in one product, that runs entirely on your own network. The nearby options are different things. Most AI design and media tools are <a href="/comparative-pricing">public websites that meter usage in credits</a>, so self-hosting is not offered. Open-source image and video generators run locally for free. They produce renders rather than editable design documents and are yours to run and maintain, and some are self-hosted in name only because the part you run still calls someone else's models. A small number of enterprise vendors deploy generative models inside your environment, usually as an API for developers to build on. If you know of a platform we have missed, <a href="/contact">tell us</a> and we will correct this answer. Whichever you evaluate, apply the same test. Block outbound access and see whether it still generates.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Does it need an internet connection to generate anything?</h3>
-      <p>No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust.</p>
-    </div>
-
-    <div class="faq">
-      <h3>What if I do not have a GPU?</h3>
-      <p>Then use our online service at meraqi.ai. Self-hosting means you supply the compute, and generative work of this kind needs a reasonably current GPU to be pleasant. We would rather tell you that than sell you a deployment that disappoints. Tell us what hardware you have and we will give you a straight answer about whether it is worth it.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Can I choose or swap the models?</h3>
-      <p>Yes. Model choices live in a deployment catalog that comes with the platform, rather than being hidden in the application, so you can see which weights are in use, substitute others, and pin a version that stays put until you decide to change it.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Is my work used to train anything?</h3>
-      <p>No. In a self-hosted deployment there is no mechanism by which it could be. The weights are local and static and nothing is transmitted off the system.</p>
-    </div>
-
-    <div class="faq">
-      <h3>Does Meraqi train its own models?</h3>
-      <p>Not at this time. Meraqi runs open-weight models made by others, and our own work is the platform that turns them into editable, consistent designs and video. We may train models of our own in the future. If we do, they will never learn from your content.</p>
-    </div>
-
-    <div class="faq">
-      <h3>How does self-hosting affect pricing?</h3>
-      <p>Once you supply the compute, the marginal cost of a generation is electricity rather than a per-seat fee. Licensing for self-hosted deployment is handled separately from the online plans. See <a href="/pricing">pricing</a> for the online plans, and talk to us for a self-hosted quote.</p>
-    </div>
+    <p>What happens if you do not have a GPU, whether you can swap the models, whether it generates with outbound access blocked, and how self-hosting changes the price. Those answers sit with the rest of them on the FAQ page, along with what is true wherever you run Meraqi.</p>
+    <a class="btn" href="/faq#self-hosting">Read the self-hosting questions</a>
   </section>
 
   <section>
@@ -250,7 +202,7 @@
   <div class="mfoot-wrap">
     <div class="mfoot-top">
       <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
-      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/#beta">Join the beta</a></div>
       <div class="mfoot-col"><h2>Company</h2><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
       <div class="mfoot-col"><h2>Legal</h2><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
     </div>
@@ -261,62 +213,6 @@
   </div>
 </footer>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://meraqi.ai/self-hosted#faq",
-  "isPartOf": { "@id": "https://meraqi.ai/#website" },
-  "about": { "@id": "https://meraqi.ai/#software" },
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is Meraqi a self-hosted AI image generator?",
-      "acceptedAnswer": {"@type":"Answer","text":"It does that, and more than that. Image generation is one capability alongside video and fully editable multi-layer design, with 3D on the roadmap. If you only want a self-hosted image generator there are simpler tools. Meraqi is for people who need the output to stay editable and to sit in a platform rather than a folder of renders."}
-    },
-    {
-      "@type": "Question",
-      "name": "Is Meraqi an open-source Canva alternative?",
-      "acceptedAnswer": {"@type":"Answer","text":"It is a self-hosted alternative rather than an open-source one. The platform is commercial software you run on your own network, built on open-weight models. If you need an OSI-approved license and the right to fork, Meraqi will not meet that requirement, and a genuinely open project is the better choice for you."}
-    },
-    {
-      "@type": "Question",
-      "name": "Who else offers a self-hosted generative AI design platform?",
-      "acceptedAnswer": {"@type":"Answer","text":"None that we have found, as of September 18, 2026, if you mean a finished design platform for a creative team, with editable multi-layer designs, images and video in one product, that runs entirely on your own network. The nearby options are different things. Most AI design and media tools are public websites that meter usage in credits, so self-hosting is not offered. Open-source image and video generators run locally for free. They produce renders rather than editable design documents and are yours to run and maintain, and some are self-hosted in name only because the part you run still calls someone else's models. A small number of enterprise vendors deploy generative models inside your environment, usually as an API for developers to build on. If you know of a platform we have missed, tell us and we will correct this answer. Whichever you evaluate, apply the same test. Block outbound access and see whether it still generates."}
-    },
-    {
-      "@type": "Question",
-      "name": "Does it need an internet connection to generate anything?",
-      "acceptedAnswer": {"@type":"Answer","text":"No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust."}
-    },
-    {
-      "@type": "Question",
-      "name": "What if I do not have a GPU?",
-      "acceptedAnswer": {"@type":"Answer","text":"Then use our online service at meraqi.ai. Self-hosting means you supply the compute, and generative work of this kind needs a reasonably current GPU to be pleasant. We would rather tell you that than sell you a deployment that disappoints. Tell us what hardware you have and we will give you a straight answer about whether it is worth it."}
-    },
-    {
-      "@type": "Question",
-      "name": "Can I choose or swap the models?",
-      "acceptedAnswer": {"@type":"Answer","text":"Yes. Model choices live in a deployment catalog that comes with the platform, rather than being hidden in the application, so you can see which weights are in use, substitute others, and pin a version that stays put until you decide to change it."}
-    },
-    {
-      "@type": "Question",
-      "name": "Is my work used to train anything?",
-      "acceptedAnswer": {"@type":"Answer","text":"No. In a self-hosted deployment there is no mechanism by which it could be. The weights are local and static and nothing is transmitted off the system."}
-    },
-    {
-      "@type": "Question",
-      "name": "Does Meraqi train its own models?",
-      "acceptedAnswer": {"@type":"Answer","text":"Not at this time. Meraqi runs open-weight models made by others, and our own work is the platform that turns them into editable, consistent designs and video. We may train models of our own in the future. If we do, they will never learn from your content."}
-    },
-    {
-      "@type": "Question",
-      "name": "How does self-hosting affect pricing?",
-      "acceptedAnswer": {"@type":"Answer","text":"Once you supply the compute, the marginal cost of a generation is electricity rather than a per-seat fee. Licensing for self-hosted deployment is handled separately from the online plans. See pricing for the online plans, and talk to us for a self-hosted quote."}
-    }
-  ]
-}
-</script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>
