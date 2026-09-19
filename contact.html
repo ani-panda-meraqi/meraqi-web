@@ -54,8 +54,8 @@
   .nav-links a:hover,.nav-links a.here{ color:var(--ink); }
 
   .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:var(--fbody); font-size:14.5px; font-weight:600; padding:11px 20px; border-radius:9px; border:1px solid transparent; cursor:pointer; transition:transform .15s, background .15s, box-shadow .15s, border-color .15s; white-space:nowrap; }
-  .btn-primary{ background:var(--accent); color:var(--cream-pure); }
-  .btn-primary:hover{ background:var(--accent-deep); transform:translateY(-1px); box-shadow:0 8px 26px rgba(238,90,52,0.28); }
+  .btn-primary{ background:var(--accent); color:var(--on-accent, #001533); }
+  .btn-primary:hover{ background:var(--accent-hover, #f6a085); transform:translateY(-1px); box-shadow:0 8px 26px rgba(238,90,52,0.28); }
   .btn-primary:disabled{ opacity:.6; cursor:default; transform:none; box-shadow:none; }
 
   /* contact layout */
@@ -88,7 +88,7 @@
     transition:border-color .15s, box-shadow .15s;
   }
   .field textarea{ resize:vertical; min-height:132px; line-height:1.55; }
-  .field input::placeholder,.field textarea::placeholder{ color:var(--muted-dim); }
+  .field input::placeholder,.field textarea::placeholder{ color:var(--muted); }
   .field input:focus,.field select:focus,.field textarea:focus{ border-color:var(--accent); box-shadow:0 0 0 4px rgba(238,90,52,0.14); }
   .field select{ appearance:none; -webkit-appearance:none; cursor:pointer;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2395a9bf' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");

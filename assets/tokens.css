@@ -10,6 +10,12 @@
    tokens stay in that page's own :root: --gold (legal pages), the
    --warn, --info and --accent-soft badge tokens plus color-scheme:dark
    (pricing pages). See /ARCHITECTURE.md.
+
+   Text on the coral accent uses --on-accent (navy, 5.3:1). Cream on
+   coral is 3.2:1 and fails WCAG AA at button sizes. Coral buttons hover
+   to --accent-hover (peach, 8.9:1 with navy text), never to a darker
+   coral. Pages reference these two with a literal fallback, because
+   files under /assets stay in browser caches for up to four hours.
    ============================================================ */
 :root{
   --bg: #001533;
@@ -20,6 +26,8 @@
   --accent: #ee5a34;
   --accent-deep: #d8421f;
   --accent-ink: #f6a085;
+  --on-accent: #001533;
+  --accent-hover: #f6a085;
   --muted: #95a9bf;
   --muted-dim: #7a8ea3;
   --line: rgba(238,241,236,0.10);
