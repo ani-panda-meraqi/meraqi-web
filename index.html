@@ -216,6 +216,14 @@
   .final p a:hover{ color:inherit; }
   .final .capture-status{ margin:0 auto; text-align:left; background:rgba(0,21,51,0.40); border-color:rgba(0,21,51,0.5); color:var(--cream-pure); }
   .final .capture-status.err{ margin:10px auto 0; text-align:center; background:transparent; color:#2d0f08; }
+  /* On the coral band the site's peach focus ring is too close to the
+     background, and the field's coral focus border disappears into it.
+     Both go navy, which is 5.3:1 on coral. Inside the sign-up box the
+     surface is dark instead, so the ring stays peach there, 3.5:1, and
+     navy would be 2.5:1. */
+  .final :focus-visible{ outline-color:#001533; }
+  .final .capture :focus-visible{ outline-color:#f6a085; }
+  .final .capture:focus-within{ border-color:#001533; box-shadow:0 0 0 4px rgba(0,21,51,0.28); }
 
   /* footer */
   footer{ background:var(--bg); border-top:1px solid var(--line); padding-block:60px 30px; }
