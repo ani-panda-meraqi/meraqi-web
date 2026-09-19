@@ -172,7 +172,7 @@
   /* steps */
   .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:36px; }
   .step .num{ font-family:var(--fmono); font-size:13px; color:var(--accent); letter-spacing:0.1em; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line); }
-  .step h4{ font-family:var(--fdisplay); font-weight:600; font-size:21px; line-height:1.15; margin-bottom:11px; color:var(--cream-pure); }
+  .step h3{ font-family:var(--fdisplay); font-weight:600; font-size:21px; line-height:1.15; margin-bottom:11px; color:var(--cream-pure); }
   .step p{ font-size:14.5px; color:var(--muted); line-height:1.6; }
   .step p code{ font-family:var(--fmono); font-size:0.86em; color:var(--accent-ink); }
 
@@ -181,7 +181,7 @@
   .fcard{ background:var(--bg); padding:34px 30px; transition:background .2s; }
   .fcard:hover{ background:#021a3a; }
   .ficon{ width:34px; height:34px; color:var(--accent); margin-bottom:22px; }
-  .fcard h4{ font-family:var(--fdisplay); font-weight:600; font-size:20px; line-height:1.15; margin-bottom:11px; color:var(--cream-pure); }
+  .fcard h3{ font-family:var(--fdisplay); font-weight:600; font-size:20px; line-height:1.15; margin-bottom:11px; color:var(--cream-pure); }
   .fcard p{ font-size:15px; color:var(--muted); line-height:1.62; }
   .fcard{ position:relative; }
   .fcard .ftag{ position:absolute; top:36px; right:28px; font-family:var(--fmono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line-strong); border-radius:999px; padding:3px 9px; }
@@ -192,7 +192,7 @@
   .wcard{ border:1px solid var(--line); border-radius:14px; padding:30px 28px; background:var(--bg-soft); transition:transform .2s, border-color .2s; }
   .wcard:hover{ transform:translateY(-3px); border-color:var(--line-strong); }
   .wcard .k{ font-family:var(--fmono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; }
-  .wcard h4{ font-family:var(--fdisplay); font-weight:600; font-size:23px; margin-bottom:12px; color:var(--cream-pure); }
+  .wcard h3{ font-family:var(--fdisplay); font-weight:600; font-size:23px; margin-bottom:12px; color:var(--cream-pure); }
   .wcard p{ font-size:15px; color:var(--muted); line-height:1.62; }
   .wcard.wide{ margin-top:24px; border-color:rgba(238,90,52,0.32); background:linear-gradient(150deg, rgba(238,90,52,0.09) 0%, var(--bg-soft) 55%); }
   .wcard.wide:hover{ transform:none; border-color:rgba(238,90,52,0.5); }
@@ -264,6 +264,7 @@
     .rv{ opacity:1; transform:none; }
   }
 </style>
+<noscript><style>.rv{ opacity:1; transform:none; }</style></noscript>
 <link rel="stylesheet" href="assets/site.css"/>
 <script type="application/ld+json">
 {
@@ -368,6 +369,7 @@
 </script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- nav -->
 <header class="mnav" id="mnav">
@@ -394,6 +396,8 @@
     <a href="/#beta" class="mnav-cta">Join the beta</a>
   </div>
 </header>
+
+<main id="main">
 
 <!-- hero -->
 <section id="top" class="hero">
@@ -468,13 +472,13 @@
       <h2 class="sec-t">If you design to <em>communicate</em>, not to win awards.</h2>
     </div>
     <div class="wgrid">
-      <div class="wcard rv"><div class="k">Solo</div><h4>Creators & solopreneurs</h4><p>Turn ideas into a week of polished content in an hour. Headers, posts, thumbnails, slides. On brand, editable, fast.</p></div>
-      <div class="wcard rv"><div class="k">1-10</div><h4>Small marketing teams</h4><p>Campaign creation without waiting on a designer. Turn one brief into on-brand designs for every format in an afternoon.</p></div>
-      <div class="wcard rv"><div class="k">Studio</div><h4>Agencies & consultants</h4><p>Separate brand kits per client, and deployment on your own network for regulated-industry work.</p></div>
+      <div class="wcard rv"><div class="k">Solo</div><h3>Creators & solopreneurs</h3><p>Turn ideas into a week of polished content in an hour. Headers, posts, thumbnails, slides. On brand, editable, fast.</p></div>
+      <div class="wcard rv"><div class="k">1-10</div><h3>Small marketing teams</h3><p>Campaign creation without waiting on a designer. Turn one brief into on-brand designs for every format in an afternoon.</p></div>
+      <div class="wcard rv"><div class="k">Studio</div><h3>Agencies & consultants</h3><p>Separate brand kits per client, and deployment on your own network for regulated-industry work.</p></div>
     </div>
     <div class="wcard wide rv">
       <div class="k">Regulated industries &amp; confidential work</div>
-      <h4>Built for work that can't touch the public cloud</h4>
+      <h3>Built for work that can't touch the public cloud</h3>
       <p>The same platform, deployed inside your own network: on your hardware, or in your private or government cloud, up to fully air-gapped. Models run locally, and nothing you make ever leaves your environment.</p>
       <div class="seg-chips">
         <span>Government &amp; defense (FedRAMP · ITAR · CMMC)</span>
@@ -534,10 +538,10 @@
     <p class="sec-sub">Describe what you want. Meraqi plans it, renders it, and hands you every layer, ready to resize, email, or print.</p>
   </div>
   <div class="steps">
-    <div class="step rv"><div class="num">01</div><h4>Describe it</h4><p>"Instagram post for our spring sale, warm and friendly." Or start from a template and your brand kit.</p></div>
-    <div class="step rv"><div class="num">02</div><h4>Meraqi plans</h4><p>Gemma&nbsp;4 lays out canvas, hierarchy, palette, and type as a <code>DesignSpec</code>. You see the plan before anything renders.</p></div>
-    <div class="step rv"><div class="num">03</div><h4>Edit every layer</h4><p>Z-Image renders it to an editable canvas. Refine on the spot, or send a layer to advanced editing for precise masks and compositing.</p></div>
-    <div class="step rv"><div class="num">04</div><h4>Resize and publish</h4><p>Magic Resize reflows your design to 13+ formats, ready to post. Direct publishing to each channel is on the way.</p></div>
+    <div class="step rv"><div class="num">01</div><h3>Describe it</h3><p>"Instagram post for our spring sale, warm and friendly." Or start from a template and your brand kit.</p></div>
+    <div class="step rv"><div class="num">02</div><h3>Meraqi plans</h3><p>Gemma&nbsp;4 lays out canvas, hierarchy, palette, and type as a <code>DesignSpec</code>. You see the plan before anything renders.</p></div>
+    <div class="step rv"><div class="num">03</div><h3>Edit every layer</h3><p>Z-Image renders it to an editable canvas. Refine on the spot, or send a layer to advanced editing for precise masks and compositing.</p></div>
+    <div class="step rv"><div class="num">04</div><h3>Resize and publish</h3><p>Magic Resize reflows your design to 13+ formats, ready to post. Direct publishing to each channel is on the way.</p></div>
   </div>
 </section>
 
@@ -549,12 +553,12 @@
       <h2 class="sec-t">AI <em>speed</em>, without giving up your passion and creativity.</h2>
     </div>
     <div class="fgrid">
-      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg><h4>True multi-layer compositions</h4><p>Every element is a real layer you can select, edit, and reorder. No regenerating the whole image to move one thing.</p></div>
-      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><h4>Your data stays yours</h4><p>Meraqi-hosted open-weight models, no third-party API. Your prompts, brand kits, and designs are never a training set for someone else's product. And deletion is real. Anything you delete is permanently removed after a 30-day recovery window.</p></div>
-      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0-7 14.5L12 12l7 5.5A9 9 0 0 0 12 3z"/></svg><h4>Your brand, learned once</h4><p>Upload colors, fonts, and references. Every generation respects them.</p></div>
-      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><h4>One design, every channel</h4><p>Magic Resize adapts a design to 13+ formats. Send it as an email, or print it on demand.</p></div>
-      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="ftag">On the way</span><h4>Design together, live</h4><p>Multi-user editing with live cursors, comments, and approval flows. Agencies and teams work the same canvas at once.</p></div>
-      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l2.8 2.8M16.2 16.2 19 19M19 5l-2.8 2.8M7.8 16.2 5 19"/></svg><span class="ftag">On the way</span><h4>Campaigns that run themselves</h4><p>Set an agent to generate, get approval, and publish to social on a schedule. Talk to it from WhatsApp, Slack, or Telegram.</p></div>
+      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg><h3>True multi-layer compositions</h3><p>Every element is a real layer you can select, edit, and reorder. No regenerating the whole image to move one thing.</p></div>
+      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg><h3>Your data stays yours</h3><p>Meraqi-hosted open-weight models, no third-party API. Your prompts, brand kits, and designs are never a training set for someone else's product. And deletion is real. Anything you delete is permanently removed after a 30-day recovery window.</p></div>
+      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0-7 14.5L12 12l7 5.5A9 9 0 0 0 12 3z"/></svg><h3>Your brand, learned once</h3><p>Upload colors, fonts, and references. Every generation respects them.</p></div>
+      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3v12"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg><h3>One design, every channel</h3><p>Magic Resize adapts a design to 13+ formats. Send it as an email, or print it on demand.</p></div>
+      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="ftag">On the way</span><h3>Design together, live</h3><p>Multi-user editing with live cursors, comments, and approval flows. Agencies and teams work the same canvas at once.</p></div>
+      <div class="fcard rv"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l2.8 2.8M16.2 16.2 19 19M19 5l-2.8 2.8M7.8 16.2 5 19"/></svg><span class="ftag">On the way</span><h3>Campaigns that run themselves</h3><p>Set an agent to generate, get approval, and publish to social on a schedule. Talk to it from WhatsApp, Slack, or Telegram.</p></div>
     </div>
   </div>
 </section>
@@ -567,9 +571,9 @@
     <p class="sec-sub">Meraqi doesn't stop at stills. The engine that keeps a layout on brand also keeps a moving scene consistent from frame to frame, so your spot plays like one continuous shot, not a slideshow.</p>
   </div>
   <div class="wgrid">
-    <div class="step rv"><div class="num">01</div><h4>Full scenes, with speech</h4><p>People, products, camera moves, lighting, and a voice track, in up to 60 seconds of continuous 1080p video.</p></div>
-    <div class="step rv"><div class="num">02</div><h4>A link becomes an ad</h4><p>Paste your product or marketing page. Meraqi reads it once, plans the spot, and renders it. Your page content is used for that one job, then discarded, never trained on.</p></div>
-    <div class="step rv"><div class="num">03</div><h4>Consistency is the hard part</h4><p>No system today generates a long video in one shot; every long video is segments joined together. Meraqi's engine is what holds the segments together: the same people, style, and light from one second to the next.</p></div>
+    <div class="step rv"><div class="num">01</div><h3>Full scenes, with speech</h3><p>People, products, camera moves, lighting, and a voice track, in up to 60 seconds of continuous 1080p video.</p></div>
+    <div class="step rv"><div class="num">02</div><h3>A link becomes an ad</h3><p>Paste your product or marketing page. Meraqi reads it once, plans the spot, and renders it. Your page content is used for that one job, then discarded, never trained on.</p></div>
+    <div class="step rv"><div class="num">03</div><h3>Consistency is the hard part</h3><p>No system today generates a long video in one shot; every long video is segments joined together. Meraqi's engine is what holds the segments together: the same people, style, and light from one second to the next.</p></div>
   </div>
 </section>
 
@@ -588,14 +592,16 @@
   </div>
 </section>
 
+</main>
+
 <!-- footer -->
 <footer class="mfoot">
   <div class="mfoot-wrap">
     <div class="mfoot-top">
       <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
-      <div class="mfoot-col"><h6>Product</h6><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
-      <div class="mfoot-col"><h6>Company</h6><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
-      <div class="mfoot-col"><h6>Legal</h6><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
+      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h2>Company</h2><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="mfoot-col"><h2>Legal</h2><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
     </div>
   </div>
   <div class="mfoot-bottom">
