@@ -34,6 +34,11 @@ li{margin:6px 0}
 strong{color:var(--cream-pure)}
 table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px}
 th,td{border:1px solid var(--line-strong);padding:9px 11px;text-align:left;vertical-align:top}
+/* The three-column table cannot go narrower than about 292px, so on a
+   small phone it scrolls inside this wrapper instead of dragging the
+   whole page sideways. */
+.tablewrap{overflow-x:auto;margin:16px 0}
+.tablewrap table{margin:0}
 th{background:var(--bg-soft);color:var(--cream-pure)}
 .toc{margin:0 0 8px}
 .toc a{display:inline-block;margin:0 14px 8px 0;font-size:15px;color:var(--muted);text-decoration:none}
@@ -93,12 +98,14 @@ footer .fine{color:var(--muted-dim);margin-top:12px;font-size:13px;line-height:1
 
   <h2>2. Categories we use</h2>
   <p>Our public websites (meraqi.ai and aionellc.com) set no analytics or advertising cookies. We measure page views with Cloudflare Web Analytics, which uses no cookies and does not track individuals. Strictly necessary cookies are set only when you sign in to the Meraqi app.</p>
+  <div class="tablewrap">
   <table>
     <tr><th>Category</th><th>Purpose</th><th>Consent</th></tr>
     <tr><td><strong>Strictly necessary / functional</strong></td><td>Sign-in, session security, load balancing, and remembering preferences in the Meraqi app. The Service cannot work properly without these.</td><td>Always on</td></tr>
     <tr><td><strong>Optional product analytics</strong> (Meraqi app only)</td><td>Help us understand which features are used so we can improve the Service. Off until you choose. We ask once when you create your account, and you can change your answer at any time in your account settings.</td><td>Off by default, your choice</td></tr>
     <tr><td><strong>Advertising</strong></td><td>We do not set advertising cookies on our websites or in the Service. If that ever changes, we will ask for your consent first. We do not use advertising cookies to share SMS opt-in data.</td><td>Not used</td></tr>
   </table>
+  </div>
 
   <h2>3. Your choices</h2>
   <div class="callout">
