@@ -95,6 +95,10 @@
     background: var(--bg-soft); font-size: 13px; color: var(--ink);
   }
   .beta b { color: var(--accent-ink); }
+  .beta-next { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 16px; }
+  .beta-next p { font-size: 13px; color: var(--muted); }
+  .beta-next p a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .beta-next p a:hover { color: var(--ink); }
   .fn { color: var(--accent-ink); text-decoration: none; font-weight: 600; }
   #fn-regulated, #fn-fairuse { margin: 16px 0 0; padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); font-size: 12.5px; color: var(--ink); }
 
@@ -187,7 +191,12 @@
 <p style="margin-top: 10px; font-size: 12.5px;"><b>Annual billing, all paid tiers:</b> "Sign up for the whole year, get two months free." Starter $120, Pro $250, Business $500 per seat per year; exactly two months free on every tier. Monthly price is always the headline price.</p>
 
 <div class="beta">
-  <b>Private beta, closes 12/31/2026.</b> The first 500 guests get in, first come, first served, with a public waitlist beyond that; a second wave opens once production capacity is live. During the beta you get privileged access in exchange for your patronage and feedback. When the beta ends, guests have the option to sign up for Pro for life at <b>$150/year</b> instead of $250, for as long as the subscription stays active. Cancel anytime; access runs through the end of the paid year.
+  <b>Private beta, closes 12/31/2026.</b> The first 500 guests get in, first come, first served, with a public waitlist beyond that. During the beta you get privileged access in exchange for your patronage and feedback. When the beta ends, guests have the option to sign up for Pro for life at <b>$150/year</b> instead of $250, for as long as the subscription stays active. Cancel anytime; access runs through the end of the paid year.
+</div>
+
+<div class="beta-next">
+  <a href="/#beta" class="mnav-cta">Join the beta</a>
+  <p>Self-Hosted is priced per deployment. <a href="/contact">Talk to us</a> about yours.</p>
 </div>
 
 <p id="fn-regulated"><b>&dagger; Self-Hosted, what it means:</b> the platform is deployed inside the customer's own network rather than as shared SaaS: on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as offline packages, on your schedule. Signed packages are planned. Quotas are unlimited because generation runs on customer-owned GPUs: capacity is the deployment's hardware, not shared infrastructure. Storage is sized to your hardware, up to 1 PB per deployment; larger by arrangement. Priced per deployment.</p>
