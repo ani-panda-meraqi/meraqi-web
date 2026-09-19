@@ -29,9 +29,13 @@ export async function onRequestPost(context) {
     return json({ error: "Invalid request." }, 400);
   }
 
-  // Honeypot: real users never fill the hidden "company" field; bots do.
-  if (body && typeof body.company === "string" && body.company.trim() !== "") {
-    return json({ ok: true }, 200); // accept silently, store nothing
+  // Honeypot: real users never fill the hidden field; bots do. Accept silently and store
+  // nothing, but do NOT report the message as saved, so the page never thanks anyone for a
+  // message that was dropped. The field is named "hp" because browser autofill fills
+  // fields called "company"; "company" is still read for pages cached before the rename.
+  const trap = body ? (body.hp ?? body.company) : "";
+  if (typeof trap === "string" && trap.trim() !== "") {
+    return json({ ok: true }, 200);
   }
 
   const name = String((body && body.name) || "").trim().slice(0, 120);
@@ -50,14 +54,24 @@ export async function onRequestPost(context) {
   }
 
   try {
-    await env.DB.prepare(
+    const res = await env.DB.prepare(
       "INSERT INTO messages (name, email, topic, message, source_site, created_at) VALUES (?, ?, ?, ?, ?, ?)"
     ).bind(name || null, email, topic, message, "meraqi.ai", new Date().toISOString()).run();
+
+    // Read the row back by its id before confirming. The page says thank you only when
+    // saved is true, so that message always reflects a committed row.
+    const id = res && res.meta ? res.meta.last_row_id : null;
+    const row = id == null ? null : await env.DB.prepare(
+      "SELECT 1 AS present FROM messages WHERE id = ? LIMIT 1"
+    ).bind(id).first();
+    if (!row) {
+      return json({ error: "Could not send right now. Please email hello@meraqi.ai." }, 500);
+    }
   } catch (e) {
     return json({ error: "Could not send right now. Please email hello@meraqi.ai." }, 500);
   }
 
-  return json({ ok: true }, 200);
+  return json({ ok: true, saved: true }, 200);
 }
 
 function isEmail(s) {
