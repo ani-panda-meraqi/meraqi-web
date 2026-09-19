@@ -32,7 +32,7 @@
 .mnav-drawer a{font-size:16px;color:#eef1ec;text-decoration:none;padding:13px 0;border-top:1px solid rgba(238,241,236,0.08)}
 .mnav-drawer .mnav-cta{align-self:flex-start;margin-top:16px;border-top:0;color:#f7f8f4}
 .mnav.open .mnav-drawer{display:flex}
-@media(max-width:860px){.mnav-links{display:none}.mnav-brand .mnav-strap{display:none}.mnav-row>.mnav-cta{display:none}.mnav-burger{display:block}}
+@media(max-width:860px){.mnav-row{padding-top:10px;padding-bottom:10px;gap:10px}.mnav-brand{gap:3px}.mnav-brand img{height:40px}.mnav-strap{font-size:11px}.mnav-links{display:none}.mnav-row>.mnav-cta{display:none}.mnav-burger{display:block}}
 .mfoot{background:#001533;border-top:1px solid rgba(238,241,236,0.10);padding:56px 0 26px;font-family:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .mfoot-wrap{max-width:1200px;margin:0 auto;padding:0 32px}
 .mfoot-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:40px;margin-bottom:42px}
