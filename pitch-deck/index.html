@@ -54,9 +54,13 @@
   .pdfline{ margin-top:18px; font-family:var(--fmono); font-size:12px; letter-spacing:0.04em; color:var(--muted-dim); }
   .pdfline a{ color:var(--accent-ink); text-decoration:none; border-bottom:1px solid rgba(238,90,52,0.34); }
   .pdfline a:hover{ color:var(--accent); }
-  .about{ margin-top:clamp(40px,7vh,64px); border-top:1px solid var(--line); padding-top:32px; }
+  /* About comes first, so the rule that used to sit above it now sits
+     above the decks instead. */
+  .about{ margin-bottom:clamp(40px,7vh,64px); }
   .about .eyebrow{ margin-bottom:24px; }
+  .pitch{ border-top:1px solid var(--line); padding-top:clamp(32px,6vh,48px); }
   .point{ margin-bottom:22px; }
+  .point:last-child{ margin-bottom:0; }
   .point .k{ font-family:var(--fmono); font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:var(--accent); margin-bottom:7px; }
   .point p{ font-size:14.5px; line-height:1.62; color:var(--muted); }
   .point p em{ font-style:italic; color:var(--accent-ink); }
@@ -67,27 +71,6 @@
 <div class="glow"></div>
 <main>
   <div class="lockup"><img src="/assets/brand.png" alt="Meraqi"/></div>
-  <div class="eyebrow">Investor &amp; Federal Materials</div>
-  <h1>Pitch Decks</h1>
-  <p class="lead">Shared by link with invited recipients. Decks open in the browser; arrow keys or scroll to advance.</p>
-  <nav class="decks">
-    <a class="card" href="/pitch-deck/public">
-      <div class="t"><div class="k">Investor Pitch</div><h2>Consumer Edition</h2></div>
-      <div class="m">12 slides →</div>
-    </a>
-    <a class="card" href="/pitch-deck/sovereign">
-      <div class="t"><div class="k">Investor Pitch</div><h2>Sovereign Edition</h2></div>
-      <div class="m">13 slides →</div>
-    </a>
-    <a class="card" href="/pitch-deck/dualuse">
-      <div class="t"><div class="k">Investor Pitch</div><h2>Dual-Use Edition</h2></div>
-      <div class="m">15 slides →</div>
-    </a>
-    <a class="card" href="/pitch-deck/dod">
-      <div class="t"><div class="k">DoD · AFWERX SBIR</div><h2>DoD Edition</h2></div>
-      <div class="m">6 slides →</div>
-    </a>
-  </nav>
   <section class="about">
     <div class="eyebrow">About Meraqi</div>
     <div class="point">
@@ -110,6 +93,29 @@
       <div class="k">Business and stage</div>
       <p>The only vendor in its field with a published Self-Hosted tier, an on-prem license metered by VRAM (~$75k/yr baseline, unlimited seats), alongside outcome-priced SaaS at $12/$25/$50 per seat/month; solo-founder pre-seed raising $750K, with a signed pilot LOI and NSF SBIR and DoD/AFWERX tracks in flight.</p>
     </div>
+  </section>
+  <section class="pitch">
+  <div class="eyebrow">Investor &amp; Federal Materials</div>
+  <h1>Pitch Decks</h1>
+  <p class="lead">Shared by link with invited recipients. Decks open in the browser; arrow keys or scroll to advance.</p>
+  <nav class="decks">
+    <a class="card" href="/pitch-deck/public">
+      <div class="t"><div class="k">Investor Pitch</div><h2>Consumer Edition</h2></div>
+      <div class="m">12 slides →</div>
+    </a>
+    <a class="card" href="/pitch-deck/sovereign">
+      <div class="t"><div class="k">Investor Pitch</div><h2>Sovereign Edition</h2></div>
+      <div class="m">13 slides →</div>
+    </a>
+    <a class="card" href="/pitch-deck/dualuse">
+      <div class="t"><div class="k">Investor Pitch</div><h2>Dual-Use Edition</h2></div>
+      <div class="m">15 slides →</div>
+    </a>
+    <a class="card" href="/pitch-deck/dod">
+      <div class="t"><div class="k">DoD · AFWERX SBIR</div><h2>DoD Edition</h2></div>
+      <div class="m">6 slides →</div>
+    </a>
+  </nav>
   </section>
 </main>
 <footer>
