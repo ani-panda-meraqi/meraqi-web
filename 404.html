@@ -2,14 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Not found &middot; Meraqi</title>
+<!-- Served at any path, so every asset and link here is root-absolute. -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tokens.css"/>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fbody);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;text-decoration-color:var(--accent)}
+a:hover{color:var(--accent-ink)}
+::selection{background:var(--accent);color:var(--cream-pure)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;width:100%}
+main{flex:1 0 auto;display:grid;place-items:center;padding:104px 0}
+.nf{text-align:center}
+.nf h1{font-family:var(--fdisplay);font-optical-sizing:auto;font-weight:600;font-size:clamp(30px,5vw,44px);line-height:1.1;letter-spacing:-0.015em;color:var(--cream-pure);margin:0 0 24px}
+.nf .home{font-family:var(--fbody);font-size:15px;font-weight:600;padding:12px 22px;border-radius:9px;background:var(--accent);color:var(--on-accent,#001533);text-decoration:none;display:inline-block;transition:background .15s}
+.nf .home:hover{background:var(--accent-hover,#f6a085);color:var(--on-accent,#001533)}
+@media(max-width:520px){.wrap{padding-left:22px;padding-right:22px}main{padding:64px 0}}
+</style>
+<link rel="stylesheet" href="/assets/site.css"/>
 </head>
-<body style="background:#0d1526;color:#e8ebf0;font-family:system-ui,-apple-system,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0">
-<div style="text-align:center;padding:24px">
-<p style="font-size:18px;margin:0 0 12px">Page not found.</p>
-<a href="/" style="color:#ee5a34;text-decoration:none">meraqi.ai &rarr;</a>
-</div>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="mnav" id="mnav">
+  <div class="mnav-row">
+    <a class="mnav-brand" href="/" aria-label="Meraqi home"><img src="/assets/brand.png" alt="Meraqi"/><span class="mnav-strap">Elegant, Simple, Sovereign and Secure</span></a>
+    <nav class="mnav-links">
+      <a href="/#who">Who it's for</a>
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/#video">Video</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+    <button class="mnav-burger" id="mnav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav-drawer"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+  <div class="mnav-drawer" id="mnav-drawer">
+    <a href="/#who">Who it's for</a>
+    <a href="/#how">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/#video">Video</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
+    <a href="/#beta" class="mnav-cta">Join the beta</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="nf">
+      <h1>Page not found.</h1>
+      <a class="home" href="/">meraqi.ai &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<footer class="mfoot">
+  <div class="mfoot-wrap">
+    <div class="mfoot-top">
+      <div class="mfoot-brand"><a href="/" aria-label="Meraqi"><img src="/assets/brand.png" alt="Meraqi"/></a><p>Empowering creative professionals: Elegant, Simple, Sovereign and Secure.</p></div>
+      <div class="mfoot-col"><h2>Product</h2><a href="/#how">How it works</a><a href="/#features">Features</a><a href="/self-hosted">Self-hosted</a><a href="/regulated-industries">Regulated industries</a><a href="/#video">Video</a><a href="/pricing">Pricing</a><a href="/#beta">Join the beta</a></div>
+      <div class="mfoot-col"><h2>Company</h2><a href="/contact">Contact</a><a href="https://www.aionellc.com">AiOne LLC</a><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="mfoot-col"><h2>Legal</h2><a href="/terms">Terms &amp; Conditions</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Policy</a></div>
+    </div>
+  </div>
+  <div class="mfoot-bottom">
+    <span>&copy; 2026 Meraqi. A product of <a href="https://www.aionellc.com">AiOne LLC</a>. Made in Seattle.</span>
+    <span><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
