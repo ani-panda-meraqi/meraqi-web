@@ -134,7 +134,7 @@
     <p>Every mainstream AI design tool is a public website. To use one, your team uploads the asset to a third party's infrastructure. That might be a patient photograph, an unreleased product render, a technical drawing. There it is processed by models you do not control, retained under a policy you did not write, and handled by subprocessors you did not select.</p>
     <p>For most companies that is a procurement conversation. For a hospital marketing team, a broker-dealer, an agency on a federal contract or a defense supplier, it is a control failure, and no amount of vendor assurance changes where the bytes went.</p>
     <div class="statement">If the content never crosses your network boundary, most of the compliance argument never has to be made.</div>
-    <p>Meraqi is built to run on either side of that boundary. Deployed to your intranet, the models, the rendering pipeline and the generated assets all sit inside your own perimeter. There is no upload step, no third-party model API call, and no telemetry carrying content out.</p>
+    <p>Meraqi is built to run on either side of that boundary. Deployed to your intranet, the models, the rendering pipeline and the designs you generate all sit inside your own perimeter. There is no upload step, no third-party model API call, and no telemetry carrying content out.</p>
   </section>
 
   <section>
@@ -222,20 +222,20 @@
         </thead>
         <tbody>
           <tr><td>Who</td><td>The identity and role behind every action, tied to the account that performed it.</td></tr>
-          <tr><td>What</td><td>The action and its object. Prompt submitted, asset generated, layer edited, version restored, asset exported, asset deleted.</td></tr>
+          <tr><td>What</td><td>The action and its object. Prompt submitted, design generated, layer edited, version restored, design exported, design deleted.</td></tr>
           <tr><td>When</td><td>Every object in the system carries a UUIDv7, which is time-ordered by construction, so a sequence can be reconstructed exactly rather than approximately. The v1, v2, v3 you see in the interface are labels over those identifiers.</td></tr>
           <tr><td>Where</td><td>Two things. Where the request came from, and the path of the content itself, meaning which source assets were drawn on, which output they produced, and where that output was exported to.</td></tr>
-          <tr><td>How</td><td>The interface used, and the generation job behind the output. Each asset traces to its job, and the job records the model and version that ran.</td></tr>
+          <tr><td>How</td><td>The interface used, and the generation job behind the output. Each design traces to its job, and the job records the model and version that ran.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>Every user has their own library, and nothing is overwritten</h3>
-    <p>Each user works in a library of their own, holding every asset they have generated, images and video alike, together with every version of each one. Users do not see one another's work unless it has been deliberately shared. That is how minimum necessary access under HIPAA, need to know handling for controlled information, and information barriers between deal teams get enforced rather than merely intended.</p>
-    <p>Versions accumulate instead of replacing one another. The asset that was live last March is still there exactly as it was, which is the difference between answering a complaint and reconstructing an answer to one. Offboarding a user, placing a legal hold and satisfying an erasure request all operate against that boundary rather than as a search across shared storage you then have to prove was exhaustive.</p>
+    <h3>Every user has their own design library, and nothing is overwritten</h3>
+    <p>Each user works in a library of their own, holding every design they have generated, images and video alike, together with every version of each one. Users do not see one another's work unless it has been deliberately shared. That is how minimum necessary access under HIPAA, need to know handling for controlled information, and information barriers between deal teams get enforced rather than merely intended.</p>
+    <p>Versions accumulate instead of replacing one another. The design that was live last March is still there exactly as it was, which is the difference between answering a complaint and reconstructing an answer to one. Offboarding a user, placing a legal hold and satisfying an erasure request all operate against that boundary rather than as a search across shared storage you then have to prove was exhaustive.</p>
 
     <h3>Lineage runs in both directions</h3>
-    <p>Events on their own tell you what happened. Lineage tells you what it touched. Every asset records the inputs it was built from and the outputs it went on to produce, so the chain running from source material through generation to export is one connected record rather than a scatter of unrelated log lines.</p>
+    <p>Events on their own tell you what happened. Lineage tells you what it touched. Every design records the assets it was built from and the outputs it went on to produce, so the chain running from source material through generation to export is one connected record rather than a scatter of unrelated log lines.</p>
     <p>That makes the expensive question cheap. If a source file turns out to have carried protected health information, or a licensed image is withdrawn, or legal pulls a campaign after it has shipped, you can ask what else is downstream of this one file and get a complete answer. Ask a public design website the same question and there is no answer available at any price, because it never recorded which upload fed which output.</p>
 
     <h3>The record is yours</h3>
@@ -248,7 +248,7 @@
     <ul>
       <li><strong>No dependency on a third-party API.</strong> Your creative pipeline cannot be broken by someone else's rate limit, deprecation notice or price change.</li>
       <li><strong>Auditability.</strong> You can name the model, the version and the license under which it is used, which is the first question any serious procurement review asks.</li>
-      <li><strong>Output is editable, not final.</strong> Meraqi produces multi-layer designs you can open and change, not flat images you have to regenerate. In a regulated setting that matters more than elsewhere, because legal review marks up copy and you need to change that line without re-rolling the whole asset.</li>
+      <li><strong>Output is editable, not final.</strong> Meraqi produces multi-layer designs you can open and change, not flat images you have to regenerate. In a regulated setting that matters more than elsewhere, because legal review marks up copy and you need to change that line without re-rolling the whole design.</li>
     </ul>
   </section>
 
@@ -260,7 +260,7 @@
         <li><strong>Meraqi is not "HIPAA certified."</strong> No software is, because HIPAA has no certification regime. Compliance is a property of your organization and your configuration. What we provide is an architecture that keeps PHI inside your boundary so the obligation stays yours to satisfy rather than ours to promise.</li>
         <li><strong>We do not hold SOC 2 or FedRAMP authorization today.</strong> AiOne LLC is an early-stage company and we will say so plainly rather than imply otherwise.</li>
         <li><strong>Export to your SIEM is on the roadmap, not shipped.</strong> Audit records are queryable on your deployment today. Integrations with Splunk, Sentinel, Elastic and syslog are planned and we will not pretend they exist.</li>
-        <li><strong>Model provenance is recorded per generation job, not yet stamped on each asset.</strong> Lineage joins the two, so the answer is reachable, but the per-asset stamp is still to come.</li>
+        <li><strong>Model provenance is recorded per generation job, not yet stamped on each design.</strong> Lineage joins the two, so the answer is reachable, but the per-design stamp is still to come.</li>
         <li><strong>Signed release media is intended, not yet in place.</strong> We want a repeatable signed build with hashes published away from the drive. Until that exists, verification is something we agree with you per engagement rather than a process we can point at.</li>
         <li><strong>Self-hosting does not make you compliant by itself.</strong> Your access controls, audit review, retention schedule and staff training still do the work. Meraqi removes one category of risk, which is third-party data handling. It does not remove the rest.</li>
         <li><strong>We are pre-launch.</strong> Meraqi is in active development with a beta program. If you need a production deployment on a fixed date, tell us the date before you invest time in evaluation.</li>
