@@ -21,9 +21,13 @@ export async function onRequestPost(context) {
     return json({ error: "Invalid request." }, 400);
   }
 
-  // Honeypot: real users never fill the hidden "company" field; bots do.
-  if (body && typeof body.company === "string" && body.company.trim() !== "") {
-    return json({ ok: true }, 200); // accept silently, store nothing
+  // Honeypot: real users never fill the hidden field; bots do. Accept silently and store
+  // nothing, but do NOT report the row as saved, so the page never shows a confirmation
+  // for a record that does not exist. The field is named "hp" because browser autofill
+  // fills fields called "company"; "company" is still read for pages cached before the rename.
+  const trap = body ? (body.hp ?? body.company) : "";
+  if (typeof trap === "string" && trap.trim() !== "") {
+    return json({ ok: true }, 200);
   }
 
   const email = String(body && body.email || "").trim().toLowerCase();
@@ -36,11 +40,21 @@ export async function onRequestPost(context) {
       "INSERT INTO waitlist (email, source, created_at) VALUES (?, ?, ?) " +
       "ON CONFLICT(email) DO NOTHING"
     ).bind(email, "meraqi.ai", new Date().toISOString()).run();
+
+    // Read the row back before confirming. The page shows "You're on the list" only when
+    // saved is true, so that message always reflects a committed row, whether it was
+    // inserted just now or was already there (ON CONFLICT DO NOTHING).
+    const row = await env.DB.prepare(
+      "SELECT 1 AS present FROM waitlist WHERE email = ? LIMIT 1"
+    ).bind(email).first();
+    if (!row) {
+      return json({ error: "Could not save right now. Please try again." }, 500);
+    }
   } catch (e) {
     return json({ error: "Could not save right now. Please try again." }, 500);
   }
 
-  return json({ ok: true }, 200);
+  return json({ ok: true, saved: true }, 200);
 }
 
 function isEmail(s) {

@@ -78,6 +78,12 @@
   .capture input::placeholder{ color:var(--muted-dim); }
   .capture .btn{ padding:10px 16px; font-size:13.5px; }
   .capture-note{ font-size:12.5px; color:var(--muted-dim); margin-top:11px; font-family:var(--fmono); letter-spacing:0.02em; }
+  .capture[hidden]{ display:none; }
+  .capture-status{ max-width:440px; padding:13px 18px; border:1px solid rgba(238,90,52,0.4); border-radius:12px; background:var(--card); color:var(--ink); font-size:15px; line-height:1.5; }
+  .capture-status:empty{ padding:0; border:0; margin:0; background:transparent; }
+  .capture-status:focus{ outline:0; }
+  .capture-status strong{ color:var(--cream-pure); font-weight:600; overflow-wrap:anywhere; }
+  .capture-status.err{ margin-top:10px; padding:0; border:0; background:transparent; color:var(--accent-ink); font-size:13.5px; }
 
   .trust{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:40px; padding-top:26px; border-top:1px solid var(--line); font-family:var(--fmono); font-size:12px; letter-spacing:0.04em; color:var(--muted-dim); }
   .trust b{ color:var(--muted); font-weight:500; }
@@ -203,6 +209,8 @@
   .final .capture .btn-primary{ background:var(--bg); color:var(--accent-ink); }
   .final .capture .btn-primary:hover{ background:#000d22; box-shadow:none; }
   .final .capture-note{ color:rgba(45,15,8,0.62); }
+  .final .capture-status{ margin:0 auto; text-align:left; background:rgba(0,21,51,0.22); border-color:rgba(0,21,51,0.34); color:var(--cream-pure); }
+  .final .capture-status.err{ margin:10px auto 0; text-align:center; background:transparent; color:#2d0f08; }
 
   /* footer */
   footer{ background:var(--bg); border-top:1px solid var(--line); padding-block:60px 30px; }
@@ -392,10 +400,11 @@
       <p class="hero-sub rv">Meraqi turns plain language into fully editable, multi-layer designs.</p>
       <p class="hero-support rv">Meraqi-hosted open-weight models, no third-party API. Or run <a href="/self-hosted">the whole platform on your own network</a>. A real design platform, not a black-box generator. Built for people who want AI speed without giving up their passion and creativity.</p>
 
-      <form class="capture rv" onsubmit="joinBeta(event)"><input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+      <form class="capture rv" onsubmit="joinBeta(event)"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
         <input type="email" placeholder="you@yourbrand.com" required aria-label="Email address"/>
         <button type="submit" class="btn btn-primary">Join the beta</button>
       </form>
+      <div class="capture-status" role="status" aria-live="polite" tabindex="-1"></div>
       <p class="capture-note rv">The first 500 guests get privileged access and the option to sign up for Pro for life at $150/year instead of $250, cancel anytime. Beta closes 12/31/2026. We email you when your slot opens. No spam, no drip sequences.</p>
 
       <div class="trust rv">
@@ -562,10 +571,11 @@
   <div class="wrap">
     <h2 class="rv">Ship better creative. <em>Faster</em>. Without giving up your passion and creativity.</h2>
     <p class="rv">The private beta takes the first 500 guests. Be one of them.</p>
-    <form class="capture rv" onsubmit="joinBeta(event)"><input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+    <form class="capture rv" onsubmit="joinBeta(event)"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
       <input type="email" placeholder="you@yourbrand.com" required aria-label="Email address"/>
       <button type="submit" class="btn btn-primary">Reserve my spot</button>
     </form>
+    <div class="capture-status" role="status" aria-live="polite" tabindex="-1"></div>
     <p class="capture-note rv">The first 500 guests get privileged access and the option to sign up for Pro for life at $150/year instead of $250, cancel anytime. Beta closes 12/31/2026. We email you when your slot opens. No spam, no drip sequences.</p>
   </div>
 </section>
@@ -595,21 +605,40 @@
     var email = (input.value || '').trim();
     if(!email) return;
     var label = btn.textContent;
+    var next = form.nextElementSibling;
+    var status = (next && next.classList.contains('capture-status')) ? next : null;
+    var msg = 'Could not save right now. Please try again.';
     btn.disabled = true; input.disabled = true; btn.textContent = 'Adding you...';
+    if(status){ status.textContent = ''; status.classList.remove('err'); }
     try{
       var res = await fetch('/api/waitlist', {
         method:'POST',
         headers:{'content-type':'application/json'},
-        body: JSON.stringify({ email: email, company: (form.company ? form.company.value : '') })
+        body: JSON.stringify({ email: email, hp: (form.hp ? form.hp.value : '') })
       });
-      if(!res.ok) throw new Error('request failed');
-      btn.textContent = "You're on the list \u2713";
-      input.value = '';
+      var data = null;
+      try{ data = await res.json(); }catch(_){}
+      // Confirm only when the server says the row is in the table (it reads it back first).
+      if(res.ok && data && data.saved === true){
+        // Success stays on screen. Built with DOM calls so the typed address can never inject markup.
+        if(status){
+          var strong = document.createElement('strong');
+          strong.textContent = email;
+          status.append("You're on the list. We'll email you at ", strong, " when your slot opens.");
+          form.hidden = true;
+          status.focus();
+        } else {
+          btn.textContent = "You're on the list \u2713";
+        }
+        return;
+      }
+      if(data && data.error) msg = data.error;
     }catch(err){
-      btn.textContent = 'Try again';
-    }finally{
-      setTimeout(function(){ btn.textContent = label; btn.disabled = false; input.disabled = false; }, 2600);
+      msg = 'Could not reach the server. Check your connection and try again.';
     }
+    btn.textContent = label; btn.disabled = false; input.disabled = false;
+    if(status){ status.classList.add('err'); status.textContent = msg; }
+    input.focus();
   }
   
   var io = new IntersectionObserver(function(entries){
