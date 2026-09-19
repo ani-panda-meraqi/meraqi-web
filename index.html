@@ -36,6 +36,9 @@
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
   }
   a{ color:inherit; text-decoration:none; }
+  /* links inside running copy must look like links (nav, footer and buttons style their own) */
+  p a{ text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--accent); }
+  p a:hover{ color:var(--accent-ink); }
   button,input{ font-family:inherit; }
   ::selection{ background:var(--accent); color:var(--cream-pure); }
   img{ max-width:100%; display:block; }
@@ -209,6 +212,8 @@
   .final .capture .btn-primary{ background:var(--bg); color:var(--accent-ink); }
   .final .capture .btn-primary:hover{ background:#000d22; box-shadow:none; }
   .final .capture-note{ color:rgba(45,15,8,0.62); }
+  .final p a{ text-decoration-color:currentColor; }
+  .final p a:hover{ color:inherit; }
   .final .capture-status{ margin:0 auto; text-align:left; background:rgba(0,21,51,0.22); border-color:rgba(0,21,51,0.34); color:var(--cream-pure); }
   .final .capture-status.err{ margin:10px auto 0; text-align:center; background:transparent; color:#2d0f08; }
 
@@ -406,6 +411,7 @@
       </form>
       <div class="capture-status" role="status" aria-live="polite" tabindex="-1"></div>
       <p class="capture-note rv">The first 500 guests get privileged access and the option to sign up for Pro for life at $150/year instead of $250, cancel anytime. Beta closes 12/31/2026. We email you when your slot opens. No spam, no drip sequences.</p>
+      <p class="capture-note rv">Read how we handle your email in our <a href="/privacy">Privacy Policy</a>.</p>
 
       <div class="trust rv">
         <b>Built on open models &amp; tools</b>
@@ -577,6 +583,7 @@
     </form>
     <div class="capture-status" role="status" aria-live="polite" tabindex="-1"></div>
     <p class="capture-note rv">The first 500 guests get privileged access and the option to sign up for Pro for life at $150/year instead of $250, cancel anytime. Beta closes 12/31/2026. We email you when your slot opens. No spam, no drip sequences.</p>
+    <p class="capture-note rv">Read how we handle your email in our <a href="/privacy">Privacy Policy</a>.</p>
   </div>
 </section>
 
