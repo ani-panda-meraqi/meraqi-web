@@ -46,6 +46,8 @@
   table { border-collapse: collapse; width: 100%; min-width: 1180px; font-size: 12.5px; }
   th, td { padding: 10px 12px; vertical-align: top; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
   th:last-child, td:last-child { border-right: none; }
+  thead th .pop { display: inline-block; margin-top: 7px; padding: 3px 10px; border-radius: 999px; background: var(--accent); color: var(--on-accent, #001533); font-family: var(--fbody); font-size: 10px; font-weight: 700; letter-spacing: 0.02em; text-transform: none; text-decoration: none; }
+  thead th .pop:hover { background: var(--accent-hover, #f6a085); }
   thead th .thsub { display: block; margin-top: 4px; font-size: 10px; letter-spacing: 0.03em; text-transform: none; color: var(--muted); }
   thead th .thsub a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
   thead th .thsub a:hover { color: var(--ink); }
@@ -62,14 +64,13 @@
   .meraqi-detail td.rowlabel { font-weight: 600; background: var(--bg-soft); min-width: 140px; }
   .meraqi-detail .rowlabel { position: sticky; left: 0; z-index: 1; box-shadow: 1px 0 0 var(--line-strong); }
   @media (max-width: 640px) { .meraqi-detail td.rowlabel, .meraqi-detail th.rowlabel { min-width: 0; width: 104px; padding-left: 10px; padding-right: 8px; } }
-  .beta {
-    margin-top: 14px; padding: 12px 16px; border-left: 3px solid var(--accent);
-    background: var(--bg-soft); font-size: 13px; color: var(--ink);
-  }
-  .beta b { color: var(--accent-ink); }
+  .notes { margin-top: 14px; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; overflow: hidden; }
+  .notes > * { margin: 0; padding: 11px 16px; font-size: 12.5px; line-height: 1.65; color: var(--ink); }
+  .notes > *:nth-child(odd) { background: var(--bg-soft); }
+  .notes > *:nth-child(even) { background: var(--card); }
+  .notes b { color: var(--accent-ink); }
+  .notes a { color: var(--accent-ink); }
   .fn { color: var(--accent-ink); text-decoration: none; font-weight: 600; }
-  #fn-regulated, #fn-fairuse { margin: 16px 0 0; padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); font-size: 12.5px; color: var(--ink); }
-
   @media print {
     body { padding: 0; font-size: 10px; }
     .scroller { overflow: visible; border: none; }
@@ -113,7 +114,7 @@
 <div class="scroller meraqi-detail">
 <table>
   <thead>
-    <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo<span class="thsub">or $120/seat/yr</span></th><th>Pro $25/seat/mo<span class="thsub">or $250/seat/yr</span></th><th>Business $50/seat/mo<span class="thsub">or $500/seat/yr</span></th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a><span class="thsub">priced per deployment &middot; <a href="/contact">Talk to us</a></span></th></tr>
+    <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo<span class="thsub">or $120/seat/yr</span></th><th>Pro $25/seat/mo<span class="thsub">or $250/seat/yr</span><a class="pop" href="/#beta">Most popular</a></th><th>Business $50/seat/mo<span class="thsub">or $500/seat/yr</span></th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a><span class="thsub">priced per deployment &middot; <a href="/contact">Talk to us</a></span></th></tr>
   </thead>
   <tbody>
     <tr><td class="rowlabel">Video generation time per month <a class="fn" href="#fn-gentime">&sect;</a></td><td>10 minutes (watermarked export)</td><td>60 minutes</td><td>240 minutes</td><td>600 minutes per seat, pooled across the team</td><td>Your hardware's capacity</td></tr>
@@ -131,22 +132,18 @@
 </table>
 </div>
 
-<p style="margin-top: 10px; font-size: 12px; color: var(--muted);">Processing tiers set your place in the queue, not render speed.</p>
-
-<p style="margin-top: 10px; font-size: 12.5px;"><b>Monthly pools, on your own clock.</b> Every allowance is a monthly pool that resets on your personal billing date, the day you signed up or upgraded, not the calendar month. There are no daily limits; skip a quiet week, or spend a month's minutes in one afternoon. When a trial month ends, your work stays viewable and downloadable; pick a plan to keep creating. <a class="fn" href="#fn-fairuse">&Dagger;</a></p>
-
-<p style="margin-top: 10px; font-size: 12.5px;"><b>What a minute costs.</b> Per minute of finished 1080p video that is 20 cents on Starter, 10 cents on Pro and 8 cents on Business. Generation runs on our own GPUs with open models and no per-call API fees, which is why the numbers are a fraction of credit-based tools; the full comparison is below.</p>
-
-<p style="margin-top: 10px; font-size: 12.5px;"><b>Annual billing applies to all paid tiers.</b> "Sign up for the whole year, get two months free." Starter $120, Pro $250, Business $500 per seat per year; exactly two months free on every tier. Monthly price is always the headline price.</p>
-
-<div class="beta">
+<div class="notes">
+<p><b>Processing tiers:</b> your place in the queue, not render speed.</p>
+<p><b>Monthly pools, on your own clock.</b> Every allowance is a monthly pool that resets on your personal billing date, the day you signed up or upgraded, not the calendar month. There are no daily limits; skip a quiet week, or spend a month's minutes in one afternoon. When a trial month ends, your work stays viewable and downloadable; pick a plan to keep creating. <a class="fn" href="#fn-fairuse">&Dagger;</a></p>
+<p><b>What a minute costs.</b> Per minute of finished 1080p video that is 20 cents on Starter, 10 cents on Pro and 8 cents on Business. Generation runs on our own GPUs with open models and no per-call API fees, which is why the numbers are a fraction of credit-based tools; the full comparison is below.</p>
+<p><b>Annual billing, all paid tiers:</b> "Sign up for the whole year, get two months free." Starter $120, Pro $250, Business $500 per seat per year; exactly two months free on every tier. Monthly price is always the headline price.</p>
+<div>
   <b>Private beta.</b> The beta program is first come, first served, closing at 1000 user sign-ups, with a public waitlist beyond that. During the beta you get privileged access in exchange for your patronage and feedback. When the beta ends, guests have the option to sign up for Pro for life at <b>$125/year</b> instead of $250, for as long as the subscription stays active. Cancel anytime; access runs through the end of the paid year.
 </div>
-
-<p id="fn-regulated"><b>&dagger; What Self-Hosted means.</b> The platform is deployed inside the customer's own network rather than as shared SaaS, either on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as offline packages, on your schedule. Signed packages are planned. Quotas are unlimited because generation runs on customer-owned GPUs, so capacity is the deployment's hardware rather than shared infrastructure. Storage is sized to your hardware, up to 1 PB per deployment; larger by arrangement.</p>
-
-<p id="fn-gentime"><b>&sect; What generation time means.</b> The minutes are how long our GPUs work on your video, not the length of the finished clip. What a clip costs to generate depends on what you are making, the quality you ask for, how long it runs and which model does the work, so the two are not a fixed ratio. Because the models run on our own hardware rather than through a third-party API billed by the output second, the cost is our own measured compute, so we price it from what we actually observe instead of passing through a rate someone else sets and can change. As a guide, a 15 second clip at 720p currently takes 60 to 90 seconds of generation time, so a Starter month is around 40 to 60 of them.</p>
-<p id="fn-fairuse"><b>&Dagger; How pacing and fair use work.</b> Your monthly pool is yours to spend on any schedule, including all at once. To keep delivery fast for everyone, each account runs a limited number of generations at the same time; a very large batch simply queues behind itself and finishes over hours rather than jumping ahead of other customers. Turnaround estimates describe individual jobs as they start, not an entire batch.</p>
+<p id="fn-regulated"><b>&dagger; Self-Hosted, what it means:</b> the platform is deployed inside the customer's own network rather than as shared SaaS, either on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as offline packages, on your schedule. Signed packages are planned. Quotas are unlimited because generation runs on customer-owned GPUs, so capacity is the deployment's hardware rather than shared infrastructure. Storage is sized to your hardware, up to 1 PB per deployment; larger by arrangement.</p>
+<p id="fn-gentime"><b>&sect; Generation time, what it means:</b> the minutes are how long our GPUs work on your video, not the length of the finished clip. What a clip costs to generate depends on what you are making, the quality you ask for, how long it runs and which model does the work, so the two are not a fixed ratio. Because the models run on our own hardware rather than through a third-party API billed by the output second, the cost is our own measured compute, so we price it from what we actually observe instead of passing through a rate someone else sets and can change. As a guide, a 15 second clip at 720p currently takes 60 to 90 seconds of generation time, so a Starter month is around 40 to 60 of them.</p>
+<p id="fn-fairuse"><b>&Dagger; Pacing and fair use:</b> your monthly pool is yours to spend on any schedule, including all at once. To keep delivery fast for everyone, each account runs a limited number of generations at the same time; a very large batch simply queues behind itself and finishes over hours rather than jumping ahead of other customers. Turnaround estimates describe individual jobs as they start, not an entire batch.</p>
+</div>
 
 <h2>Questions about the online plans</h2>
 <p style="margin-top: 6px; font-size: 13px; color: var(--muted); max-width: 720px;">Signing in without a password, what happens when you delete something, and whether anything you make is ever used to train a model.</p>
