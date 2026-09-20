@@ -46,6 +46,9 @@
   table { border-collapse: collapse; width: 100%; min-width: 1180px; font-size: 12.5px; }
   th, td { padding: 10px 12px; vertical-align: top; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); }
   th:last-child, td:last-child { border-right: none; }
+  thead th .thsub { display: block; margin-top: 4px; font-size: 10px; letter-spacing: 0.03em; text-transform: none; color: var(--muted); }
+  thead th .thsub a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+  thead th .thsub a:hover { color: var(--ink); }
   thead th {
     background: var(--bg-soft); font-family: var(--fmono); font-size: 10.5px; font-weight: 500; text-transform: uppercase;
     letter-spacing: 0.08em; color: var(--muted); text-align: left; position: sticky; top: 0;
@@ -64,10 +67,6 @@
     background: var(--bg-soft); font-size: 13px; color: var(--ink);
   }
   .beta b { color: var(--accent-ink); }
-  .beta-next { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 16px; }
-  .beta-next p { font-size: 13px; color: var(--muted); }
-  .beta-next p a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
-  .beta-next p a:hover { color: var(--ink); }
   .fn { color: var(--accent-ink); text-decoration: none; font-weight: 600; }
   #fn-regulated, #fn-fairuse { margin: 16px 0 0; padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); font-size: 12.5px; color: var(--ink); }
 
@@ -114,7 +113,7 @@
 <div class="scroller meraqi-detail">
 <table>
   <thead>
-    <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo</th><th>Pro $25/seat/mo</th><th>Business $50/seat/mo</th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a></th></tr>
+    <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo<span class="thsub">or $120/seat/yr</span></th><th>Pro $25/seat/mo<span class="thsub">or $250/seat/yr</span></th><th>Business $50/seat/mo<span class="thsub">or $500/seat/yr</span></th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a><span class="thsub">priced per deployment &middot; <a href="/contact">Talk to us</a></span></th></tr>
   </thead>
   <tbody>
     <tr><td class="rowlabel">Video creation per month</td><td>10 minutes (watermarked export)</td><td>60 minutes</td><td>240 minutes</td><td>600 minutes per seat, pooled across the team</td><td>Your hardware's capacity</td></tr>
@@ -144,11 +143,7 @@
   <b>Private beta.</b> The beta program is first come, first served, closing at 1000 user sign-ups, with a public waitlist beyond that. During the beta you get privileged access in exchange for your patronage and feedback. When the beta ends, guests have the option to sign up for Pro for life at <b>$125/year</b> instead of $250, for as long as the subscription stays active. Cancel anytime; access runs through the end of the paid year.
 </div>
 
-<div class="beta-next">
-  <p>Self-Hosted is priced per deployment. <a href="/contact">Talk to us</a> about yours.</p>
-</div>
-
-<p id="fn-regulated"><b>&dagger; What Self-Hosted means.</b> The platform is deployed inside the customer's own network rather than as shared SaaS, either on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as offline packages, on your schedule. Signed packages are planned. Quotas are unlimited because generation runs on customer-owned GPUs, so capacity is the deployment's hardware rather than shared infrastructure. Storage is sized to your hardware, up to 1 PB per deployment; larger by arrangement. Priced per deployment.</p>
+<p id="fn-regulated"><b>&dagger; What Self-Hosted means.</b> The platform is deployed inside the customer's own network rather than as shared SaaS, either on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as offline packages, on your schedule. Signed packages are planned. Quotas are unlimited because generation runs on customer-owned GPUs, so capacity is the deployment's hardware rather than shared infrastructure. Storage is sized to your hardware, up to 1 PB per deployment; larger by arrangement.</p>
 
 <p id="fn-fairuse"><b>&Dagger; How pacing and fair use work.</b> Your monthly pool is yours to spend on any schedule, including all at once. To keep delivery fast for everyone, each account runs a limited number of generations at the same time; a very large batch simply queues behind itself and finishes over hours rather than jumping ahead of other customers. Turnaround estimates describe individual jobs as they start, not an entire batch.</p>
 
