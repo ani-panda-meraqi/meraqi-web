@@ -2,8 +2,10 @@
 <!--
   sitemap.xml - meraqi.ai
   Hosts are non-www to match the canonical tags now on every page.
-  /pitch-deck is deliberately absent: it is served X-Robots-Tag: noindex
-  via _headers and disallowed in robots.txt.
+  Pages that are shared by link with named recipients are deliberately
+  absent, and are served X-Robots-Tag: noindex via _headers. Do not name
+  their paths in this file, in robots.txt, or in a commit message; both
+  of those are public, and naming an unlisted path advertises it.
   Resubmit in Google Search Console and Bing Webmaster Tools after each deploy
   that adds or removes a page.
 -->
