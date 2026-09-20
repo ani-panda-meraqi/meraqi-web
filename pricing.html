@@ -116,7 +116,7 @@
     <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo<span class="thsub">or $120/seat/yr</span></th><th>Pro $25/seat/mo<span class="thsub">or $250/seat/yr</span></th><th>Business $50/seat/mo<span class="thsub">or $500/seat/yr</span></th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a><span class="thsub">priced per deployment &middot; <a href="/contact">Talk to us</a></span></th></tr>
   </thead>
   <tbody>
-    <tr><td class="rowlabel">Video creation per month</td><td>10 minutes (watermarked export)</td><td>60 minutes</td><td>240 minutes</td><td>600 minutes per seat, pooled across the team</td><td>Your hardware's capacity</td></tr>
+    <tr><td class="rowlabel">Video generation time per month <a class="fn" href="#fn-gentime">&sect;</a></td><td>10 minutes (watermarked export)</td><td>60 minutes</td><td>240 minutes</td><td>600 minutes per seat, pooled across the team</td><td>Your hardware's capacity</td></tr>
     <tr><td class="rowlabel">Longest clip</td><td>15 s</td><td>15 s</td><td>30 s</td><td>90 s</td><td>Your hardware's capacity, up to about 5 minutes</td></tr>
     <tr><td class="rowlabel">Images per month</td><td>300</td><td>6,000</td><td>15,000</td><td>45,000 per seat, pooled</td><td>Your hardware's capacity</td></tr>
     <tr><td class="rowlabel">Resolution</td><td>1080p</td><td>1080p</td><td>1080p</td><td>1080p generation, 2K export</td><td>Up to 4K on suitable hardware</td></tr>
@@ -145,6 +145,7 @@
 
 <p id="fn-regulated"><b>&dagger; What Self-Hosted means.</b> The platform is deployed inside the customer's own network rather than as shared SaaS, either on the customer's own hardware (on-prem) or in their private or government cloud tenancy, reachable from the intranet only, up to fully air-gapped installations with no internet connectivity. All models ship with the deployment and run locally; no third-party APIs are called, and no prompts, content, or telemetry ever leave the customer's environment. Updates arrive as offline packages, on your schedule. Signed packages are planned. Quotas are unlimited because generation runs on customer-owned GPUs, so capacity is the deployment's hardware rather than shared infrastructure. Storage is sized to your hardware, up to 1 PB per deployment; larger by arrangement.</p>
 
+<p id="fn-gentime"><b>&sect; What generation time means.</b> The minutes are how long our GPUs work on your video, not the length of the finished clip. What a clip costs to generate depends on what you are making, the quality you ask for, how long it runs and which model does the work, so the two are not a fixed ratio. Because the models run on our own hardware rather than through a third-party API billed by the output second, the cost is our own measured compute, so we price it from what we actually observe instead of passing through a rate someone else sets and can change. As a guide, a 15 second clip at 720p currently takes 60 to 90 seconds of generation time, so a Starter month is around 40 to 60 of them.</p>
 <p id="fn-fairuse"><b>&Dagger; How pacing and fair use work.</b> Your monthly pool is yours to spend on any schedule, including all at once. To keep delivery fast for everyone, each account runs a limited number of generations at the same time; a very large batch simply queues behind itself and finishes over hours rather than jumping ahead of other customers. Turnaround estimates describe individual jobs as they start, not an entire batch.</p>
 
 <h2>Questions about the online plans</h2>
@@ -152,7 +153,7 @@
 <p style="margin-top: 12px; font-size: 14px;"><a class="fn" href="/faq#online">See the FAQ &rarr;</a></p>
 
 <h2>How the market compares</h2>
-<p style="margin-top: 6px; font-size: 13px; color: var(--muted); max-width: 720px;">We publish the entire market's prices next to ours, including every competitor's tiers, what a credit actually buys, and a workload calculator that finds each vendor's cheapest covering plan for your volume.</p>
+<p style="margin-top: 6px; font-size: 13px; color: var(--muted); max-width: 720px;">We publish the entire market's prices next to ours, including every competitor's tiers, what a credit actually buys, and which vendors publish what a second of video costs.</p>
 <p style="margin-top: 12px; font-size: 14px;"><a class="fn" href="/comparative-pricing">See the full pricing comparison &rarr;</a></p>
 
 </main>
