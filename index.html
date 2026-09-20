@@ -57,7 +57,7 @@
   /* hero */
   .hero{ position:relative; padding-top:92px; padding-bottom:104px; overflow:hidden; }
   .hero-glow{ position:absolute; z-index:0; width:760px; height:760px; border-radius:50%; top:-260px; right:-200px; pointer-events:none; background:radial-gradient(circle, rgba(238,90,52,0.16) 0%, transparent 62%); filter:blur(40px); }
-  .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1.04fr 0.96fr; gap:64px; align-items:center; }
+  .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1.04fr 0.96fr; gap:64px; align-items:start; }
   .pill{ display:inline-flex; align-items:center; gap:9px; font-family:var(--fmono); font-size:11.5px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); background:rgba(238,90,52,0.09); border:1px solid rgba(238,90,52,0.28); padding:7px 14px; border-radius:100px; margin-bottom:30px; }
   .pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2.4s ease-in-out infinite; }
   @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(238,90,52,0.45);} 50%{ box-shadow:0 0 0 6px rgba(238,90,52,0);} }
@@ -370,7 +370,7 @@
       <span class="pill rv"><span class="dot"></span> Private beta · waitlist open</span>
       <h1 class="hero-h rv">Create designs with <em>soul</em>. Not just speed.</h1>
       <p class="hero-sub rv">Meraqi turns plain language into fully editable, multi-layer designs.</p>
-      <p class="hero-support rv">Meraqi-hosted open-weight models, no third-party API. Or run <a href="/self-hosted">the whole platform on your own network</a>. A real design platform, not a black-box generator. Built for people who want AI speed without giving up their passion and creativity.</p>
+      <p class="hero-support rv">Meraqi-hosted open-weight models, no third-party API. Or run <a href="/self-hosted">the whole platform on your own network</a>.</p>
 
       <form class="capture rv" onsubmit="joinBeta(event)"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
         <input type="email" placeholder="you@example.com" required aria-label="Email address"/>
