@@ -256,8 +256,8 @@
       <td class="plan"><div class="pname">Trial</div><div class="price"><b>free for 1 month, no card</b></div><div class="cred">10 minutes of video creation &middot; 300 images per month, clips up to 15 s</div><div class="extra">watermarked export and Eco (off-peak) processing; 1080p, 5 GB</div></td>
       <td class="plan"><div class="pname">Starter</div><div class="price"><b>$12</b>/seat/mo ($120/seat/year)</div><div class="cred">60 minutes of video creation &middot; 6,000 images per month, clips up to 15 s</div><div class="extra">1080p, Standard processing, 50 GB, SSO</div></td>
       <td class="plan"><div class="pname">Pro</div><div class="price"><b>$25</b>/seat/mo ($250/seat/year)</div><div class="cred">240 minutes of video creation &middot; 15,000 images per month, clips up to 30 s</div><div class="extra">1080p, Express processing, 200 GB, SSO</div></td>
-      <td class="plan"><div class="pname">Business</div><div class="price"><b>$50</b>/seat/mo ($500/seat/year)</div><div class="cred">600 minutes of video creation &middot; 45,000 images per seat per month, pooled across the team, clips up to 60 s</div><div class="extra">1080p generation with 2K export, Priority processing, 500 GB per seat pooled, SSO</div></td>
-      <td class="plan" title="Runs entirely on customer-owned hardware inside the customer's own network; see footnote."><div class="pname">Self-Hosted <a class="fn" href="/pricing#fn-regulated">&dagger;</a></div><div class="price">intranet only</div><div class="cred">your hardware's capacity; up to 4K on suitable hardware; storage up to 1 PB per deployment</div><div class="extra">for regulated industries and confidential work; on-prem, private or gov cloud, or air-gapped</div></td>
+      <td class="plan"><div class="pname">Business</div><div class="price"><b>$50</b>/seat/mo ($500/seat/year)</div><div class="cred">600 minutes of video creation &middot; 45,000 images per seat per month, pooled across the team, clips up to 90 s</div><div class="extra">1080p generation with 2K export, Priority processing, 500 GB per seat pooled, SSO</div></td>
+      <td class="plan" title="Runs entirely on customer-owned hardware inside the customer's own network; see footnote."><div class="pname">Self-Hosted <a class="fn" href="/pricing#fn-regulated">&dagger;</a></div><div class="price">intranet only</div><div class="cred">your hardware's capacity, clips up to about 5 minutes; up to 4K on suitable hardware; storage up to 1 PB per deployment</div><div class="extra">for regulated industries and confidential work; on-prem, private or gov cloud, or air-gapped</div></td>
     </tr>
 
   </tbody>
@@ -319,7 +319,7 @@
     {n:'Leonardo', img:25, v5:300, plans:[['Essential',10,8500],['Premium',24,25000],['Ultimate',48,60000]], note:'token rates estimated; Ultimate adds unlimited relaxed video on selected models'},
     {n:'InVideo', img:2.5, v5:30, plans:[['Starter',20,400],['Plus',50,2000],['Max',101,5000]], note:''}
   ];
-  var M = [['Starter',12,6000,60,15],['Pro',25,15000,240,30],['Business',50,45000,600,60]];
+  var M = [['Starter',12,6000,60,15],['Pro',25,15000,240,30],['Business',50,45000,600,90]];
   function calc(){
     var imgs = +el('c-img').value || 0, vids = +el('c-vid').value || 0;
     var len = +el('c-len').value, seats = Math.max(1, +el('c-seat').value || 1);
@@ -329,7 +329,7 @@
       if (imgs <= t[2]*seats && vids*len/60 <= t[3]*seats && len <= t[4]) { mfit = [t[0], t[1]*seats]; break; }
     }
     if (!mfit) {
-      if (len > 60) { mfit = ['Self-Hosted', null]; mnote = 'video length beyond SaaS tiers'; }
+      if (len > 90) { mfit = ['Self-Hosted', null]; mnote = 'video length beyond SaaS tiers'; }
       else {
         var s = Math.max(Math.ceil(imgs/45000), Math.ceil(vids*len/60/600), seats);
         mfit = ['Business', 50*s]; mnote = 'needs ' + s + ' seats';
