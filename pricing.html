@@ -108,21 +108,6 @@
   .foot { margin-top: 28px; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
   .foot p { margin-bottom: 4px; }
 
-  .calc input, .calc select { background: var(--bg-soft); color: var(--ink); }
-  .calc input:focus, .calc select:focus { box-shadow: 0 0 0 4px rgba(238,90,52,0.14); }
-
-  /* site chrome */
-  .sitenav { max-width: 1240px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .sitenav .brand { height: 52px; width: auto; display: block; } .sitenav .brand-lock{display:inline-flex;flex-direction:column;align-items:flex-start;gap:5px;text-decoration:none} .sitenav .brand-strap{font-family:var(--fbody);font-size:12.5px;letter-spacing:0;color:var(--muted);white-space:nowrap} @media(max-width:640px){.sitenav .brand-strap{display:none}}
-  .sitenav .nl { display: flex; align-items: center; gap: 22px; }
-  .sitenav .nl a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .15s; }
-  .sitenav .nl a:hover { color: var(--ink); }
-  .sitenav .nl a.cta { background: var(--accent); color: var(--cream-pure); padding: 9px 16px; border-radius: 9px; font-weight: 600; font-size: 13.5px; }
-  .sitenav .nl a.cta:hover { background: #d8421f; }
-  .sitefoot { margin-top: 26px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; font-size: 13px; color: var(--muted-dim); }
-  .sitefoot a { color: var(--muted); text-decoration: none; }
-  .sitefoot a:hover { color: var(--ink); }
-
   @media print {
     body { padding: 0; font-size: 10px; }
     .scroller { overflow: visible; border: none; }
@@ -197,7 +182,6 @@
 </div>
 
 <div class="beta-next">
-  <a href="/#beta" class="mnav-cta">Join the beta</a>
   <p>Self-Hosted is priced per deployment. <a href="/contact">Talk to us</a> about yours.</p>
 </div>
 
