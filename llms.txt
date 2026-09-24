@@ -1,6 +1,6 @@
 # Meraqi
 
-> Meraqi is an AI design platform that turns plain language into fully editable, multi-layer designs and video with speech. It runs open-weight models on its own GPUs with no third-party AI API, either as one multi-tenant online service at meraqi.ai or on a customer's own network, up to fully air-gapped. Meraqi is a product of AiOne LLC in Seattle, Washington, and is in private beta.
+> Meraqi is an AI design platform that turns plain language into fully editable, multi-layer designs and video with speech. It runs open-weight models on its own GPUs with no third-party AI API, either as one multi-tenant online service at meraqi.ai or on a customer's own network, up to fully air-gapped. Meraqi is a product of AiOne and is in private beta.
 
 Meraqi is for people and teams who design to communicate, such as creators, small marketing teams, agencies, and organizations in regulated industries. It works on a layered, object-based design canvas for visual layouts such as social posts, headers, thumbnails, slides, email and print, and it also makes video. The name comes from the Greek word meraki, to do something with soul, creativity and love.
 
@@ -61,7 +61,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 
 - [Home](https://meraqi.ai/): What Meraqi makes, the four steps from idea to published, and who it is for
 - [Plans and pricing](https://meraqi.ai/pricing): Online plans, the Self-Hosted plan, and what generation time means
-- [Frequently asked questions](https://meraqi.ai/faq): Assets and designs, the online service, regulated and classified work, and running Meraqi on your own network
+- [Frequently asked questions](https://meraqi.ai/faq): What Meraqi is, assets and designs, the online service, regulated and classified work, and running Meraqi on your own network
 
 ## Running Meraqi on your own network
 
