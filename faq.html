@@ -205,7 +205,12 @@
 
     <div class="faq">
       <h3>How is air-gapped software delivered if the environment has no network?</h3>
-      <p>On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you.</p>
+      <p>On physical media holding the platform, the model weights and everything needed to stand it up inside the enclave, so nothing is pulled from a public container registry or model hub and no firewall exception is needed. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you.</p>
+    </div>
+
+    <div class="faq">
+      <h3>Can our security team inspect the software before it enters the enclave?</h3>
+      <p>Yes. Air-gapped Meraqi arrives on physical media, so it can go through your own intake process first, whether that means hashing it, scanning it for malware or examining it on an isolated machine, before it goes near your network. Nothing is fetched from outside afterwards, so what you inspected is exactly what runs. Every release is signed and carries a software bill of materials (coming soon). The verification steps themselves are agreed with you per engagement.</p>
     </div>
 
     <div class="faq">
@@ -255,7 +260,7 @@
 
     <div class="faq">
       <h3>Does it need an internet connection to generate anything?</h3>
-      <p>No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust.</p>
+      <p>No. The model weights and every container arrive with the platform, so generation runs entirely locally and the platform operates with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust.</p>
     </div>
 
     <div class="faq">
@@ -385,7 +390,12 @@
     {
       "@type": "Question",
       "name": "How is air-gapped software delivered if the environment has no network?",
-      "acceptedAnswer": {"@type":"Answer","text":"On a single NVMe M.2 drive holding the platform, the model weights and everything needed to stand it up inside the enclave. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you."}
+      "acceptedAnswer": {"@type":"Answer","text":"On physical media holding the platform, the model weights and everything needed to stand it up inside the enclave, so nothing is pulled from a public container registry or model hub and no firewall exception is needed. Government furnished media, or a re-image before the boundary, can be accommodated where your policy requires it. Updates ship the same way and on your schedule, so the model never changes underneath you."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can our security team inspect the software before it enters the enclave?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. Air-gapped Meraqi arrives on physical media, so it can go through your own intake process first, whether that means hashing it, scanning it for malware or examining it on an isolated machine, before it goes near your network. Nothing is fetched from outside afterwards, so what you inspected is exactly what runs. Every release is signed and carries a software bill of materials (coming soon). The verification steps themselves are agreed with you per engagement."}
     },
     {
       "@type": "Question",
@@ -430,7 +440,7 @@
     {
       "@type": "Question",
       "name": "Does it need an internet connection to generate anything?",
-      "acceptedAnswer": {"@type":"Answer","text":"No. Weights are staged once, after which generation runs entirely locally and the platform will operate with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust."}
+      "acceptedAnswer": {"@type":"Answer","text":"No. The model weights and every container arrive with the platform, so generation runs entirely locally and the platform operates with outbound access blocked. That is verifiable with a firewall rule rather than taken on trust."}
     },
     {
       "@type": "Question",

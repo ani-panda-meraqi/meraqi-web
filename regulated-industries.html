@@ -88,6 +88,7 @@
   figure.drive{ margin:30px 0 26px; }
   figure.drive img{ width:100%; height:auto; border-radius:10px; }
   figure.drive figcaption{ margin-top:12px; font-family:var(--fmono); font-size:13px; color:var(--muted-dim); text-align:center; }
+  section[id]{ scroll-margin-top:110px; }
 
   .candid{ background:var(--bg-soft); border:1px solid var(--line-strong); border-radius:10px; padding:26px 28px; }
   .candid h2{ font-size:26px; margin-bottom:14px; }
@@ -261,20 +262,25 @@
     </div>
     <p>There is no third option and no confusing middle tier. Either the content travels to us or it does not, and that single fact is what your assessor actually cares about.</p>
     <p>We do not currently run private instances for individual customers. We are still a small company, and running, monitoring and sustaining a private instance for each customer is a commitment we will not make until we can keep it. If you need your own instance, it runs on your network.</p>
+  </section>
 
-    <h3>Air-gapped deployments arrive on a drive</h3>
+  <section id="air-gapped">
+    <h2>Air-gapped deployments arrive on a drive</h2>
 
     <figure class="drive">
       <picture>
         <source srcset="assets/meraqi-airgap-drive.webp" type="image/webp">
         <img src="assets/meraqi-airgap-drive.jpg"
-             alt="A Meraqi-branded M.2 2280 NVMe drive held in one hand, the delivery medium for air-gapped deployments"
+             alt="A Meraqi-branded M.2 2280 NVMe drive held in one hand, the kind of physical media an air-gapped deployment ships on"
              width="1543" height="672" loading="lazy" decoding="async">
       </picture>
-      <figcaption>One M.2 2280 drive. The platform, the model weights, and nothing that needs a network.</figcaption>
+      <figcaption>Delivered on physical media. The platform, the model weights, and nothing that needs a network.</figcaption>
     </figure>
 
-    <p>A network with no egress cannot download anything, which is rather the point of it. So an air-gapped Meraqi ships as a single NVMe M.2 drive carrying the platform, the model weights and everything needed to stand it up inside the enclave. Nothing is fetched at install time, nothing phones home afterwards, and no step quietly assumes a connection.</p>
+    <p>Most software expects to reach the internet at some point while it installs, for a package, a container image or a model download. Inside an enclave each of those becomes a firewall exception to request or a file to carry across by hand, and finding them all is where the time goes. An air-gapped Meraqi makes none of those requests. It ships on physical media carrying the platform, the model weights and everything needed to stand it up inside the enclave. Nothing is pulled from a public container registry or a model hub, nothing phones home afterwards, and no step quietly assumes a connection.</p>
+
+    <h3>Inspected before it comes inside</h3>
+    <p>Physical delivery also lets your security team check exactly what is entering the perimeter before any of it runs. The media can go through your own intake process first, whether that means hashing it, scanning it for malware or examining it on an isolated machine. Because nothing can be fetched from outside afterwards, what you inspected is exactly what runs, and it stays that way until you install the next release. Every release is signed and carries a software bill of materials (coming soon).</p>
     <p>Air-gapped delivery is built to order as part of an enterprise engagement rather than a download you configure yourself, because every enclave has its own rules about media, and pretending otherwise would waste your time and ours. Verification, government furnished media, and re-imaging before the boundary are all things we agree with you up front.</p>
     <p>Updates arrive the same way, on your schedule, and they update the software, not your data.</p>
   </section>
@@ -330,7 +336,7 @@
         <li><strong>We do not hold SOC 2 or FedRAMP authorization today.</strong> AiOne LLC is an early-stage company and we will say so plainly rather than imply otherwise.</li>
         <li><strong>Export to your SIEM is on the roadmap, not shipped.</strong> Audit records are queryable on your deployment today. Integrations with Splunk, Sentinel, Elastic and syslog are planned and we will not pretend they exist.</li>
         <li><strong>Model provenance is recorded per generation job, not yet stamped on each design.</strong> Lineage joins the two, so the answer is reachable, but the per-design stamp is still to come.</li>
-        <li><strong>Signed release media is intended, not yet in place.</strong> We want a repeatable signed build with hashes published away from the drive. Until that exists, verification is something we agree with you per engagement rather than a process we can point at.</li>
+        <li><strong>Signed release media is intended, not yet in place.</strong> We want a repeatable signed build, with a software bill of materials and hashes published away from the drive. Until that exists, verification is something we agree with you per engagement rather than a process we can point at.</li>
         <li><strong>Self-hosting does not make you compliant by itself.</strong> Your access controls, audit review, retention schedule and staff training still do the work. Meraqi removes one category of risk, which is third-party data handling. It does not remove the rest.</li>
         <li><strong>We are pre-launch.</strong> Meraqi is in active development with a beta program. If you need a production deployment on a fixed date, tell us the date before you invest time in evaluation.</li>
       </ul>
@@ -339,7 +345,7 @@
 
   <section>
     <h2>Questions we get asked</h2>
-    <p>HIPAA and healthcare marketing, what Meraqi is and is not certified for, air-gapped generation and how the software reaches an enclave with no network, proving that content never left, what ITAR and CMMC mean for a defense contractor, whether FedRAMP applies inside a government environment, and marketing review at banks, broker-dealers and pharmaceutical companies. Those answers sit with the rest of them on the FAQ page, along with the audit trail, per-user isolation and lineage, which work the same way wherever Meraqi runs.</p>
+    <p>HIPAA and healthcare marketing, what Meraqi is and is not certified for, air-gapped generation, how the software reaches an enclave with no network and whether your security team can inspect it first, proving that content never left, what ITAR and CMMC mean for a defense contractor, whether FedRAMP applies inside a government environment, and marketing review at banks, broker-dealers and pharmaceutical companies. Those answers sit with the rest of them on the FAQ page, along with the audit trail, per-user isolation and lineage, which work the same way wherever Meraqi runs.</p>
     <a class="btn" href="/faq#regulated">Read the regulated-work questions</a>
   </section>
 

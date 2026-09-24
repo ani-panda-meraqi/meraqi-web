@@ -28,7 +28,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 **Where it runs, two options and no others**
 
 - The online service at meraqi.ai is one multi-tenant service that individuals and businesses all share. Meraqi runs the models on infrastructure it operates, so prompts, designs and uploads are not sent to any external AI provider.
-- On the customer's own network, the same software runs inside the customer's perimeter, on its own hardware or in its private or government cloud, up to fully air-gapped. After the model weights are staged once, generation runs with outbound network access blocked and nothing phones home. Air-gapped installs are built to order as part of an enterprise engagement and delivered on a single NVMe M.2 drive that carries the platform and the model weights.
+- On the customer's own network, the same software runs inside the customer's perimeter, on its own hardware or in its private or government cloud, up to fully air-gapped. The model weights and containers ship with the platform, nothing is pulled from a public registry or model hub, generation runs with outbound network access blocked, and nothing phones home. Air-gapped installs are built to order as part of an enterprise engagement and delivered on physical media that carries the platform and the model weights, so the customer's security team can inspect it before it enters the network.
 - AiOne does not run private instances for individual customers today. A customer that needs its own instance runs it on its own network.
 
 **Data, privacy and records**
@@ -46,7 +46,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 - Meraqi is built for teams that work under rules such as HIPAA, GLBA, FFIEC, ITAR, CMMC and FedRAMP. These are rules customers work under, not certifications Meraqi holds.
 - Run on the customer's network, content never crosses the customer's boundary, and third-party data handling drops out of the compliance question. As long as AiOne staff are never given access to the deployment, no business-associate relationship with AiOne is created. The customer's own controls, audit review and retention still do the rest.
 - Meraqi is not HIPAA certified, because HIPAA certifies no software. AiOne LLC does not hold SOC 2 or FedRAMP authorization today.
-- Export to a SIEM, a model provenance stamp on each design, and signed release media are not built yet. Provenance is recorded per generation job today.
+- Export to a SIEM, a model provenance stamp on each design, signed release media and a software bill of materials are not built yet. Provenance is recorded per generation job today.
 - Meraqi is not open source. It is commercial software that runs open-weight models.
 - Meraqi is pre-launch and in active development, with a private beta.
 

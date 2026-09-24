@@ -120,7 +120,7 @@
   <section>
     <h2>What self-hosted actually means here</h2>
     <p>The phrase gets stretched. Plenty of tools describe themselves as self-hosted when what they mean is that you host a thin front end which then calls someone else's inference API. Your prompt still leaves the building, and the bill still scales with a token counter you cannot see.</p>
-    <p>Meraqi is not that. The inference runs locally. Model weights are pulled once, staged on your disk, and served from your own GPU. With the weights in place the platform will run with outbound network access blocked entirely, which is something you can verify with a firewall rule rather than a trust exercise.</p>
+    <p>Meraqi is not that. The inference runs locally. The model weights ship with the platform, sit on your disk and are served from your own GPU, and nothing is pulled from a public registry or model hub, at install or afterwards. The platform runs with outbound network access blocked entirely, which is something you can verify with a firewall rule rather than a trust exercise.</p>
     <div class="statement">If your internet is down and it still works, it was self-hosted. If it stops, it was not.</div>
   </section>
 
@@ -143,14 +143,14 @@
 
   <section>
     <h2>The stack, stated plainly</h2>
-    <p>Deployment is containerized. The whole runtime is declared in one place, and that declaration is the single source of truth for what gets started.</p>
+    <p>Deployment is containerized. The whole runtime is declared in one place, and that declaration is the single source of truth for what gets started. Every container ships in the release itself, so what you install is what runs until you install something else.</p>
     <ul>
       <li><strong>An inference server</strong> for the language side, serving the quantized open-weight model that handles prompt interpretation and the design treatment.</li>
       <li><strong>A diffusion runtime</strong> for image generation, driven by a versioned workflow catalog so the exact graph that produced an image is recorded rather than implied.</li>
       <li><strong>A video pipeline</strong> built on an open-weight video model.</li>
       <li><strong>The editor</strong>, which is where the layered output lands and stays editable rather than arriving as a flat render.</li>
     </ul>
-    <p>Every service binds to loopback by default. Nothing is exposed on a public interface unless you choose to put it there, and no component phones home for license checks during generation.</p>
+    <p>Every service binds to loopback by default. Nothing is exposed on a public interface unless you choose to put it there, and no component phones home, for license checks or anything else.</p>
     <p>Model choices live in a deployment catalog that comes with the platform, rather than being hidden in the application, so you can see which weights are in play, swap them for others you prefer, and pin a version that does not move until you move it.</p>
   </section>
 
