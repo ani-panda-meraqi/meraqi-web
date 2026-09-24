@@ -66,15 +66,14 @@
   th{ text-align:left; font-family:var(--fmono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-dim); font-weight:500; padding:13px 16px; background:var(--card); border-bottom:1px solid var(--line-strong); white-space:normal; }
   td{ padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--muted); }
   tr:last-child td, tbody tr:last-child th{ border-bottom:none; }
-  td:first-child, tbody th{ color:var(--cream-pure); font-weight:600; white-space:nowrap; }
-  tbody th{ font-family:inherit; font-size:inherit; letter-spacing:normal; text-transform:none; text-align:start; background:none; padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tbody th{ color:var(--cream-pure); font-weight:600; white-space:nowrap; font-family:inherit; font-size:inherit; letter-spacing:normal; text-transform:none; text-align:start; background:none; padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
     table.obl{ table-layout:fixed; }
     table.obl th:first-child{ width:26%; }
-    table.obl td:first-child, table.obl tbody th{ white-space:normal; }
+    table.obl tbody th{ white-space:normal; }
     @media(max-width:720px){
       .scroller table{ border-collapse:separate; border-spacing:0; }
-      .scroller th:first-child, .scroller td:first-child{ position:sticky; left:0; z-index:1; box-shadow:1px 0 0 var(--line-strong); }
-      .scroller td:first-child, .scroller tbody th{ background:var(--bg); }
+      .scroller th:first-child{ position:sticky; left:0; z-index:1; box-shadow:1px 0 0 var(--line-strong); }
+      .scroller tbody th{ background:var(--bg); }
       table.obl{ min-width:560px; }
       table.obl th:first-child{ width:136px; }
     }
