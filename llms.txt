@@ -44,7 +44,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 **Regulated work, and what Meraqi does not claim**
 
 - Meraqi is built for teams that work under rules such as HIPAA, GLBA, FFIEC, ITAR, CMMC and FedRAMP. These are rules customers work under, not certifications Meraqi holds.
-- Run on the customer's network, content never crosses the customer's boundary, so no business-associate relationship with AiOne is created and third-party data handling drops out of the compliance question. The customer's own controls, audit review and retention still do the rest.
+- Run on the customer's network, content never crosses the customer's boundary, and third-party data handling drops out of the compliance question. As long as AiOne staff are never given access to the deployment, no business-associate relationship with AiOne is created. The customer's own controls, audit review and retention still do the rest.
 - Meraqi is not HIPAA certified, because HIPAA certifies no software. AiOne LLC does not hold SOC 2 or FedRAMP authorization today.
 - Export to a SIEM, a model provenance stamp on each design, and signed release media are not built yet. Provenance is recorded per generation job today.
 - Meraqi is not open source. It is commercial software that runs open-weight models.
