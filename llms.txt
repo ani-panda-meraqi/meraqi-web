@@ -4,7 +4,7 @@
 
 Meraqi is for people and teams who design to communicate, such as creators, small marketing teams, agencies, and organizations in regulated industries. It works on a layered, object-based design canvas for visual layouts such as social posts, headers, thumbnails, slides, email and print, and it also makes video. The name comes from the Greek word meraki, to do something with soul, creativity and love.
 
-In this file an asset is something a user brings in, such as a logo, fonts, colors, reference images, speech, text, Word documents or PDFs. A design is what Meraqi makes, an image or a video today.
+In this file an asset is something a user brings in, such as a logo, fonts, colors, reference images, speech, text, Word documents or PDFs. A design is what Meraqi makes, an image, a video or a 3D rendering (coming soon).
 
 **What it does today, in the private beta**
 
@@ -21,9 +21,9 @@ In this file an asset is something a user brings in, such as a logo, fonts, colo
 
 Video clips run up to 90 seconds of continuous 1080p on the online service, depending on the plan, and up to about 5 minutes on the customer's own hardware.
 
-**On the way, not available yet**
+**Coming soon, not available yet**
 
-Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agent-run campaigns, company single sign-on through the Meraqi Identity Broker, and 3D.
+Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agent-run campaigns, company single sign-on through the Meraqi Identity Broker, a reference video as a way to refine a generation, and 3D renderings.
 
 **Where it runs, two options and no others**
 
