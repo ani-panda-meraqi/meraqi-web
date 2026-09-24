@@ -1,0 +1,77 @@
+# Meraqi
+
+> Meraqi is an AI design platform that turns plain language into fully editable, multi-layer designs and video with speech. It runs open-weight models on its own GPUs with no third-party AI API, either as one multi-tenant online service at meraqi.ai or on a customer's own network, up to fully air-gapped. Meraqi is a product of AiOne LLC in Seattle, Washington, and is in private beta.
+
+Meraqi is for people and teams who design to communicate, such as creators, small marketing teams, agencies, and organizations in regulated industries. It works on a layered, object-based design canvas for visual layouts such as social posts, headers, thumbnails, slides, email and print, and it also makes video. The name comes from the Greek word meraki, to do something with soul, creativity and love.
+
+In this file an asset is something a user brings in, such as a logo, fonts, colors, reference images, speech, text, Word documents or PDFs. A design is what Meraqi makes, an image or a video today.
+
+**What it does today, in the private beta**
+
+- Generates images from text, delivered as a layered design on that canvas. The headline, background and photo are separate layers that can be recolored, resized and moved without regenerating the image.
+- Restyles an image by text or by a reference image.
+- Generates video from text, from a web page link, or from images plus text, with people, products, camera moves, lighting and a voice track. Video is refined by generating again with a better prompt or reference, not by editing layers.
+- Takes spoken input, which AI turns into text before generating an image or a video.
+- Rewrites the prompt with AI for better results, and the rewrite can be edited before generating.
+- Keeps the interface simple. Users never work with a node graph. The workflow graphs that drive generation sit underneath as versioned files, and the exact graph behind each image is recorded with its generation job.
+- Applies a brand kit of colors, fonts and references to every generation.
+- Adapts one design to more than 13 formats with Magic Resize, and sends it as an email or to print on demand.
+- Offers advanced layer editing with masks and compositing.
+- Lets every design be fine-tuned step by step, from the prompt to the output image or video, and keeps every step as its own version. This refines the design, not the model, and nothing is overwritten.
+
+Video clips run up to 90 seconds of continuous 1080p on the online service, depending on the plan, and up to about 5 minutes on the customer's own hardware.
+
+**On the way, not available yet**
+
+Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agent-run campaigns, company single sign-on through the Meraqi Identity Broker, and 3D.
+
+**Where it runs, two options and no others**
+
+- The online service at meraqi.ai is one multi-tenant service that individuals and businesses all share. Meraqi runs the models on infrastructure it operates, so prompts, designs and uploads are not sent to any external AI provider.
+- On the customer's own network, the same software runs inside the customer's perimeter, on its own hardware or in its private or government cloud, up to fully air-gapped. After the model weights are staged once, generation runs with outbound network access blocked and nothing phones home. Air-gapped installs are built to order as part of an enterprise engagement and delivered on a single NVMe M.2 drive that carries the platform and the model weights.
+- AiOne does not run private instances for individual customers today. A customer that needs its own instance runs it on its own network.
+
+**Data, privacy and records**
+
+- Prompts, brand assets and designs are never used to train any model, by Meraqi or anyone else, and there is no setting that turns it on. Meraqi does not train models of its own at this time.
+- There are no passwords. Users sign in with Google or Microsoft, or with a 6-digit code sent by email or text.
+- Anything deleted is permanently removed after a 30-day recovery window.
+- Every action is written to an append-only audit record of who did what, when, from where, and through which generation job.
+- Each user has a private design library that keeps every version of every design, so offboarding, legal holds and erasure requests work against a clear boundary.
+- Lineage runs in both directions, from the assets a design was built from to every export it produced.
+- Models are listed in a deployment catalog, and a customer running Meraqi on its own network can see, swap and pin them.
+
+**Regulated work, and what Meraqi does not claim**
+
+- Meraqi is built for teams that work under rules such as HIPAA, GLBA, FFIEC, ITAR, CMMC and FedRAMP. These are rules customers work under, not certifications Meraqi holds.
+- Run on the customer's network, content never crosses the customer's boundary, so no business-associate relationship with AiOne is created and third-party data handling drops out of the compliance question. The customer's own controls, audit review and retention still do the rest.
+- Meraqi is not HIPAA certified, because HIPAA certifies no software. AiOne LLC does not hold SOC 2 or FedRAMP authorization today.
+- Export to a SIEM, a model provenance stamp on each design, and signed release media are not built yet. Provenance is recorded per generation job today.
+- Meraqi is not open source. It is commercial software that runs open-weight models.
+- Meraqi is pre-launch and in active development, with a private beta.
+
+**Plans**
+
+- Online plans are Trial (free for one month, no card), Starter at $12, Pro at $25 and Business at $50 per seat per month. Annual billing gives two months free.
+- Plans give video generation time and images per month instead of credits. Generation time is how long the GPUs work on a video, not the length of the finished clip.
+- The Self-Hosted plan is priced per deployment, and its capacity is the customer's own hardware.
+- The first 1000 guests get privileged access and the option to sign up for Pro for life at $125/year instead of $250, cancel anytime. Beta program is first come, first served, closing at 1000 user sign-ups.
+
+## Product
+
+- [Home](https://meraqi.ai/): What Meraqi makes, the four steps from idea to published, and who it is for
+- [Plans and pricing](https://meraqi.ai/pricing): Online plans, the Self-Hosted plan, and what generation time means
+- [Frequently asked questions](https://meraqi.ai/faq): Assets and designs, the online service, regulated and classified work, and running Meraqi on your own network
+
+## Running Meraqi on your own network
+
+- [Self-hosted AI design platform](https://meraqi.ai/self-hosted): What self-hosted means here, the two places Meraqi runs, the stack in plain terms, and why Meraqi is not open source
+- [AI design and video for regulated industries](https://meraqi.ai/regulated-industries): How deployment maps to HIPAA, CMMC, ITAR and data residency, the audit record and lineage, air-gapped delivery, and what Meraqi does not claim
+
+## Optional
+
+- [AI design and video pricing, vendor by vendor](https://meraqi.ai/comparative-pricing): Other vendors' published tiers with the credit math decoded, next to Meraqi's pricing, dated and sourced
+- [Contact](https://meraqi.ai/contact): Product, running Meraqi on your own network, partnerships, press and security reports, answered by the founder. Email hello@meraqi.ai, or legal@meraqi.ai for privacy and legal
+- [Privacy Policy](https://meraqi.ai/privacy): What is collected and why, no training on user content, prompts deleted after 90 days unless kept, and permanent deletion after a 30-day recovery window
+- [Terms of Service](https://meraqi.ai/terms): The agreement between users and AiOne LLC, including ownership of what users make
+- [Cookie Policy](https://meraqi.ai/cookies): The public websites set no analytics or advertising cookies

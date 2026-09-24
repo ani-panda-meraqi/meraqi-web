@@ -24,3 +24,6 @@
 
 /.assetsignore
   X-Robots-Tag: noindex
+
+/llms.txt
+  X-Robots-Tag: noindex
