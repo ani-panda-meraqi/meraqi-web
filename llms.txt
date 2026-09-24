@@ -66,7 +66,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 ## Running Meraqi on your own network
 
 - [Self-hosted AI design platform](https://meraqi.ai/self-hosted): What self-hosted means here, the two places Meraqi runs, the stack in plain terms, and why Meraqi is not open source
-- [AI design and video for regulated industries](https://meraqi.ai/regulated-industries): How deployment maps to HIPAA, CMMC, ITAR and data residency, the audit record and lineage, air-gapped delivery, and what Meraqi does not claim
+- [AI design and video for regulated industries](https://meraqi.ai/regulated-industries): Sector by sector for healthcare and life sciences, financial services, and government and defense, how deployment maps to HIPAA, GLBA, FINRA, FedRAMP, CMMC, ITAR and GDPR, the audit record and lineage, air-gapped delivery, and what Meraqi does not claim
 
 ## Optional
 

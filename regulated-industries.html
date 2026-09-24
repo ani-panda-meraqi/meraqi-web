@@ -63,10 +63,13 @@
 
   .scroller{ overflow-x:auto; margin:22px 0; border:1px solid var(--line); border-radius:10px; }
   table{ border-collapse:collapse; width:100%; min-width:620px; font-size:15px; }
-  th{ text-align:left; font-family:var(--fmono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-dim); font-weight:500; padding:13px 16px; background:var(--card); border-bottom:1px solid var(--line-strong); white-space:nowrap; }
+  th{ text-align:left; font-family:var(--fmono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-dim); font-weight:500; padding:13px 16px; background:var(--card); border-bottom:1px solid var(--line-strong); white-space:normal; }
   td{ padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--muted); }
   tr:last-child td{ border-bottom:none; }
   td:first-child{ color:var(--cream-pure); font-weight:600; white-space:nowrap; }
+    table.obl{ table-layout:fixed; }
+    table.obl th:first-child{ width:26%; }
+    table.obl td:first-child{ white-space:normal; }
 
   .modes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:24px 0; }
   .mode{ background:var(--bg-soft); border:1px solid var(--line); border-radius:10px; padding:22px; }
@@ -139,8 +142,11 @@
   <section>
     <h2>How deployment maps to obligations</h2>
     <p>This describes what the architecture provides. It is not a claim of certification. See <a href="#candid">what we don't claim</a> below.</p>
+
+    <h3>Healthcare and life sciences</h3>
+    <p>Hospital and health-system marketing teams, and pharmaceutical and device companies, make patient stories, campaigns and promotional pieces from material that can carry protected health information or unreleased product data.</p>
     <div class="scroller">
-      <table>
+      <table class="obl">
         <thead>
           <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
         </thead>
@@ -151,8 +157,52 @@
             <td>PHI never reaches AiOne. No business-associate relationship is created, so there is no BAA to negotiate and no external breach surface to assess.</td>
           </tr>
           <tr>
-            <td>CMMC · CUI</td>
-            <td>Controlled Unclassified Information processed in a commercial multi-tenant cloud falls outside most enclave boundaries.</td>
+            <td>Promotional review</td>
+            <td>Draft claims and unreleased product data go to a third party long before anything is approved, and review needs the exact version and the sources behind it, not just the final file.</td>
+            <td>Unreleased material stays inside your network. Every version is kept, and lineage links each design to the source files it was built from and every export it produced, so the approved version and its sources can be produced exactly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Financial services</h3>
+    <p>Banks, credit unions and broker-dealers make campaigns, product announcements and client communications, and the brief often travels with customer information or figures that are not public yet.</p>
+    <div class="scroller">
+      <table class="obl">
+        <thead>
+          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GLBA · FFIEC</td>
+            <td>Customer information sent to a design website makes that provider a service provider holding nonpublic personal information, which brings contract terms, oversight and a place in your third-party risk program.</td>
+            <td>Customer information never reaches AiOne. Your vendor review covers the software itself rather than a service that holds your data.</td>
+          </tr>
+          <tr>
+            <td>FINRA 2210</td>
+            <td>Retail communications need a registered principal's approval before use and have to be retained under SEC Rule 17a-4, and a piece designed on a public website leaves its working history outside the firm.</td>
+            <td>Every version of every design is kept, and the append-only audit record shows who changed what and when, inside your network. That supports principal review and retention. It does not replace your approval step or your books-and-records system.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Government and defense</h3>
+    <p>Agencies, defense suppliers and federal contractors make briefings, recruiting material and public-affairs creative, sometimes from controlled technical data.</p>
+    <div class="scroller">
+      <table class="obl">
+        <thead>
+          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FedRAMP</td>
+            <td>A cloud service that a vendor operates for an agency needs FedRAMP authorization at the right impact level before federal information goes into it.</td>
+            <td>Software your agency installs and runs itself, on its own hardware or in its own tenancy of an authorized government cloud, is outside FedRAMP's scope and goes through your own authorization. Our online service does not hold FedRAMP authorization.</td>
+          </tr>
+          <tr>
+            <td>CMMC · NIST SP 800-171</td>
+            <td>Controlled Unclassified Information has to stay in systems that meet NIST SP 800-171, and a commercial multi-tenant cloud falls outside most enclave boundaries.</td>
             <td>Meraqi runs inside your existing enclave as another containerized workload, under controls you have already had assessed.</td>
           </tr>
           <tr>
@@ -160,10 +210,22 @@
             <td>Transmitting technical data to a provider whose staff or infrastructure may be non-US is a potential export.</td>
             <td>Nothing is transmitted. Technical data stays on hardware inside a boundary you control, in a facility you choose.</td>
           </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Every sector</h3>
+    <p>Two questions come up wherever the work is regulated, where the data sits and whether it trains anyone's model.</p>
+    <div class="scroller">
+      <table class="obl">
+        <thead>
+          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+        </thead>
+        <tbody>
           <tr>
-            <td>Data residency</td>
-            <td>Cross-border transfer, subprocessor chains, and retention terms you cannot alter.</td>
-            <td>The data never moves. Residency is wherever you put the server, and retention is whatever your own policy says.</td>
+            <td>Data residency · GDPR</td>
+            <td>Personal data sent across borders needs a lawful transfer basis under GDPR, on top of subprocessor chains and retention terms you cannot alter.</td>
+            <td>The data never moves. Residency is wherever you put the server, retention is whatever your own policy says, and there is no transfer to justify.</td>
           </tr>
           <tr>
             <td>Model training</td>
