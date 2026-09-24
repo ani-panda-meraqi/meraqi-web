@@ -65,15 +65,16 @@
   table{ border-collapse:collapse; width:100%; min-width:620px; font-size:15px; }
   th{ text-align:left; font-family:var(--fmono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-dim); font-weight:500; padding:13px 16px; background:var(--card); border-bottom:1px solid var(--line-strong); white-space:normal; }
   td{ padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--muted); }
-  tr:last-child td{ border-bottom:none; }
-  td:first-child{ color:var(--cream-pure); font-weight:600; white-space:nowrap; }
+  tr:last-child td, tbody tr:last-child th{ border-bottom:none; }
+  td:first-child, tbody th{ color:var(--cream-pure); font-weight:600; white-space:nowrap; }
+  tbody th{ font-family:inherit; font-size:inherit; letter-spacing:normal; text-transform:none; text-align:start; background:none; padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
     table.obl{ table-layout:fixed; }
     table.obl th:first-child{ width:26%; }
-    table.obl td:first-child{ white-space:normal; }
+    table.obl td:first-child, table.obl tbody th{ white-space:normal; }
     @media(max-width:640px){
       .scroller table{ border-collapse:separate; border-spacing:0; }
       .scroller th:first-child, .scroller td:first-child{ position:sticky; left:0; z-index:1; box-shadow:1px 0 0 var(--line-strong); }
-      .scroller td:first-child{ background:var(--bg); }
+      .scroller td:first-child, .scroller tbody th{ background:var(--bg); }
       table.obl{ min-width:560px; }
       table.obl th:first-child{ width:136px; }
     }
@@ -152,19 +153,19 @@
 
     <h3>Healthcare and life sciences</h3>
     <p>Hospital and health-system marketing teams, and pharmaceutical and device companies, make patient stories, campaigns and promotional pieces from material that can carry protected health information or unreleased product data.</p>
-    <div class="scroller">
+    <div class="scroller" tabindex="0" role="region" aria-label="Healthcare and life sciences obligations">
       <table class="obl">
         <thead>
-          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+          <tr><th scope="col">Obligation</th><th scope="col">The usual problem with public websites</th><th scope="col">What running it on your network changes</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>HIPAA</td>
+            <th scope="row">HIPAA</th>
             <td>Uploading imagery or copy containing PHI makes the vendor a business associate, requiring a BAA, subprocessor review and breach-notification terms.</td>
             <td>PHI never reaches AiOne. As long as AiOne staff are never given access to the deployment, no business-associate relationship is created, so there is no BAA to negotiate and no external breach surface to assess.</td>
           </tr>
           <tr>
-            <td>Promotional review</td>
+            <th scope="row">Promotional review</th>
             <td>Draft claims and unreleased product data go to a third party long before anything is approved, and review needs the exact version and the sources behind it, not just the final file.</td>
             <td>Unreleased material stays inside your network. Every version is kept, and lineage links each design to the source files it was built from and every export it produced, so the approved version and its sources can be produced exactly.</td>
           </tr>
@@ -174,19 +175,19 @@
 
     <h3>Financial services</h3>
     <p>Banks, credit unions and broker-dealers make campaigns, product announcements and client communications, and the brief often travels with customer information or figures that are not public yet.</p>
-    <div class="scroller">
+    <div class="scroller" tabindex="0" role="region" aria-label="Financial services obligations">
       <table class="obl">
         <thead>
-          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+          <tr><th scope="col">Obligation</th><th scope="col">The usual problem with public websites</th><th scope="col">What running it on your network changes</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>GLBA · FFIEC</td>
+            <th scope="row">GLBA · FFIEC</th>
             <td>Customer information sent to a design website makes that provider a service provider holding nonpublic personal information, which brings contract terms, oversight and a place in your third-party risk program.</td>
             <td>Customer information never reaches AiOne. Your vendor review covers the software itself rather than a service that holds your data.</td>
           </tr>
           <tr>
-            <td>FINRA 2210</td>
+            <th scope="row">FINRA 2210</th>
             <td>Retail communications need a registered principal's approval before use and have to be retained under SEC Rule 17a-4, and a piece designed on a public website leaves its working history outside the firm.</td>
             <td>Every version of every design is kept, and the append-only audit record shows who changed what and when, inside your network. That supports principal review and retention. It does not replace your approval step or your books-and-records system.</td>
           </tr>
@@ -196,24 +197,24 @@
 
     <h3>Government and defense</h3>
     <p>Agencies, defense suppliers and federal contractors make briefings, recruiting material and public-affairs creative, sometimes from controlled technical data.</p>
-    <div class="scroller">
+    <div class="scroller" tabindex="0" role="region" aria-label="Government and defense obligations">
       <table class="obl">
         <thead>
-          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+          <tr><th scope="col">Obligation</th><th scope="col">The usual problem with public websites</th><th scope="col">What running it on your network changes</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>FedRAMP</td>
+            <th scope="row">FedRAMP</th>
             <td>A cloud service that a vendor operates for an agency needs FedRAMP authorization at the right impact level before federal information goes into it.</td>
             <td>Software your agency installs and runs itself, on its own hardware or in its own tenancy of an authorized government cloud, is outside FedRAMP's scope and goes through your own authorization. Our online service does not hold FedRAMP authorization.</td>
           </tr>
           <tr>
-            <td>CMMC · NIST SP 800-171</td>
+            <th scope="row">CMMC · NIST SP 800-171</th>
             <td>Controlled Unclassified Information has to stay in systems that meet NIST SP 800-171, and a commercial multi-tenant cloud falls outside most enclave boundaries.</td>
             <td>Meraqi runs inside your existing enclave as another containerized workload, under controls you have already had assessed.</td>
           </tr>
           <tr>
-            <td>ITAR · EAR</td>
+            <th scope="row">ITAR · EAR</th>
             <td>Transmitting technical data to a provider whose staff or infrastructure may be non-US is a potential export.</td>
             <td>Nothing is transmitted. Technical data stays on hardware inside a boundary you control, in a facility you choose.</td>
           </tr>
@@ -223,19 +224,19 @@
 
     <h3>Every sector</h3>
     <p>Two questions come up wherever the work is regulated, where the data sits and whether it trains anyone's model.</p>
-    <div class="scroller">
+    <div class="scroller" tabindex="0" role="region" aria-label="Obligations in every sector">
       <table class="obl">
         <thead>
-          <tr><th>Obligation</th><th>The usual problem with public websites</th><th>What running it on your network changes</th></tr>
+          <tr><th scope="col">Obligation</th><th scope="col">The usual problem with public websites</th><th scope="col">What running it on your network changes</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Data residency · GDPR</td>
+            <th scope="row">Data residency · GDPR</th>
             <td>Personal data sent across borders needs a lawful transfer basis under GDPR, on top of subprocessor chains and retention terms you cannot alter.</td>
             <td>The data never moves. Residency is wherever you put the server, retention is whatever your own policy says, and there is no transfer to justify.</td>
           </tr>
           <tr>
-            <td>Model training</td>
+            <th scope="row">Model training</th>
             <td>Many providers reserve broad rights to train on customer content, sometimes behind an opt-out rather than an opt-in.</td>
             <td>Weights are static and local. There is no pipeline from your content back to any model. That is a matter of architecture, not of policy.</td>
           </tr>
@@ -283,17 +284,17 @@
     <p>Containment is only half the requirement. The other half is being able to prove it. An auditor does not accept an architecture diagram as evidence, and neither does an incident review at two in the morning.</p>
     <p>Every action taken in the system is written to an append-only audit record that lives on your deployment alongside everything else, so your audit trail is not sitting in a vendor's database behind a support ticket.</p>
 
-    <div class="scroller">
+    <div class="scroller" tabindex="0" role="region" aria-label="What the audit record contains">
       <table>
         <thead>
-          <tr><th>Recorded</th><th>What the audit record contains</th></tr>
+          <tr><th scope="col">Recorded</th><th scope="col">What the audit record contains</th></tr>
         </thead>
         <tbody>
-          <tr><td>Who</td><td>The identity and role behind every action, tied to the account that performed it.</td></tr>
-          <tr><td>What</td><td>The action and its object. Prompt submitted, design generated, layer edited, version restored, design exported, design deleted.</td></tr>
-          <tr><td>When</td><td>Every object in the system carries a UUIDv7, which is time-ordered by construction, so a sequence can be reconstructed exactly rather than approximately. The v1, v2, v3 you see in the interface are labels over those identifiers.</td></tr>
-          <tr><td>Where</td><td>Two things. Where the request came from, and the path of the content itself, meaning which source assets were drawn on, which output they produced, and where that output was exported to.</td></tr>
-          <tr><td>How</td><td>The interface used, and the generation job behind the output. Each design traces to its job, and the job records the model and version that ran.</td></tr>
+          <tr><th scope="row">Who</th><td>The identity and role behind every action, tied to the account that performed it.</td></tr>
+          <tr><th scope="row">What</th><td>The action and its object. Prompt submitted, design generated, layer edited, version restored, design exported, design deleted.</td></tr>
+          <tr><th scope="row">When</th><td>Every object in the system carries a UUIDv7, which is time-ordered by construction, so a sequence can be reconstructed exactly rather than approximately. The v1, v2, v3 you see in the interface are labels over those identifiers.</td></tr>
+          <tr><th scope="row">Where</th><td>Two things. Where the request came from, and the path of the content itself, meaning which source assets were drawn on, which output they produced, and where that output was exported to.</td></tr>
+          <tr><th scope="row">How</th><td>The interface used, and the generation job behind the output. Each design traces to its job, and the job records the model and version that ran.</td></tr>
         </tbody>
       </table>
     </div>
