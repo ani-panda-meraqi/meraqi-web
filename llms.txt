@@ -13,7 +13,7 @@ In this file an asset is something a user brings in, such as a logo, fonts, colo
 - Generates video from text, from a web page link, or from images plus text, with people, products, camera moves, lighting and a voice track. Video is refined by generating again with a better prompt or reference, not by editing layers.
 - Takes spoken input, which AI turns into text before generating an image or a video.
 - Rewrites the prompt with AI for better results, and the rewrite can be edited before generating.
-- Keeps the interface simple. Users never work with a node graph. The workflow graphs that drive generation sit underneath as versioned files, and the exact graph behind each image is recorded with its generation job.
+- Keeps the interface simple, with no node graph for users to build. Image generation is driven by a versioned workflow catalog, so the exact graph that produced an image is recorded rather than implied.
 - Applies a brand kit of colors, fonts and references to every generation.
 - Adapts one design to more than 13 formats with Magic Resize, and sends it as an email or to print on demand.
 - Offers advanced layer editing with masks and compositing.
