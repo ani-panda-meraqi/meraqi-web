@@ -137,15 +137,6 @@
   .story-body p.lead{ font-family:var(--fdisplay); font-weight:400; font-size:clamp(22px,2.6vw,30px); line-height:1.34; color:var(--cream-pure); }
   .story-body .sig{ font-family:var(--fmono); font-size:13px; letter-spacing:0.06em; color:var(--accent-ink); margin-top:24px; margin-bottom:0; }
 
-  /* problem split */
-  .problem{ border-block:1px solid var(--line); }
-  .split{ display:grid; grid-template-columns:1fr 1px 1fr; gap:56px; align-items:start; }
-  .split .rule{ background:var(--line); align-self:stretch; min-height:200px; }
-  .split h3{ font-family:var(--fdisplay); font-weight:500; font-size:clamp(26px,3.2vw,36px); line-height:1.08; letter-spacing:-0.01em; margin-bottom:18px; color:var(--cream-pure); }
-  .split .right h3{ font-style:italic; color:var(--accent-ink); }
-  .split p{ color:var(--muted); font-size:16.5px; margin-bottom:14px; }
-  .split p.dim{ color:var(--muted-dim); }
-
   /* steps */
   .steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:36px; }
   .step .num{ font-family:var(--fmono); font-size:13px; color:var(--accent); letter-spacing:0.1em; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line); }
@@ -214,8 +205,6 @@
     .hero-grid{ grid-template-columns:1fr; gap:48px; }
     .stage{ max-width:520px; }
     .meraki-row{ grid-template-columns:1fr; gap:28px; }
-    .split{ grid-template-columns:1fr; gap:40px; }
-    .split .rule{ display:none; }
     .steps{ grid-template-columns:1fr 1fr; gap:32px; }
     .fgrid{ grid-template-columns:1fr 1fr; }
     .wgrid{ grid-template-columns:1fr; }
@@ -491,26 +480,6 @@
     <p>I'm an engineer by trade, but I've always loved art and design. That morning I thought, I can build this. Not just for me, but for everyone who has something to say and wants it to look and feel like they mean it.</p>
     <p>That is Meraqi.</p>
     <p class="sig">- Ani Panda, Founder</p>
-  </div>
-</section>
-
-<!-- problem -->
-<section class="problem">
-  <div class="wrap sec">
-    <span class="eyebrow rv" style="display:block; margin-bottom:40px;">The problem</span>
-    <div class="split">
-      <div class="left rv">
-        <h3>Most AI design tools stop at the first draft.</h3>
-        <p>You type a prompt and get a flat image you cannot really change. Want a different background? Regenerate the whole thing. Want to nudge one button? You cannot. It is baked into pixels.</p>
-        <p class="dim">Most "AI design" tools are image generators with a crop tool bolted on.</p>
-      </div>
-      <div class="rule rv"></div>
-      <div class="right rv">
-        <h3>Meraqi thinks in layers.</h3>
-        <p>Every image you generate is a structured, multi-layer composition. The headline is a text layer. The background is its own layer. The photo sits on a layer of its own.</p>
-        <p>You recolor, resize, and rearrange every element the way you would in a real design app, because that is what Meraqi is.</p>
-      </div>
-    </div>
   </div>
 </section>
 
