@@ -9,6 +9,7 @@ In this file an asset is something a user brings in, such as a logo, fonts, colo
 **What it does today, in the private beta**
 
 - Generates images from text, delivered as editable layers on that canvas. The headline, background and photo are separate layers that can be recolored, resized and moved without regenerating the image.
+- Refines an image by picking the best of four generated images, then changing the canvas color, editing text, removing the background, regenerating, applying the Noir Effect or adding an accent.
 - Restyles an image by text or by a reference image.
 - Generates video from text, from a web page link, or from images plus text, with people, products, camera moves, lighting and a voice track. Video is refined by generating again with a better prompt or reference, not by editing layers.
 - Takes spoken input, which AI turns into text before generating an image or a video.
@@ -59,7 +60,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 
 ## Product
 
-- [Home](https://meraqi.ai/): What Meraqi makes, the four steps from idea to published, and who it is for
+- [Home](https://meraqi.ai/): What Meraqi makes, the four steps from idea to ready to post, and who it is for
 - [Plans and pricing](https://meraqi.ai/pricing): Online plans, the Self-Hosted plan, and what generation time means
 - [Frequently asked questions](https://meraqi.ai/faq): What Meraqi is, assets and designs, the online service, regulated and classified work, and running Meraqi on your own network
 
