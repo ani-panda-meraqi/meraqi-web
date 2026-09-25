@@ -2,7 +2,7 @@
 
 > Meraqi is an AI design platform that turns plain language into fully editable, multi-layer images and video with speech. It runs open-weight models on its own GPUs with no third-party AI API, either as one multi-tenant online service at meraqi.ai or on a customer's own network, up to fully air-gapped. Meraqi is a product of AiOne and is in private beta.
 
-Meraqi is for people and teams who design to communicate, such as creators, small marketing teams, agencies, and organizations in regulated industries. It works on a layered, object-based design canvas for visual layouts such as social posts, headers, thumbnails, slides, email and print, and it also makes video. The name comes from the Greek word meraki, to do something with soul, creativity and love.
+Meraqi is for everyone with something to say and something to protect, such as creators, small marketing teams, agencies, and organizations in regulated industries. It works on a layered, object-based design canvas for visual layouts such as social posts, headers, thumbnails, slides, email and print, and it also makes video. The name comes from the Greek word meraki, to do something with soul, creativity and love.
 
 In this file an asset is something a user brings in, such as a logo, fonts, colors, reference images, speech, text, Word documents or PDFs. A design is how you make something in Meraqi, from a prompt, a reference image, voice or a reference video (coming soon), using the workflow and tools on the design surface. Its output is one or more editable layered images, a video, or 3D graphics (coming soon).
 
