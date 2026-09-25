@@ -24,7 +24,7 @@ Video clips run up to 90 seconds of continuous 1080p on the online service, depe
 
 **Coming soon, not available yet**
 
-Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agent-run campaigns, company single sign-on through the Meraqi Identity Broker, a reference video as a way to refine a generation, and 3D graphics.
+Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agentic workflows in which an agent plans, generates, gets approval and publishes on a schedule, a Meraqi MCP (Model Context Protocol) server that a user's own AI assistant or internal workflows can call, company single sign-on through the Meraqi Identity Broker, a reference video as a way to refine a generation, and 3D graphics.
 
 **Where it runs, two options and no others**
 
