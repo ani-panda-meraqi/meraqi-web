@@ -27,6 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/tokens.css"/>
+<link rel="stylesheet" href="assets/beta-form.css"/>
 <style>
   :root{color-scheme:dark;--accent-soft:#20293e;--warn-soft:#2b2413;--warn-ink:#e5b84b;--info-soft:#10263f;--info-ink:#6ea8e8;}
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -260,6 +261,16 @@
 
 <p style="margin-top: 10px; font-size: 12.5px;"><b>Why this page has no cost calculator.</b> It used to. A fair one needs every vendor's rate per second of finished video at a stated model and resolution, and five of the six do not publish one. Ours filled those gaps with our own assumptions about companies we compete with, which is not a fair test of them or a claim we can stand behind. It was removed on September 20, 2026.</p>
 
+<section class="beta-cta" id="beta" aria-labelledby="beta-h">
+<h2 id="beta-h">Join the private beta</h2>
+<p class="beta-lede">The beta program is first come, first served, closing at 1000 user sign-ups. <a href="/pricing">See the plans and the beta offer</a>.</p>
+<form class="capture" data-beta="comparison"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+<input type="email" placeholder="you@example.com" required aria-label="Email address"/>
+<button type="submit" class="btn btn-primary">Join the beta</button>
+</form>
+<div class="capture-status" role="status" aria-live="polite" tabindex="-1"></div>
+<p class="capture-note">We email you when your slot opens. No spam, no drip sequences. Read how we handle your email in our <a href="/privacy">Privacy Policy</a>.</p>
+</section>
 <div class="foot">
   <p>Competitors verified September 18, 2026; Meraqi plans as of September 18, 2026. All prices USD, exclusive of tax. Sources are the vendor pricing pages linked in the first column.</p>
 </div>
@@ -279,6 +290,7 @@
     <span><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
+<script src="assets/beta-form.js" defer></script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>

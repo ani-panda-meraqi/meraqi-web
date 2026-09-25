@@ -27,6 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/tokens.css"/>
+<link rel="stylesheet" href="assets/beta-form.css"/>
 <style>
   
 
@@ -70,17 +71,6 @@
   .hero-support{ font-size:15px; color:var(--muted-dim); max-width:50ch; margin-bottom:34px; }
 .nw{ white-space:nowrap; }
 
-  .capture{ display:flex; align-items:center; gap:6px; background:var(--card); border:1px solid var(--line-strong); border-radius:12px; padding:5px 5px 5px 18px; max-width:440px; transition:border-color .15s, box-shadow .15s; }
-  .capture:focus-within{ border-color:var(--accent); box-shadow:0 0 0 4px rgba(238,90,52,0.14); }
-  .capture input{ flex:1; min-width:0; background:transparent; border:0; outline:0; color:var(--ink); font-size:15px; padding:9px 0; }
-  .capture input::placeholder{ color:var(--muted); }
-  .capture .btn{ padding:10px 16px; font-size:13.5px; }
-  .capture-note{ font-size:12.5px; color:var(--muted-dim); margin-top:11px; font-family:var(--fmono); letter-spacing:0.02em; }
-  .capture[hidden]{ display:none; }
-  .capture-status{ max-width:440px; padding:13px 18px; border:1px solid rgba(238,90,52,0.4); border-radius:12px; background:var(--card); color:var(--ink); font-size:15px; line-height:1.5; }
-  .capture-status:empty{ padding:0; border:0; margin:0; background:transparent; }
-  .capture-status:focus{ outline:0; }
-  .capture-status.err{ margin-top:10px; padding:0; border:0; background:transparent; color:var(--accent-ink); font-size:13.5px; }
 
   .trust{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:40px; padding-top:26px; border-top:1px solid var(--line); font-family:var(--fmono); font-size:12px; letter-spacing:0.04em; color:var(--muted-dim); }
   .trust b{ color:var(--muted); font-weight:500; }
@@ -556,7 +546,7 @@
   <div class="wrap">
     <h2 class="rv">Ship better creative. <em>Faster</em>. Without giving up your passion and creativity.</h2>
     <p class="rv">The private beta takes the first 1000 guests. Be one of them.</p>
-    <form class="capture rv" onsubmit="joinBeta(event)"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+    <form class="capture rv" data-beta="home"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
       <input type="email" placeholder="you@example.com" required aria-label="Email address"/>
       <button type="submit" class="btn btn-primary">Join the beta</button>
     </form>
@@ -585,56 +575,13 @@
 </footer>
 
 <script>
-  async function joinBeta(e){
-    e.preventDefault();
-    var form = e.target;
-    var input = form.querySelector('input[type=email]');
-    var btn = form.querySelector('button');
-    var email = (input.value || '').trim();
-    if(!email) return;
-    var label = btn.textContent;
-    var next = form.nextElementSibling;
-    var status = (next && next.classList.contains('capture-status')) ? next : null;
-    var msg = 'Could not save right now. Please try again.';
-    btn.disabled = true; input.disabled = true; btn.textContent = 'Adding you...';
-    if(status){ status.textContent = ''; status.classList.remove('err'); }
-    try{
-      var res = await fetch('/api/waitlist', {
-        method:'POST',
-        headers:{'content-type':'application/json'},
-        body: JSON.stringify({ email: email, hp: (form.hp ? form.hp.value : '') })
-      });
-      var data = null;
-      try{ data = await res.json(); }catch(_){}
-      // Confirm only when the server says the row is in the table (it reads it back first).
-      if(res.ok && data && data.saved === true){
-        // Success stays on screen. Built with DOM calls so the typed address can never inject markup.
-        if(status){
-          var strong = document.createElement('strong');
-          strong.textContent = email;
-          status.append("You're on the list. We'll email you at ", strong, " when your slot opens.");
-          form.hidden = true;
-          status.focus();
-        } else {
-          btn.textContent = "You're on the list \u2713";
-        }
-        return;
-      }
-      if(data && data.error) msg = data.error;
-    }catch(err){
-      msg = 'Could not reach the server. Check your connection and try again.';
-    }
-    btn.textContent = label; btn.disabled = false; input.disabled = false;
-    if(status){ status.classList.add('err'); status.textContent = msg; }
-    input.focus();
-  }
-  
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { rootMargin:'0px 0px -60px 0px', threshold:0.06 });
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 </script>
 
+<script src="assets/beta-form.js" defer></script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>

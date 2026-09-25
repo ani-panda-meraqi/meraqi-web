@@ -27,6 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/tokens.css"/>
+<link rel="stylesheet" href="assets/beta-form.css"/>
 <style>
   :root{color-scheme:dark;--accent-soft:#20293e;--warn-soft:#2b2413;--warn-ink:#e5b84b;--info-soft:#10263f;--info-ink:#6ea8e8;}
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -115,7 +116,7 @@
 <div class="scroller meraqi-detail">
 <table>
   <thead>
-    <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo<span class="thsub">or $120/seat/yr</span></th><th>Pro $25/seat/mo<span class="thsub">or $250/seat/yr</span><a class="pop" href="/#beta">Most popular</a></th><th>Business $50/seat/mo<span class="thsub">or $500/seat/yr</span></th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a><span class="thsub">priced per deployment &middot; <a href="/contact">Talk to us</a></span></th></tr>
+    <tr><th class="rowlabel"></th><th>Trial (free for 1 month, no card)</th><th>Starter $12/seat/mo<span class="thsub">or $120/seat/yr</span></th><th>Pro $25/seat/mo<span class="thsub">or $250/seat/yr</span><a class="pop" href="#beta">Most popular</a></th><th>Business $50/seat/mo<span class="thsub">or $500/seat/yr</span></th><th>Self-Hosted <a class="fn" href="#fn-regulated">&dagger;</a><span class="thsub">priced per deployment &middot; <a href="/contact">Talk to us</a></span></th></tr>
   </thead>
   <tbody>
     <tr><td class="rowlabel">Video generation time per month <a class="fn" href="#fn-gentime">&sect;</a></td><td>10 minutes (watermarked export)</td><td>60 minutes</td><td>240 minutes</td><td>600 minutes per seat, pooled across the team</td><td>Your hardware's capacity</td></tr>
@@ -145,6 +146,15 @@
 </div>
 </div>
 
+<section class="beta-cta" id="beta" aria-labelledby="beta-h">
+<h2 id="beta-h">Join the private beta</h2>
+<form class="capture" data-beta="pricing"><input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"/>
+<input type="email" placeholder="you@example.com" required aria-label="Email address"/>
+<button type="submit" class="btn btn-primary">Join the beta</button>
+</form>
+<div class="capture-status" role="status" aria-live="polite" tabindex="-1"></div>
+<p class="capture-note">We email you when your slot opens. No spam, no drip sequences. Read how we handle your email in our <a href="/privacy">Privacy Policy</a>.</p>
+</section>
 <h2>Questions about the online plans</h2>
 <p style="margin-top: 6px; font-size: 13px; color: var(--muted); max-width: 720px;">Signing in without a password, what happens when you delete something, and whether anything you make is ever used to train a model.</p>
 <p style="margin-top: 12px; font-size: 14px;"><a class="fn" href="/faq#online">See the FAQ &rarr;</a></p>
@@ -168,6 +178,7 @@
     <span><a href="https://www.linkedin.com/company/meraqi-ai" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
+<script src="assets/beta-form.js" defer></script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>

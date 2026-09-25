@@ -9,7 +9,15 @@
 //   - Email is validated, trimmed, lowercased, and length-capped before storage.
 //   - The email column is UNIQUE; duplicates are ignored, not errored.
 //   - Only email + timestamp + source are stored. No console logging of PII.
+//   - source is the page the form sat on, taken only from the fixed list in SOURCES;
+//     anything else, including pages cached before forms sent it, is stored as the site.
 //   - Methods other than POST get an automatic 405 from Pages Functions.
+
+const SOURCES = {
+  home: "meraqi.ai",
+  pricing: "meraqi.ai/pricing",
+  comparison: "meraqi.ai/comparative-pricing",
+};
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -35,11 +43,14 @@ export async function onRequestPost(context) {
     return json({ error: "Enter a valid email address." }, 400);
   }
 
+  const key = String(body && body.source || "");
+  const source = Object.prototype.hasOwnProperty.call(SOURCES, key) ? SOURCES[key] : "meraqi.ai";
+
   try {
     await env.DB.prepare(
       "INSERT INTO waitlist (email, source, created_at) VALUES (?, ?, ?) " +
       "ON CONFLICT(email) DO NOTHING"
-    ).bind(email, "meraqi.ai", new Date().toISOString()).run();
+    ).bind(email, source, new Date().toISOString()).run();
 
     // Read the row back before confirming. The page shows "You're on the list" only when
     // saved is true, so that message always reflects a committed row, whether it was
