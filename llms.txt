@@ -1,21 +1,21 @@
 # Meraqi
 
-> Meraqi is an AI design platform that turns plain language into fully editable, multi-layer designs and video with speech. It runs open-weight models on its own GPUs with no third-party AI API, either as one multi-tenant online service at meraqi.ai or on a customer's own network, up to fully air-gapped. Meraqi is a product of AiOne and is in private beta.
+> Meraqi is an AI design platform that turns plain language into fully editable, multi-layer images and video with speech. It runs open-weight models on its own GPUs with no third-party AI API, either as one multi-tenant online service at meraqi.ai or on a customer's own network, up to fully air-gapped. Meraqi is a product of AiOne and is in private beta.
 
 Meraqi is for people and teams who design to communicate, such as creators, small marketing teams, agencies, and organizations in regulated industries. It works on a layered, object-based design canvas for visual layouts such as social posts, headers, thumbnails, slides, email and print, and it also makes video. The name comes from the Greek word meraki, to do something with soul, creativity and love.
 
-In this file an asset is something a user brings in, such as a logo, fonts, colors, reference images, speech, text, Word documents or PDFs. A design is what Meraqi makes, an image, a video or a 3D rendering (coming soon).
+In this file an asset is something a user brings in, such as a logo, fonts, colors, reference images, speech, text, Word documents or PDFs. A design is how you make something in Meraqi, from a prompt, a reference image, voice or a reference video (coming soon), using the workflow and tools on the design surface. Its output is one or more editable layered images, a video, or 3D graphics (coming soon).
 
 **What it does today, in the private beta**
 
-- Generates images from text, delivered as a layered design on that canvas. The headline, background and photo are separate layers that can be recolored, resized and moved without regenerating the image.
+- Generates images from text, delivered as editable layers on that canvas. The headline, background and photo are separate layers that can be recolored, resized and moved without regenerating the image.
 - Restyles an image by text or by a reference image.
 - Generates video from text, from a web page link, or from images plus text, with people, products, camera moves, lighting and a voice track. Video is refined by generating again with a better prompt or reference, not by editing layers.
 - Takes spoken input, which AI turns into text before generating an image or a video.
 - Rewrites the prompt with AI for better results, and the rewrite can be edited before generating.
 - Keeps the interface simple, with no node graph for users to build. Image generation is driven by a versioned workflow catalog, so the exact graph that produced an image is recorded rather than implied.
 - Applies a brand kit of colors, fonts and references to every generation.
-- Adapts one design to more than 13 formats with Magic Resize, and sends it as an email or to print on demand.
+- Sizes images and video for more than 13 formats, set before generation or changed afterward with Magic Resize, and sends the result as an email or, for images, to print on demand.
 - Offers advanced layer editing with masks and compositing.
 - Lets every design be fine-tuned step by step, from the prompt to the output image or video, and keeps every step as its own version. This refines the design, not the model, and nothing is overwritten.
 
@@ -23,7 +23,7 @@ Video clips run up to 90 seconds of continuous 1080p on the online service, depe
 
 **Coming soon, not available yet**
 
-Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agent-run campaigns, company single sign-on through the Meraqi Identity Broker, a reference video as a way to refine a generation, and 3D renderings.
+Direct publishing and scheduling to social channels, live multi-user editing with comments and approvals, agent-run campaigns, company single sign-on through the Meraqi Identity Broker, a reference video as a way to refine a generation, and 3D graphics.
 
 **Where it runs, two options and no others**
 
