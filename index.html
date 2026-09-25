@@ -120,6 +120,10 @@
   h2.sec-t{ font-family:var(--fdisplay); font-optical-sizing:auto; font-weight:600; font-size:clamp(32px,4.3vw,52px); line-height:1.04; letter-spacing:-0.015em; color:var(--cream-pure); text-wrap:balance; }
   h2.sec-t em{ font-style:italic; color:var(--accent-ink); font-weight:500; }
   .sec-sub{ font-size:18px; color:var(--muted); margin-top:18px; max-width:56ch; }
+  /* a sub heading that spans the page sits outside the 60ch head, in .sec-intro */
+  .sec-head.flush{ margin-bottom:0; }
+  .sec-intro{ margin-bottom:56px; }
+  .sec-intro .sec-sub{ max-width:none; }
 
   /* meraki definition */
   .meraki .wrap{ padding-block:clamp(64px,9vw,104px); }
@@ -452,9 +456,11 @@
 <!-- video -->
 <section id="video" class="band">
   <div class="wrap sec">
-    <div class="sec-head rv">
+    <div class="sec-head flush rv">
       <span class="eyebrow">Video</span>
       <h2 class="sec-t">The same <em>soul</em>, in motion.</h2>
+    </div>
+    <div class="sec-intro rv">
       <p class="sec-sub">Meraqi keeps a moving scene consistent from frame to frame, so your spot plays like one continuous shot, not a slideshow.</p>
     </div>
     <div class="wgrid">
@@ -467,9 +473,11 @@
 
 <!-- how it works -->
 <section id="how" class="sec wrap">
-  <div class="sec-head rv">
+  <div class="sec-head flush rv">
     <span class="eyebrow">How it works</span>
     <h2 class="sec-t">Four steps from <em>idea</em> to finish.</h2>
+  </div>
+  <div class="sec-intro rv">
     <p class="sec-sub">The scale and scope of creativity is practically boundless. A personalized greeting card. A book cover. An ad campaign, or a clip for social media, built and ready to post. Type a prompt to create an image, then add a QR code that links anywhere. A wedding invitation with directions to the venue, the map link turned into a scannable code right on the card. Share a link to your product or marketing page and get a video for the big announcement. Load your meeting notes, a voice recording and your financial statements, and get back a presentation ready for new clients (coming soon). And the list goes on and on!</p>
     <p class="sec-sub">Ask for an image, a video, or 3D graphics (coming soon). Meraqi plans it and makes it, you refine it, and every version is kept.</p>
   </div>
