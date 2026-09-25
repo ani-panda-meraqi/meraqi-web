@@ -57,7 +57,7 @@ Direct publishing and scheduling to social channels, live multi-user editing wit
 - Online plans are Trial (free for one month, no card), Starter at $12, Pro at $25 and Business at $50 per seat per month. Annual billing gives two months free.
 - Plans give video generation time and images per month instead of credits. Generation time is how long the GPUs work on a video, not the length of the finished clip.
 - The Self-Hosted plan is priced per deployment, and its capacity is the customer's own hardware.
-- The first 1000 guests get privileged access and the option to sign up for Pro for life at a significant discount, cancel anytime. Beta program is first come, first served, closing at 1000 user sign-ups.
+- The first 1000 guests get privileged access and the option to sign up with the Pro plan for life at a significant discount, cancel anytime. Beta program is first come, first served, closing at 1000 user sign-ups.
 
 ## Product
 
